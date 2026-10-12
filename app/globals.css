@@ -1,26 +1,213 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ------------------------------------------------------------------
+   Cenote House design tokens
+   cenote = deep turquoise water · sand = limestone · terra = terracotta
+   ------------------------------------------------------------------ */
+@theme {
+  --color-cenote-950: #082f33;
+  --color-cenote-900: #0b3d42;
+  --color-cenote-800: #0e4f55;
+  --color-cenote-700: #136369;
+  --color-cenote-600: #1a7a80;
+  --color-cenote-500: #2b9a9c;
+  --color-cenote-300: #85cbc6;
+  --color-cenote-100: #dcefec;
+  --color-cenote-50: #eef7f5;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-sand-50: #fbf8f2;
+  --color-sand-100: #f4ede0;
+  --color-sand-200: #e9dcc6;
+  --color-sand-300: #d9c6a5;
+  --color-sand-500: #a88c62;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --color-terra-700: #7f381f;
+  --color-terra-600: #94442a;
+  --color-terra-500: #ad5230;
+  --color-terra-300: #e3a487;
+  --color-terra-100: #f6e2d8;
+
+  --color-paper: #faf7f1;
+  --color-ink: #1c2729;
+  --color-ink-soft: #4a5759;
+
+  --font-display: var(--font-fraunces), "Iowan Old Style", Georgia, serif;
+  --font-sans: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --animate-fade-up: fade-up 0.7s var(--ease-out-soft) both;
+  --animate-drift: drift 24s ease-in-out infinite alternate;
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes drift {
+    from { transform: scale(1.04) translate3d(0, 0, 0); }
+    to { transform: scale(1.12) translate3d(-1.5%, -1%, 0); }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "kern";
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 380;
+    letter-spacing: -0.015em;
+    line-height: 1.08;
+    font-variation-settings: "SOFT" 50, "WONK" 0;
+  }
+  /* The single italicised emphasis word in display headings */
+  h1 em, h2 em, h3 em, .display em {
+    font-style: italic;
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+    color: inherit;
+  }
+  ::selection {
+    background: var(--color-cenote-100);
+    color: var(--color-cenote-900);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-terra-500);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .container-x {
+    width: 100%;
+    max-width: 88rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) { .container-x { padding-inline: 2.5rem; } }
+
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 999px;
+    padding: 0.85rem 1.5rem;
+    font-size: 0.925rem;
+    font-weight: 600;
+    line-height: 1;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+    white-space: nowrap;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn-primary { background: var(--color-terra-500); color: white; }
+  .btn-primary:hover { background: var(--color-terra-600); }
+  .btn-dark { background: var(--color-cenote-800); color: white; }
+  .btn-dark:hover { background: var(--color-cenote-900); }
+  .btn-outline { border: 1px solid currentColor; }
+  .btn-outline:hover { background: color-mix(in srgb, currentColor 8%, transparent); }
+  .btn-ghost-light { border: 1px solid rgb(255 255 255 / 0.55); color: white; }
+  .btn-ghost-light:hover { background: rgb(255 255 255 / 0.12); }
+
+  .link-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 600;
+    text-underline-offset: 0.3em;
+  }
+  .link-arrow:hover { text-decoration: underline; }
+
+  .field {
+    width: 100%;
+    border-radius: 0.6rem;
+    border: 1px solid var(--color-sand-300);
+    background: white;
+    padding: 0.75rem 0.9rem;
+    font-size: 1rem;
+    color: var(--color-ink);
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .field:focus {
+    outline: none;
+    border-color: var(--color-cenote-600);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-cenote-500) 25%, transparent);
+  }
+  .field[aria-invalid="true"] { border-color: var(--color-terra-600); }
+
+  /* Long-form article typography (blog + destination guides) */
+  .prose-ch {
+    font-size: 1.075rem;
+    line-height: 1.75;
+    color: var(--color-ink);
+  }
+  .prose-ch > * + * { margin-top: 1.15em; }
+  .prose-ch h2 {
+    font-size: clamp(1.7rem, 3vw, 2.3rem);
+    margin-top: 2.4em;
+    scroll-margin-top: 7rem;
+  }
+  .prose-ch h3 {
+    font-size: 1.4rem;
+    margin-top: 1.8em;
+    scroll-margin-top: 7rem;
+  }
+  .prose-ch a { color: var(--color-cenote-700); text-decoration: underline; text-underline-offset: 0.2em; text-decoration-color: var(--color-cenote-300); }
+  .prose-ch a:hover { text-decoration-color: currentColor; }
+  .prose-ch strong { font-weight: 650; color: var(--color-cenote-900); }
+  .prose-ch ul { list-style: none; padding-left: 0; }
+  .prose-ch ul > li { position: relative; padding-left: 1.4em; }
+  .prose-ch ul > li + li, .prose-ch ol > li + li { margin-top: 0.45em; }
+  .prose-ch ul > li::before {
+    content: ""; position: absolute; left: 0.2em; top: 0.72em;
+    width: 0.42em; height: 0.42em; transform: rotate(45deg);
+    background: var(--color-terra-500);
+  }
+  .prose-ch ol { list-style: decimal; padding-left: 1.4em; }
+  .prose-ch ol > li::marker { color: var(--color-terra-600); font-weight: 600; }
+  .prose-ch blockquote {
+    border-left: 3px solid var(--color-terra-500);
+    padding: 0.2em 0 0.2em 1.2em;
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--color-cenote-900);
+  }
+  .prose-ch hr { border: 0; height: 10px; margin: 3em 0; background: var(--tile-band); background-size: 20px 10px; opacity: 0.6; }
+  .prose-ch table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+  .prose-ch th, .prose-ch td { text-align: left; padding: 0.6em 0.8em; border-bottom: 1px solid var(--color-sand-200); vertical-align: top; }
+  .prose-ch th { font-weight: 600; background: var(--color-sand-100); }
+  .prose-ch em { font-style: italic; }
+}
+
+:root {
+  /* tiny zig-zag band, used as a subtle textile-inspired divider */
+  --tile-band: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='10' viewBox='0 0 20 10'%3E%3Cpath d='M0 10 L10 0 L20 10' fill='none' stroke='%23ad5230' stroke-width='1.4'/%3E%3C/svg%3E");
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
 }
