@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { CheckIcon } from "@/components/ui/icons";
+import { postJSON } from "@/lib/api";
 
 export function BrochureForm() {
   const [email, setEmail] = useState("");
@@ -18,7 +19,7 @@ export function BrochureForm() {
     setError("");
     setState("sending");
     try {
-      const res = await fetch("/api/brochure", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email, newsletter, guide: "yucatan" }) });
+      const res = await postJSON("/api/brochure", { email, newsletter, guide: "yucatan" });
       setState(res.ok ? "done" : "error");
     } catch {
       setState("error");

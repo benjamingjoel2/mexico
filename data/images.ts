@@ -10,7 +10,9 @@ export interface SiteImage {
 }
 
 const u = (id: string) =>
-  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=2000&q=80`;
+  process.env.NEXT_PUBLIC_PREVIEW_EXPORT === "1"
+    ? `/img/${id}.jpg` // static preview build bundles local copies (scripts/build-preview.mjs)
+    : `https://images.unsplash.com/${id}?auto=format&fit=crop&w=2000&q=80`;
 
 export const images = {
   "hero-cenote": { src: u("photo-1546838849-6eb6269ae2db"), alt: "Turquoise water inside a limestone cenote cave" },

@@ -8,6 +8,11 @@ npm run dev      # http://localhost:3000
 npm run build && npm start
 ```
 
+## Static preview build
+
+`node scripts/build-preview.mjs` produces `preview-out/`: a fully static copy of the site with bundled images and
+relative URLs, so it can be hosted from any sub-path for review. Forms simulate success in this build (no API routes).
+
 ## Where things live
 
 | Path | What |
