@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   applicationName: site.name,
   openGraph: { siteName: site.name, locale: site.locale, type: "website" },
   twitter: { card: "summary_large_image" },
-  icons: { icon: "/icon.svg" },
+  icons: process.env.NEXT_PUBLIC_PREVIEW_EXPORT === "1" ? undefined : { icon: "/icon.svg" },
 };
 
 export const viewport: Viewport = { themeColor: "#0b3d42", width: "device-width", initialScale: 1 };

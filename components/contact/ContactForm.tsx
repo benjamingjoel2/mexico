@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { postJSON } from "@/lib/api";
 
 export function ContactForm() {
   const params = useSearchParams();
@@ -19,7 +20,7 @@ export function ContactForm() {
     setErrors(errs);
     if (Object.keys(errs).length) return;
     setState("sending");
-    const res = await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...form, topic }) }).catch(() => null);
+    const res = await postJSON("/api/contact", { ...form, topic }).catch(() => null);
     setState(res?.ok ? "done" : "error");
   }
 

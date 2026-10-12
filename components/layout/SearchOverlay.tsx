@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
 import { useUI } from "@/components/providers/UIProvider";
 import type { SearchItem } from "@/lib/search";
 import { CloseIcon, SearchIcon } from "@/components/ui/icons";
@@ -15,7 +14,6 @@ export function SearchOverlay({ index }: { index: SearchItem[] }) {
   const [q, setQ] = useState("");
   const [active, setActive] = useState(0);
   const input = useRef<HTMLInputElement>(null);
-  const router = useRouter();
 
   const results = useMemo(() => {
     const terms = norm(q).split(/\s+/).filter(Boolean);
@@ -56,7 +54,7 @@ export function SearchOverlay({ index }: { index: SearchItem[] }) {
   const onKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "ArrowDown") { e.preventDefault(); setActive((a) => Math.min(a + 1, results.length - 1)); }
     if (e.key === "ArrowUp") { e.preventDefault(); setActive((a) => Math.max(a - 1, 0)); }
-    if (e.key === "Enter" && results[active]) { closeSearch(); router.push(results[active].href); }
+    if (e.key === "Enter" && results[active]) document.querySelector<HTMLAnchorElement>(`#sr-${active} a`)?.click();
   };
 
   return (

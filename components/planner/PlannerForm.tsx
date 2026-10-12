@@ -5,6 +5,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import { images } from "@/data/images";
 import { whatsappHref } from "@/config/site";
 import { Price } from "@/components/ui/Price";
+import { postJSON } from "@/lib/api";
 import { CheckIcon } from "@/components/ui/icons";
 import {
   addonOptions, budgetOptions, contactOptions, countryCodes, emptyPlanner, regionOptions, steps, validateStep,
@@ -77,8 +78,8 @@ export function PlannerForm({ onDone, compact = false }: { onDone?: () => void; 
   async function submit() {
     setStatus("sending");
     try {
-      const res = await fetch("/api/plan", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });
-      if (!res.ok) throw new Error(await res.text());
+      const res = await postJSON("/api/plan", data);
+      if (!res.ok) throw new Error("Request failed");
       setStatus("done");
       try { localStorage.removeItem(STORAGE_KEY); } catch { /* ignore */ }
     } catch {

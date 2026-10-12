@@ -40,3 +40,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 preview/
+
+# static preview build
+/.preview-build
+/.preview-cache
+/preview-out

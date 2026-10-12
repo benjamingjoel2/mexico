@@ -3,6 +3,8 @@ import { site } from "@/config/site";
 import { destinations, experiences, itineraries, stays } from "@/lib/data";
 import { getAllPosts } from "@/lib/blog";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
   const paths = [
