@@ -42,7 +42,7 @@ export function TripFilters({ trips, regionLabels, budgetLabels }: {
       <div className="container-x py-14">
         <h2 className="sr-only">Matching trips</h2>
         {filtered.length ? (
-          <div className="grid gap-6 lg:grid-cols-2">{filtered.map((t) => <ItineraryCard key={t.slug} it={t} />)}</div>
+          <div className="grid gap-6 lg:grid-cols-2">{filtered.map((t, i) => <ItineraryCard key={t.slug} it={t} priority={i < 2} />)}</div>
         ) : (
           <div className="rounded-2xl bg-sand-100 p-10 text-center">
             <p className="font-display text-3xl text-cenote-900">No sample trip fits — <em>yet</em>.</p>
