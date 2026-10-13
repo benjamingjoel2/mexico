@@ -155,7 +155,7 @@ export function Header() {
       ))}
 
       {/* Mobile drawer */}
-      <div className={`fixed inset-0 z-50 lg:hidden ${drawer ? "" : "pointer-events-none"}`} inert={!drawer}>
+      <div className={`fixed inset-0 z-50 overflow-hidden lg:hidden ${drawer ? "" : "pointer-events-none"}`} inert={!drawer}>
         <div className={`absolute inset-0 bg-cenote-950/50 transition-opacity duration-300 ${drawer ? "opacity-100" : "opacity-0"}`} onClick={() => setDrawer(false)} />
         <div
           role="dialog"
