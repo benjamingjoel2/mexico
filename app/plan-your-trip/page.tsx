@@ -15,7 +15,7 @@ export default function PlanYourTripPage() {
   return (
     <div className="grid lg:grid-cols-12">
       <aside className="relative hidden overflow-hidden bg-cenote-950 text-white lg:col-span-4 lg:block">
-        <Img image="hacienda-pool" sizes="33vw" className="opacity-60" />
+        <Img image="hacienda-pool" sizes="33vw" priority className="opacity-60" />
         <div className="absolute inset-0 bg-gradient-to-b from-cenote-950/40 to-cenote-950/90" />
         <div className="sticky top-[4.5rem] flex min-h-[calc(100vh-4.5rem)] flex-col justify-end p-10">
           <p className="eyebrow text-cenote-300">How it works</p>

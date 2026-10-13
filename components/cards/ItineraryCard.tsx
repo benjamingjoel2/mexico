@@ -3,11 +3,11 @@ import type { Itinerary } from "@/data/types";
 import { Img } from "@/components/ui/Img";
 import { Price } from "@/components/ui/Price";
 
-export function ItineraryCard({ it }: { it: Itinerary }) {
+export function ItineraryCard({ it, priority }: { it: Itinerary; priority?: boolean }) {
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-sand-200 bg-white">
       <Link href={`/trips/${it.slug}`} className="relative block aspect-[16/10] overflow-hidden bg-sand-200" tabIndex={-1} aria-hidden>
-        <Img image={it.image} sizes="(min-width: 1024px) 45vw, 95vw" className="transition-transform duration-[1.2s] group-hover:scale-[1.04]" />
+        <Img image={it.image} sizes="(min-width: 1024px) 45vw, 95vw" priority={priority} className="transition-transform duration-[1.2s] group-hover:scale-[1.04]" />
         <div className="absolute left-4 top-4 flex gap-2">
           <span className="rounded-full bg-paper/95 px-3 py-1 text-xs font-semibold text-cenote-900">{it.nights + 1} days · {it.nights} nights</span>
         </div>
