@@ -8,16 +8,17 @@ import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
-import { SearchOverlay } from "@/components/layout/SearchOverlay";
-import { PlannerModal } from "@/components/planner/PlannerModal";
-import { buildSearchIndex } from "@/lib/search";
+import { LazyOverlays } from "@/components/layout/LazyOverlays";
 
-const fraunces = Fraunces({
+// Display serif: weight axis only (the SOFT/WONK/opsz axes roughly tripled the file size).
+const fraunces = Fraunces({ subsets: ["latin"], variable: "--font-fraunces", display: "swap" });
+// The italic is used for one emphasised word per heading, so it is not preloaded.
+const frauncesItalic = Fraunces({
   subsets: ["latin"],
-  variable: "--font-fraunces",
-  style: ["normal", "italic"],
-  axes: ["SOFT", "WONK", "opsz"],
+  style: "italic",
+  variable: "--font-fraunces-italic",
   display: "swap",
+  preload: false,
 });
 const instrument = Instrument_Sans({ subsets: ["latin"], variable: "--font-instrument", display: "swap" });
 
@@ -62,9 +63,8 @@ const orgJsonLd = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  const searchIndex = buildSearchIndex();
   return (
-    <html lang="en" className={`${fraunces.variable} ${instrument.variable}`}>
+    <html lang="en" className={`${fraunces.variable} ${frauncesItalic.variable} ${instrument.variable}`}>
       <body className="antialiased">
         <a href="#main" className="sr-only z-[100] rounded bg-white px-4 py-2 focus:not-sr-only focus:fixed focus:left-4 focus:top-4">
           Skip to content
@@ -76,8 +76,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <main id="main">{children}</main>
             <Footer />
             <WhatsAppButton />
-            <SearchOverlay index={searchIndex} />
-            <PlannerModal />
+            <LazyOverlays />
           </UIProvider>
         </CurrencyProvider>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }} />
