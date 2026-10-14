@@ -7,7 +7,7 @@ export const site = {
   name: "Cenote House",
   tagline: "Tailor-made Mexico, below the surface",
   description:
-    "Tailor-made Mexico journeys planned by one dedicated specialist who knows the country personally. Cenotes, colonial cities, haciendas and the Mexico beyond the resorts.",
+    "Tailor-made Mexico trips planned by one specialist who knows the country personally: cenotes, colonial cities, haciendas and the Mexico beyond the resorts.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.cenotehouse.example",
   locale: "en_US",
   foundedYear: 2014,
