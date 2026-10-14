@@ -6,6 +6,8 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [{ protocol: "https", hostname: "images.unsplash.com" }],
     formats: ["image/avif", "image/webp"],
+    // Keep optimised images cached for a month instead of re-optimising them from Unsplash.
+    minimumCacheTTL: 2678400,
   },
   // Static, relative-path build used only for hosted previews (see scripts/build-preview.mjs).
   ...(preview && {
