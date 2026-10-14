@@ -7,7 +7,7 @@ import { CtaBand } from "@/components/ui/CtaBand";
 
 export const metadata = pageMetadata({
   title: "Guest reviews",
-  description: "What guests say about travelling Mexico with Cenote House.",
+  description: "Reviews from guests who travelled Mexico with Cenote House: tailor-made trips to the Yucatán, Oaxaca, Mexico City, Chiapas and Baja.",
   path: "/testimonials",
 });
 

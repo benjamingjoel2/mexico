@@ -137,7 +137,7 @@ export default async function TripPage({ params }: { params: Promise<{ slug: str
               <PlannerButton className="btn btn-primary w-full">Enquire about this trip</PlannerButton>
               <a href={whatsappHref(`Hola! I'm interested in "${it.title}".`)} target="_blank" rel="noopener noreferrer" className="btn btn-ghost-light w-full"><WhatsAppIcon width={18} height={18} /> Ask on WhatsApp</a>
             </div>
-            <p className="mt-5 text-xs text-white/60">Prices vary by season and availability. {fxNote}</p>
+            <p className="mt-5 text-xs text-white/75">Prices vary by season and availability. {fxNote}</p>
           </div>
         </aside>
       </div>
