@@ -9,8 +9,34 @@ import { CloseIcon, SearchIcon } from "@/components/ui/icons";
 const norm = (s: string) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
 const suggestions = ["Cenotes", "Oaxaca", "Haciendas", "Day of the Dead", "Whale sharks", "Copper Canyon"];
 
-export function SearchOverlay({ index }: { index: SearchItem[] }) {
+// Fetched once per visit, on first open.
+let cached: Promise<SearchItem[]> | null = null;
+const indexUrl = process.env.NEXT_PUBLIC_PREVIEW_EXPORT === "1" ? "search-index.json" : "/search-index.json";
+const loadIndex = () =>
+  (cached ??= fetch(indexUrl)
+    .then((r) => (r.ok ? (r.json() as Promise<SearchItem[]>) : []))
+    .catch(() => {
+      cached = null;
+      return [];
+    }));
+
+export function SearchOverlay() {
   const { searchOpen, closeSearch } = useUI();
+  const [index, setIndex] = useState<SearchItem[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let live = true;
+    loadIndex().then((items) => {
+      if (live) {
+        setIndex(items);
+        setLoading(false);
+      }
+    });
+    return () => {
+      live = false;
+    };
+  }, []);
   const [q, setQ] = useState("");
   const [active, setActive] = useState(0);
   const input = useRef<HTMLInputElement>(null);
@@ -92,7 +118,8 @@ export function SearchOverlay({ index }: { index: SearchItem[] }) {
               </div>
             </div>
           )}
-          {q && results.length === 0 && (
+          {q && loading && <p className="p-4 text-ink-soft">Searching…</p>}
+          {q && !loading && results.length === 0 && (
             <p className="p-4 text-ink-soft">Nothing matches &ldquo;{q}&rdquo; yet. Our specialists know far more than this site does — <Link href="/contact" onClick={closeSearch} className="underline">ask us</Link>.</p>
           )}
           <ul id="search-results" role="listbox">

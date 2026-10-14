@@ -130,7 +130,7 @@ export function Header() {
                   <ul className="space-y-2.5">
                     {col.links.map((l) => (
                       <li key={l.href + l.label}>
-                        <Link href={l.href} className="font-display text-[1.15rem] text-cenote-900 hover:text-terra-600 hover:italic">
+                        <Link href={l.href} className="font-display text-[1.15rem] text-cenote-900 hover:text-terra-600">
                           {l.label}
                         </Link>
                       </li>
