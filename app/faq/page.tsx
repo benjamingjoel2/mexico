@@ -7,7 +7,7 @@ import { CtaBand } from "@/components/ui/CtaBand";
 
 export const metadata = pageMetadata({
   title: "Mexico travel FAQ: entry, FMM, safety, seasons & money",
-  description: "Answers to common Mexico travel questions: entry requirements and the FMM tourist card, safety, best time to visit, hurricane season, getting around, tipping and payments.",
+  description: "Mexico travel questions answered: entry rules and the FMM tourist card, safety, when to go, hurricane season, getting around, tipping and payments.",
   path: "/faq",
 });
 

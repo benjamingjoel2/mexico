@@ -7,13 +7,21 @@ export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  const paths = [
-    "", "/destinations", "/trips", "/experiences", "/plan-your-trip", "/about", "/why-travel-with-us", "/testimonials", "/faq", "/contact", "/blog",
-    ...destinations.map((d) => `/destinations/${d.slug}`),
-    ...itineraries.map((i) => `/trips/${i.slug}`),
-    ...experiences.map((e) => `/experiences/${e.slug}`),
-    ...stays.map((s) => `/stays/${s.slug}`),
-    ...getAllPosts().map((p) => `/blog/${p.slug}`),
+  const entry = (path: string, priority: number, lastModified: Date = now): MetadataRoute.Sitemap[number] => ({
+    url: `${site.url}${path}`,
+    lastModified,
+    changeFrequency: "monthly",
+    priority,
+  });
+  return [
+    entry("", 1),
+    ...["/destinations", "/trips", "/experiences", "/plan-your-trip"].map((p) => entry(p, 0.9)),
+    ...destinations.map((d) => entry(`/destinations/${d.slug}`, 0.8)),
+    ...itineraries.map((i) => entry(`/trips/${i.slug}`, 0.8)),
+    ...experiences.map((e) => entry(`/experiences/${e.slug}`, 0.7)),
+    ...stays.map((s) => entry(`/stays/${s.slug}`, 0.6)),
+    entry("/blog", 0.7),
+    ...getAllPosts().map((p) => entry(`/blog/${p.slug}`, 0.7, new Date(p.date))),
+    ...["/about", "/why-travel-with-us", "/testimonials", "/faq", "/contact"].map((p) => entry(p, 0.5)),
   ];
-  return paths.map((p) => ({ url: `${site.url}${p}`, lastModified: now, changeFrequency: "monthly", priority: p === "" ? 1 : 0.7 }));
 }

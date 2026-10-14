@@ -2,6 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { destinations, getDestination, itinerariesIn, staysIn, partnerStayCounts } from "@/lib/data";
 import { pageMetadata } from "@/lib/seo";
+import { site } from "@/config/site";
+import { images } from "@/data/images";
 import { PageHero } from "@/components/ui/PageHero";
 import { Img } from "@/components/ui/Img";
 import { MonthGrid } from "@/components/ui/MonthGrid";
@@ -29,6 +31,17 @@ export default async function DestinationPage({ params }: { params: Promise<{ sl
   const localStays = staysIn(d.slug);
   const trips = itinerariesIn(d.slug);
   const nearby = destinations.filter((x) => x.region === d.region && x.slug !== d.slug).slice(0, 4);
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "TouristDestination",
+    name: d.name,
+    description: d.seo.description,
+    url: `${site.url}/destinations/${d.slug}`,
+    image: images[d.image]?.src,
+    containedInPlace: { "@type": "Country", name: "Mexico" },
+    touristType: d.bestFor,
+    includesAttraction: d.highlights.map((h) => ({ "@type": "TouristAttraction", name: h.title, description: h.description })),
+  };
   const sections = [
     ["overview", "Overview"], ["when-to-go", "When to go"], ["highlights", "Highlights"], ["things-to-do", "Things to do"],
     ["tips", "Practical tips"], ...(localStays.length ? [["stays", "Where to stay"]] : []), ...(trips.length ? [["trips", "Trips"]] : []), ["faq", "FAQ"],
@@ -181,6 +194,7 @@ export default async function DestinationPage({ params }: { params: Promise<{ sl
       )}
 
       <CtaBand title={`Your ${d.name}, *unhurried*.`} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     </>
   );
 }

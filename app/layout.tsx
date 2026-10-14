@@ -26,8 +26,11 @@ export const metadata: Metadata = {
   title: { default: `${site.name} · Tailor-made Mexico trips, below the surface`, template: `%s · ${site.name}` },
   description: site.description,
   applicationName: site.name,
-  openGraph: { siteName: site.name, locale: site.locale, type: "website" },
+  openGraph: { siteName: site.name, locale: site.locale, type: "website", url: "/" },
   twitter: { card: "summary_large_image" },
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
+  // Set GOOGLE_SITE_VERIFICATION in Vercel to verify the site in Google Search Console.
+  ...(process.env.GOOGLE_SITE_VERIFICATION && { verification: { google: process.env.GOOGLE_SITE_VERIFICATION } }),
   icons: process.env.NEXT_PUBLIC_PREVIEW_EXPORT === "1" ? undefined : { icon: "/icon.svg" },
 };
 
@@ -35,13 +38,27 @@ export const viewport: Viewport = { themeColor: "#0b3d42", width: "device-width"
 
 const orgJsonLd = {
   "@context": "https://schema.org",
-  "@type": "TravelAgency",
-  name: site.name,
-  url: site.url,
-  description: site.description,
-  email: site.contact.email,
-  telephone: site.contact.phone,
-  areaServed: "Mexico",
+  "@graph": [
+    {
+      "@type": "TravelAgency",
+      "@id": `${site.url}/#organization`,
+      name: site.name,
+      url: site.url,
+      logo: `${site.url}/icon.svg`,
+      image: `${site.url}/icon.svg`,
+      description: site.description,
+      areaServed: { "@type": "Country", name: "Mexico" },
+      foundingDate: String(site.foundedYear),
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${site.url}/#website`,
+      name: site.name,
+      url: site.url,
+      inLanguage: "en",
+      publisher: { "@id": `${site.url}/#organization` },
+    },
+  ],
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

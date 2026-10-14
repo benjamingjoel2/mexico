@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { site } from "@/config/site";
+import { pageMetadata } from "@/lib/seo";
 import { images } from "@/data/images";
 import { destinations, experiences, itineraries, stays, testimonials, partnerStayCounts, itinerariesFor } from "@/lib/data";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -13,6 +14,13 @@ import { BrochureForm } from "@/components/home/BrochureForm";
 import { CtaBand } from "@/components/ui/CtaBand";
 import { StitchBand } from "@/components/ui/TileDivider";
 import { ShieldIcon, StarIcon } from "@/components/ui/icons";
+
+export const metadata = pageMetadata({
+  title: `${site.name} · Tailor-made Mexico trips, below the surface`,
+  description: site.description,
+  path: "/",
+  image: "hero-cenote",
+});
 
 const pick = <T extends { slug: string }>(list: T[], slugs: string[]) =>
   slugs.map((s) => list.find((x) => x.slug === s)).filter((x): x is T => Boolean(x));

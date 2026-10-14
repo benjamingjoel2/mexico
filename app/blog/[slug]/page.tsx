@@ -19,7 +19,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const post = getPost((await params).slug);
   if (!post) return {};
-  return { ...pageMetadata({ title: post.meta.title, description: post.meta.description, path: `/blog/${post.meta.slug}`, image: post.meta.image }), openGraph: { type: "article", publishedTime: post.meta.date, images: [images[post.meta.image]?.src] } };
+  return pageMetadata({ title: post.meta.title, description: post.meta.description, path: `/blog/${post.meta.slug}`, image: post.meta.image, type: "article", publishedTime: post.meta.date });
 }
 
 export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -35,8 +35,10 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
     headline: meta.title,
     description: meta.description,
     datePublished: meta.date,
-    author: { "@type": "Organization", name: meta.author },
-    publisher: { "@type": "Organization", name: site.name },
+    dateModified: meta.date,
+    mainEntityOfPage: `${site.url}/blog/${meta.slug}`,
+    author: { "@type": "Organization", name: meta.author, url: site.url },
+    publisher: { "@type": "Organization", name: site.name, logo: { "@type": "ImageObject", url: `${site.url}/icon.svg` } },
     image: images[meta.image]?.src,
   };
 
