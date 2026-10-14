@@ -129,7 +129,7 @@ export const itineraries: Itinerary[] = [
       "Gratuities for guides and drivers",
     ],
     seo: {
-      title: "Yucatán Itinerary: Holbox, Chichén Itzá, Mérida & Tulum (10 Nights)",
+      title: "Yucatán Itinerary: Holbox, Chichén Itzá, Mérida & Tulum",
       description:
         "A 10-night tailor-made Yucatán trip with cenotes, early-access Maya ruins, a hacienda stay near Mérida, Holbox and Tulum. From $6,900 per person.",
     },
@@ -263,7 +263,7 @@ export const itineraries: Itinerary[] = [
       "Gratuities",
     ],
     seo: {
-      title: "Mexico City & Oaxaca Itinerary: Food, Mezcal & Culture (9 Nights)",
+      title: "Mexico City & Oaxaca Itinerary: Food, Mezcal & Culture",
       description:
         "A 9-night luxury food and culture trip through Mexico City and Oaxaca — markets, mole, mezcal palenques and private guides. From $8,900 per person.",
     },
@@ -365,7 +365,7 @@ export const itineraries: Itinerary[] = [
       "Gratuities",
     ],
     seo: {
-      title: "Colonial Mexico Itinerary: Puebla, CDMX, San Miguel & Guanajuato",
+      title: "Colonial Mexico Itinerary: CDMX, San Miguel & Guanajuato",
       description:
         "An 11-night journey through Mexico's colonial heartland — Puebla, Mexico City, San Miguel de Allende and Guanajuato, with private guides. From $4,300.",
     },
@@ -610,7 +610,7 @@ export const itineraries: Itinerary[] = [
       "Gratuities",
     ],
     seo: {
-      title: "Chiapas & Yucatán Itinerary: Palenque to Tulum by Tren Maya (14 Nights)",
+      title: "Chiapas & Yucatán Itinerary: Palenque to Tulum by Train",
       description:
         "A 14-night journey through the Maya world — San Cristóbal, Palenque, Campeche, Mérida, Chichén Itzá and Tulum, with the Tren Maya. From $7,600.",
     },
@@ -712,7 +712,7 @@ export const itineraries: Itinerary[] = [
       "Gratuities",
     ],
     seo: {
-      title: "Baja Whale Watching Itinerary: La Paz, Magdalena Bay & Los Cabos",
+      title: "Baja Whale Watching Itinerary: La Paz to Los Cabos",
       description:
         "A 9-night luxury Baja wildlife trip with grey whales in Magdalena Bay, whale sharks in La Paz and humpbacks off Los Cabos. Best Jan–Mar. From $9,800.",
     },
@@ -805,7 +805,7 @@ export const itineraries: Itinerary[] = [
       "Gratuities",
     ],
     seo: {
-      title: "Mexico Pacific Coast Surf Itinerary: Sayulita to Puerto Escondido",
+      title: "Pacific Mexico Surf Itinerary: Sayulita to Puerto Escondido",
       description:
         "A 10-night Pacific surf and beach trip — Sayulita, Punta de Mita, Puerto Escondido and Mazunte, with lessons for every level. From $4,100 per person.",
     },
@@ -915,7 +915,7 @@ export const itineraries: Itinerary[] = [
       "Gratuities",
     ],
     seo: {
-      title: "Copper Canyon Train Itinerary: El Chepe & Mexico City (10 Nights)",
+      title: "Copper Canyon Train Itinerary: El Chepe & Mexico City",
       description:
         "A 10-night Copper Canyon rail journey on El Chepe — El Fuerte, Cerocahui, Divisadero, Creel and Chihuahua, ending in Mexico City. From $6,300.",
     },

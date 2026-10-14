@@ -39,6 +39,8 @@ relative URLs, so it can be hosted from any sub-path for review. Forms simulate 
 
 ## Before launch
 
+- SEO: set `NEXT_PUBLIC_SITE_URL` to the final domain (canonical URLs, sitemap and Open Graph tags use it), set `GOOGLE_SITE_VERIFICATION` in Vercel, then submit `/sitemap.xml` in Google Search Console
+
 - Replace every `[PLACEHOLDER]` in `config/site.ts` and set `NEXT_PUBLIC_SITE_URL`
 - Replace placeholder stays, testimonials and team profiles with real ones
 - Swap Unsplash images for your own photography (`data/images.ts`); add a hero cenote video in `app/page.tsx` if you have one
