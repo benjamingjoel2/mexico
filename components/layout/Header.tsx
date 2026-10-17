@@ -44,6 +44,9 @@ export function Header() {
     setDrawer(false);
   }, [pathname]);
 
+  // On the homepage the header floats transparently over the cinematic hero until you scroll.
+  const overlay = pathname === "/" && !scrolled && !open;
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
@@ -73,9 +76,9 @@ export function Header() {
   };
 
   return (
-    <header className={`sticky top-0 z-40 border-b transition-[background-color,box-shadow,border-color] duration-300 ${scrolled || open ? "border-sand-200 bg-paper/95 shadow-[0_8px_30px_-20px_rgba(8,47,51,.35)] backdrop-blur" : "border-transparent bg-paper"}`}>
+    <header className={`sticky top-0 z-40 border-b transition-[background-color,box-shadow,border-color,color] duration-300 ${overlay ? "border-white/15 bg-transparent text-white" : scrolled || open ? "border-sand-200 bg-paper text-ink shadow-[0_8px_30px_-20px_rgba(8,47,51,.35)]" : "border-transparent bg-paper text-ink"}`}>
       <div className="container-x flex h-[4.5rem] items-center gap-6">
-        <Logo />
+        <Logo tone={overlay ? "light" : "dark"} />
 
         <nav aria-label="Main" className="ml-6 hidden h-full lg:flex">
           <ul className="flex h-full items-center gap-1">
@@ -86,27 +89,27 @@ export function Header() {
                   aria-expanded={open === m.id}
                   aria-controls={`menu-${m.id}`}
                   onClick={() => setOpen(open === m.id ? null : m.id)}
-                  className={`flex h-full items-center gap-1 px-3 text-[0.93rem] font-medium transition-colors ${open === m.id ? "text-terra-600" : "text-ink hover:text-terra-600"}`}
+                  className={`flex h-full items-center gap-1 px-3 text-[0.93rem] font-medium transition-colors ${open === m.id ? "text-terra-600" : overlay ? "hover:text-sand-200" : "hover:text-terra-600"}`}
                 >
                   {m.label}
                   <ChevronDown width={15} height={15} className={`transition-transform ${open === m.id ? "rotate-180" : ""}`} />
                 </button>
               </li>
             ))}
-            <li><Link href="/trips" className="flex h-full items-center px-3 text-[0.93rem] font-medium hover:text-terra-600">Trips</Link></li>
-            <li><Link href="/blog" className="flex h-full items-center px-3 text-[0.93rem] font-medium hover:text-terra-600">Journal</Link></li>
+            <li><Link href="/trips" className={`flex h-full items-center px-3 text-[0.93rem] font-medium ${overlay ? "hover:text-sand-200" : "hover:text-terra-600"}`}>Trips</Link></li>
+            <li><Link href="/blog" className={`flex h-full items-center px-3 text-[0.93rem] font-medium ${overlay ? "hover:text-sand-200" : "hover:text-terra-600"}`}>Journal</Link></li>
           </ul>
         </nav>
 
         <div className="ml-auto flex items-center gap-2 sm:gap-3">
-          <button type="button" onClick={openSearch} className="rounded-full p-2.5 text-ink hover:bg-sand-100" aria-label="Search the site">
+          <button type="button" onClick={openSearch} className={`rounded-full p-2.5 ${overlay ? "hover:bg-white/10" : "hover:bg-sand-100"}`} aria-label="Search the site">
             <SearchIcon />
           </button>
-          <div className="hidden sm:block"><CurrencySwitcher /></div>
+          <div className="hidden sm:block"><CurrencySwitcher tone={overlay ? "light" : "dark"} /></div>
           <button type="button" onClick={openPlanner} className="btn btn-primary hidden !py-3 md:inline-flex">
             Start planning
           </button>
-          <button type="button" className="rounded-full p-2.5 hover:bg-sand-100 lg:hidden" aria-label="Open menu" aria-expanded={drawer} onClick={() => setDrawer(true)}>
+          <button type="button" className={`rounded-full p-2.5 lg:hidden ${overlay ? "hover:bg-white/10" : "hover:bg-sand-100"}`} aria-label="Open menu" aria-expanded={drawer} onClick={() => setDrawer(true)}>
             <MenuIcon width={24} height={24} />
           </button>
         </div>
@@ -154,65 +157,72 @@ export function Header() {
         </div>
       ))}
 
-      {/* Mobile drawer */}
-      <div className={`fixed inset-0 z-50 overflow-hidden lg:hidden ${drawer ? "" : "pointer-events-none"}`} inert={!drawer}>
-        <div className={`absolute inset-0 bg-cenote-950/50 transition-opacity duration-300 ${drawer ? "opacity-100" : "opacity-0"}`} onClick={() => setDrawer(false)} />
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-label="Menu"
-          className={`absolute inset-y-0 right-0 flex w-full max-w-sm flex-col bg-paper shadow-2xl transition-transform duration-300 ease-out ${drawer ? "translate-x-0" : "translate-x-full"}`}
-        >
-          <div className="flex h-[4.5rem] items-center justify-between border-b border-sand-200 px-5">
-            <Logo />
-            <button type="button" onClick={() => setDrawer(false)} className="rounded-full p-2 hover:bg-sand-100" aria-label="Close menu" tabIndex={drawer ? 0 : -1}>
-              <CloseIcon width={24} height={24} />
-            </button>
+      {/* Full-screen mobile menu */}
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-label="Menu"
+        inert={!drawer}
+        className={`fixed inset-0 z-50 flex flex-col overflow-hidden bg-cenote-950 text-white transition-[opacity,transform] duration-500 ease-[cubic-bezier(.22,1,.36,1)] lg:hidden ${drawer ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-4 opacity-0"}`}
+      >
+        <div className="flex h-[4.5rem] shrink-0 items-center justify-between border-b border-white/10 px-5">
+          <Logo tone="light" />
+          <button type="button" onClick={() => setDrawer(false)} className="rounded-full p-2 hover:bg-white/10" aria-label="Close menu">
+            <CloseIcon width={26} height={26} />
+          </button>
+        </div>
+        <div className="flex-1 overflow-y-auto px-5 pb-6 pt-2">
+          {menus.map((m, i) => (
+            <MobileAccordion
+              key={m.id}
+              index={i + 1}
+              label={m.label}
+              links={[...m.columns.flatMap((c) => c.links), m.footer].filter((l, i, a) => a.findIndex((x) => x.href === l.href) === i)}
+            />
+          ))}
+          {[{ label: "Trips", href: "/trips" }, { label: "Journal", href: "/blog" }].map((l, i) => (
+            <Link key={l.href} href={l.href} className="flex items-baseline gap-4 border-b border-white/10 py-5 font-display text-[2rem] leading-none">
+              <span className="coords !text-[0.65rem] text-cenote-300 before:content-none after:content-none">{String(menus.length + i + 1).padStart(2, "0")}</span>
+              {l.label}
+            </Link>
+          ))}
+          <div className="mt-8 flex items-center justify-between">
+            <span className="eyebrow text-cenote-300">Currency</span>
+            <CurrencySwitcher tone="light" />
           </div>
-          <div className="flex-1 overflow-y-auto px-5 py-4">
-            {menus.map((m) => (
-              <MobileAccordion key={m.id} label={m.label} links={[...m.columns.flatMap((c) => c.links), m.footer].filter((l, i, a) => a.findIndex((x) => x.href === l.href) === i)} tabbable={drawer} />
-            ))}
-            <Link href="/trips" tabIndex={drawer ? 0 : -1} className="block border-b border-sand-200 py-4 font-display text-xl">Trips</Link>
-            <Link href="/blog" tabIndex={drawer ? 0 : -1} className="block border-b border-sand-200 py-4 font-display text-xl">Journal</Link>
-            <div className="mt-6 flex items-center justify-between">
-              <span className="text-sm text-ink-soft">Currency</span>
-              <CurrencySwitcher />
-            </div>
-          </div>
-          <div className="space-y-3 border-t border-sand-200 p-5">
-            <button type="button" tabIndex={drawer ? 0 : -1} onClick={() => { setDrawer(false); openPlanner(); }} className="btn btn-primary w-full">Start planning</button>
-            <a href={whatsappHref()} tabIndex={drawer ? 0 : -1} target="_blank" rel="noopener noreferrer" className="btn btn-outline w-full text-cenote-800">
-              <WhatsAppIcon /> Chat on WhatsApp
-            </a>
-            <p className="text-center text-xs text-ink-soft">{site.replyTime}</p>
-          </div>
+        </div>
+        <div className="shrink-0 space-y-3 border-t border-white/10 p-5">
+          <button type="button" onClick={() => { setDrawer(false); openPlanner(); }} className="btn btn-primary w-full">Start planning</button>
+          <a href={whatsappHref()} target="_blank" rel="noopener noreferrer" className="btn btn-ghost-light w-full">
+            <WhatsAppIcon /> Chat on WhatsApp
+          </a>
+          <p className="text-center text-xs text-white/60">{site.replyTime}</p>
         </div>
       </div>
     </header>
   );
 }
 
-function MobileAccordion({ label, links, tabbable }: { label: string; links: NavLink[]; tabbable: boolean }) {
+function MobileAccordion({ label, links, index }: { label: string; links: NavLink[]; index: number }) {
   const [expanded, setExpanded] = useState(false);
   const id = `acc-${label.toLowerCase()}`;
   return (
-    <div className="border-b border-sand-200">
+    <div className="border-b border-white/10">
       <button
         type="button"
-        tabIndex={tabbable ? 0 : -1}
         aria-expanded={expanded}
         aria-controls={id}
         onClick={() => setExpanded(!expanded)}
-        className="flex w-full items-center justify-between py-4 text-left font-display text-xl"
+        className="flex w-full items-baseline gap-4 py-5 text-left font-display text-[2rem] leading-none"
       >
-        {label}
-        <ChevronDown className={`transition-transform ${expanded ? "rotate-180" : ""}`} />
+        <span className="coords !text-[0.65rem] text-cenote-300 before:content-none after:content-none">{String(index).padStart(2, "0")}</span>
+        <span className={expanded ? "italic" : ""}>{label}</span>
+        <ChevronDown className={`ml-auto self-center transition-transform ${expanded ? "rotate-180" : ""}`} />
       </button>
-      <ul id={id} hidden={!expanded} className="pb-4">
+      <ul id={id} hidden={!expanded} className="grid grid-cols-1 gap-x-6 pb-5 pl-9 sm:grid-cols-2">
         {links.map((l) => (
           <li key={l.href + l.label}>
-            <Link href={l.href} className="block py-2 text-[0.98rem] text-ink-soft hover:text-terra-600">{l.label}</Link>
+            <Link href={l.href} className="block py-2 text-[1rem] text-white/75 hover:text-white">{l.label}</Link>
           </li>
         ))}
       </ul>

@@ -4,8 +4,8 @@ import { emphasis } from "@/lib/emphasis";
 import { Img } from "./Img";
 import { Breadcrumbs, type Crumb } from "./Breadcrumbs";
 
-export function PageHero({ title, eyebrow, intro, image, crumbs, children, size = "lg" }: {
-  title: string; eyebrow?: string; intro?: string; image?: ImageKey; crumbs?: Crumb[]; children?: ReactNode; size?: "lg" | "md";
+export function PageHero({ title, eyebrow, intro, image, crumbs, children, size = "lg", coords }: {
+  title: string; eyebrow?: string; intro?: string; image?: ImageKey; crumbs?: Crumb[]; children?: ReactNode; size?: "lg" | "md"; coords?: string | null;
 }) {
   if (!image) {
     return (
@@ -24,6 +24,7 @@ export function PageHero({ title, eyebrow, intro, image, crumbs, children, size 
     <section className={`relative isolate flex items-end overflow-hidden bg-cenote-950 text-white ${size === "lg" ? "min-h-[72svh]" : "min-h-[52svh]"}`}>
       <Img image={image} sizes="100vw" priority className="-z-20 opacity-85" />
       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-cenote-950/95 via-cenote-950/35 to-cenote-950/20" />
+      {coords && <p className="coords absolute right-5 top-6 text-white/80 md:right-10">{coords}</p>}
       <div className="container-x pb-12 pt-28 md:pb-16">
         {crumbs && <Breadcrumbs items={crumbs} tone="light" />}
         {eyebrow && <p className="eyebrow mt-6 text-cenote-300">{eyebrow}</p>}

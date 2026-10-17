@@ -3,6 +3,7 @@ import { destinations, partnerStayCounts, regionLabels } from "@/lib/data";
 import type { RegionId } from "@/data/types";
 import { pageMetadata } from "@/lib/seo";
 import { PageHero } from "@/components/ui/PageHero";
+import { coordsFor } from "@/data/coordinates";
 import { Img } from "@/components/ui/Img";
 import { CtaBand } from "@/components/ui/CtaBand";
 import { TileDivider } from "@/components/ui/TileDivider";
@@ -73,11 +74,11 @@ export default function DestinationsPage() {
                 const flip = n % 2 === 0;
                 return (
                   <article key={d.slug} id={d.slug} className="grid scroll-mt-28 items-center gap-8 lg:grid-cols-12 lg:gap-14">
-                    <Link href={`/destinations/${d.slug}`} className={`group relative block aspect-[4/3] overflow-hidden rounded-2xl bg-sand-200 lg:col-span-6 ${flip ? "lg:order-2" : ""}`}>
+                    <Link href={`/destinations/${d.slug}`} className={`reveal-media group relative block aspect-[4/3] overflow-hidden rounded-2xl bg-sand-200 lg:col-span-6 ${flip ? "lg:order-2" : ""}`}>
                       <Img image={d.image} sizes="(min-width: 1024px) 45vw, 95vw" className="transition-transform duration-[1.2s] group-hover:scale-[1.04]" />
                     </Link>
                     <div className="lg:col-span-6">
-                      <p className="font-display text-lg italic text-terra-500">{String(n).padStart(2, "0")}</p>
+                      <p className="flex items-baseline gap-4"><span className="font-display text-lg italic text-terra-500">{String(n).padStart(2, "0")}</span>{coordsFor(d.slug) && <span className="coords text-ink-soft">{coordsFor(d.slug)}</span>}</p>
                       <h3 className="mt-1 text-4xl text-cenote-900 sm:text-[2.8rem]">
                         <Link href={`/destinations/${d.slug}`} className="hover:text-terra-600">{d.name}</Link>
                         <span className="ml-3 align-middle font-sans text-sm font-medium tracking-normal text-ink-soft">{d.regionLabel}</span>

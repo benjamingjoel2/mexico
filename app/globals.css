@@ -216,3 +216,65 @@
   scrollbar-width: none;
   &::-webkit-scrollbar { display: none; }
 }
+
+/* ------------------------------------------------------------------
+   Editorial motion: scroll-driven reveals (CSS only, no JS).
+   Content is fully visible by default; browsers that support
+   scroll timelines animate it in as it enters the viewport.
+   ------------------------------------------------------------------ */
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes unveil {
+  from { clip-path: inset(12% 6% 12% 6% round 1rem); transform: scale(1.06); }
+  to { clip-path: inset(0 0 0 0 round 1rem); transform: none; }
+}
+@keyframes line-in {
+  from { clip-path: inset(0 0 100% 0); transform: translateY(0.35em); }
+  to { clip-path: inset(0 0 -0.2em 0); transform: none; }
+}
+@keyframes cue {
+  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  50% { transform: translateY(8px); opacity: 1; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: rise-in linear both;
+      animation-timeline: view();
+      animation-range: entry 5% cover 28%;
+    }
+    .reveal-media {
+      animation: unveil linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 35%;
+    }
+    .reveal-line {
+      animation: line-in linear both;
+      animation-timeline: view();
+      animation-range: entry 30% cover 40%;
+    }
+  }
+  .scroll-cue { animation: cue 2.4s ease-in-out infinite; }
+}
+
+@layer components {
+  /* Expedition-style coordinate label, e.g. [20.97° N · 89.62° W] */
+  .coords {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    font-variant-numeric: tabular-nums;
+  }
+  .coords::before { content: "["; opacity: 0.6; margin-right: 0.15em; }
+  .coords::after { content: "]"; opacity: 0.6; margin-left: 0.15em; }
+
+  .rule-dashed {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, currentColor 50%, transparent 50%);
+    background-size: 8px 1px;
+    opacity: 0.35;
+  }
+}
