@@ -39,6 +39,14 @@ export default async function TripPage({ params }: { params: Promise<{ slug: str
     <>
       <PageHero image={it.image} crumbs={[{ label: "Trips", href: "/trips" }, { label: it.title }]} eyebrow={`${it.nights + 1} days · ${it.regionLabel}`} title={it.title} intro={it.summary} />
 
+      <nav aria-label="On this page" className="sticky top-[4.5rem] z-20 border-b border-sand-200 bg-paper">
+        <ul className="container-x no-scrollbar flex gap-6 overflow-x-auto py-3.5 text-sm font-medium">
+          {[["highlights", "Highlights"], ["days", "Day by day"], ["route", "Route"], ["included", "What's included"], ["price", "Price"]].map(([id, label]) => (
+            <li key={id} className="shrink-0"><a href={`#${id}`} className="text-ink-soft hover:text-terra-600">{label}</a></li>
+          ))}
+        </ul>
+      </nav>
+
       <div className="container-x grid gap-12 py-16 md:py-20 lg:grid-cols-12">
         <div className="lg:col-span-8">
           {/* Key facts */}
@@ -48,7 +56,7 @@ export default async function TripPage({ params }: { params: Promise<{ slug: str
             <div className="col-span-2"><dt className="eyebrow text-ink-soft">Places</dt><dd className="mt-1 text-cenote-900">{it.destinations.map(destinationName).join(" · ")}</dd></div>
           </dl>
 
-          <div className="mt-10">
+          <div id="highlights" className="mt-10 scroll-mt-32">
             <h2 className="text-3xl text-cenote-900">Trip <em>highlights</em></h2>
             <ul className="mt-5 grid gap-3 sm:grid-cols-2">
               {it.highlights.map((h) => (
@@ -58,25 +66,29 @@ export default async function TripPage({ params }: { params: Promise<{ slug: str
           </div>
 
           {/* Day by day */}
-          <div className="mt-16">
+          <div id="days" className="mt-16 scroll-mt-32">
             <h2 className="text-4xl text-cenote-900">Day by <em>day</em></h2>
-            <ol className="relative mt-10 border-l border-sand-300 pl-8">
+            <ol className="mt-10 border-t border-sand-300">
               {it.days.map((d) => {
                 const stay = d.staySlug ? getStay(d.staySlug) : undefined;
+                const label = d.day.split(/[–-]/).map((n) => n.trim().padStart(2, "0")).join("–");
                 return (
-                  <li key={d.day + d.title} className="relative pb-12 last:pb-0">
-                    <span aria-hidden className="absolute -left-[2.45rem] top-1 flex h-5 w-5 rotate-45 items-center justify-center border border-terra-500 bg-paper">
-                      <span className="h-1.5 w-1.5 bg-terra-500" />
-                    </span>
-                    <p className="eyebrow text-terra-600">Day {d.day} · {d.location}</p>
-                    <h3 className="mt-2 text-2xl text-cenote-900">{d.title}</h3>
-                    <p className="mt-3 leading-relaxed text-ink-soft">{d.description}</p>
-                    {(stay || d.meals) && (
-                      <p className="mt-3 flex flex-wrap gap-x-6 gap-y-1 text-sm">
-                        {stay && <span>Stay: <Link href={`/stays/${stay.slug}`} className="font-semibold text-cenote-800 underline underline-offset-4">{stay.name}</Link></span>}
-                        {d.meals && <span className="text-ink-soft">Meals: {d.meals}</span>}
-                      </p>
-                    )}
+                  <li key={d.day + d.title} className="reveal grid gap-4 border-b border-sand-300 py-9 sm:grid-cols-[8.5rem_1fr] sm:gap-8">
+                    <div>
+                      <span className="eyebrow block text-ink-soft">Day</span>
+                      <span className={`whitespace-nowrap font-display italic leading-none text-terra-500 ${label.length > 2 ? "text-4xl" : "text-5xl"}`}>{label}</span>
+                    </div>
+                    <div>
+                      <p className="eyebrow text-terra-600">{d.location}</p>
+                      <h3 className="mt-2 text-2xl text-cenote-900">{d.title}</h3>
+                      <p className="mt-3 leading-relaxed text-ink-soft">{d.description}</p>
+                      {(stay || d.meals) && (
+                        <p className="mt-4 flex flex-wrap gap-x-6 gap-y-1 text-sm">
+                          {stay && <span>Stay: <Link href={`/stays/${stay.slug}`} className="font-semibold text-cenote-800 underline underline-offset-4">{stay.name}</Link></span>}
+                          {d.meals && <span className="text-ink-soft">Meals: {d.meals}</span>}
+                        </p>
+                      )}
+                    </div>
                   </li>
                 );
               })}
@@ -84,7 +96,7 @@ export default async function TripPage({ params }: { params: Promise<{ slug: str
           </div>
 
           {/* Map placeholder */}
-          <div className="mt-16">
+          <div id="route" className="mt-16 scroll-mt-32">
             <h2 className="text-3xl text-cenote-900">The <em>route</em></h2>
             <div className="relative mt-6 flex aspect-[16/9] items-center justify-center overflow-hidden rounded-2xl border border-dashed border-sand-300 bg-cenote-50">
               <svg aria-hidden className="absolute inset-0 h-full w-full opacity-30" viewBox="0 0 400 225" preserveAspectRatio="none">
@@ -99,7 +111,7 @@ export default async function TripPage({ params }: { params: Promise<{ slug: str
           </div>
 
           {/* Inclusions */}
-          <div className="mt-16 grid gap-8 md:grid-cols-2">
+          <div id="included" className="mt-16 grid scroll-mt-32 gap-8 md:grid-cols-2">
             <div className="rounded-2xl bg-cenote-50 p-7">
               <h2 className="text-2xl text-cenote-900">What&rsquo;s <em>included</em></h2>
               <ul className="mt-5 space-y-3">
@@ -126,8 +138,8 @@ export default async function TripPage({ params }: { params: Promise<{ slug: str
         </div>
 
         {/* Pricing / enquire */}
-        <aside className="lg:col-span-4">
-          <div className="rounded-2xl bg-cenote-800 p-7 text-white lg:sticky lg:top-28">
+        <aside id="price" className="scroll-mt-32 lg:col-span-4">
+          <div className="rounded-2xl bg-cenote-800 p-7 text-white lg:sticky lg:top-36">
             <p className="text-sm text-white/70">From</p>
             <p className="font-display text-5xl"><Price usd={it.priceFromUSD} /></p>
             <p className="mt-1 text-sm text-white/80">per person, two sharing</p>

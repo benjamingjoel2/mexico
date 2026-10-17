@@ -4,6 +4,7 @@ import { destinations, getDestination, itinerariesIn, staysIn, partnerStayCounts
 import { pageMetadata } from "@/lib/seo";
 import { site } from "@/config/site";
 import { images } from "@/data/images";
+import { coordsFor } from "@/data/coordinates";
 import { PageHero } from "@/components/ui/PageHero";
 import { Img } from "@/components/ui/Img";
 import { MonthGrid } from "@/components/ui/MonthGrid";
@@ -49,7 +50,7 @@ export default async function DestinationPage({ params }: { params: Promise<{ sl
 
   return (
     <>
-      <PageHero image={d.image} crumbs={[{ label: "Destinations", href: "/destinations" }, { label: d.name }]} eyebrow={d.regionLabel} title={d.name} intro={d.hook}>
+      <PageHero image={d.image} coords={coordsFor(d.slug)} crumbs={[{ label: "Destinations", href: "/destinations" }, { label: d.name }]} eyebrow={d.regionLabel} title={d.name} intro={d.hook}>
         <div className="mt-8 flex flex-wrap gap-3">
           <PlannerButton>Plan a trip to {d.name} <span aria-hidden>→</span></PlannerButton>
         </div>
