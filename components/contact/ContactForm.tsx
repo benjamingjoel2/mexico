@@ -47,7 +47,7 @@ export function ContactForm() {
         <textarea id="message" rows={6} className="field" value={form.message} aria-invalid={!!errors.message} onChange={(e) => setForm({ ...form, message: e.target.value })} />
         {errors.message && <p className="mt-1 text-sm text-terra-700" role="alert">{errors.message}</p>}
       </div>
-      {state === "error" && <p className="text-sm text-terra-700" role="alert">Something went wrong. Please try again or use WhatsApp.</p>}
+      {state === "error" && <p className="text-sm text-terra-700" role="alert">Something went wrong. Please try again or email us.</p>}
       <button type="submit" disabled={state === "sending"} className="btn btn-primary">{state === "sending" ? "Sending…" : "Send message"}</button>
     </form>
   );

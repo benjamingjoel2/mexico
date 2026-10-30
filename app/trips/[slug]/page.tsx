@@ -7,8 +7,8 @@ import { Price } from "@/components/ui/Price";
 import { PlannerButton } from "@/components/ui/PlannerButton";
 import { CtaBand } from "@/components/ui/CtaBand";
 import { ItineraryCard } from "@/components/cards/ItineraryCard";
-import { CheckIcon, CloseIcon, WhatsAppIcon } from "@/components/ui/icons";
-import { whatsappHref, fxNote } from "@/config/site";
+import { CheckIcon, CloseIcon } from "@/components/ui/icons";
+import { fxNote } from "@/config/site";
 
 export function generateStaticParams() {
   return itineraries.map((i) => ({ slug: i.slug }));
@@ -147,7 +147,7 @@ export default async function TripPage({ params }: { params: Promise<{ slug: str
             <p className="mt-5 border-t border-white/15 pt-5 text-sm text-white/80">{it.inclusionLine}</p>
             <div className="mt-6 flex flex-col gap-3">
               <PlannerButton className="btn btn-primary w-full">Enquire about this trip</PlannerButton>
-              <a href={whatsappHref(`Hola! I'm interested in "${it.title}".`)} target="_blank" rel="noopener noreferrer" className="btn btn-ghost-light w-full"><WhatsAppIcon width={18} height={18} /> Ask on WhatsApp</a>
+              <Link href="/contact" className="btn btn-ghost-light w-full">Ask a question</Link>
             </div>
             <p className="mt-5 text-xs text-white/75">Prices vary by season and availability. {fxNote}</p>
           </div>

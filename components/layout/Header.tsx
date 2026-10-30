@@ -3,11 +3,11 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { nav, site, whatsappHref, type NavColumn, type NavLink } from "@/config/site";
+import { nav, site, type NavColumn, type NavLink } from "@/config/site";
 import { Logo } from "@/components/ui/Logo";
 import { CurrencySwitcher } from "@/components/ui/CurrencySwitcher";
 import { useUI } from "@/components/providers/UIProvider";
-import { ChevronDown, CloseIcon, MenuIcon, SearchIcon, WhatsAppIcon } from "@/components/ui/icons";
+import { ChevronDown, CloseIcon, MenuIcon, SearchIcon } from "@/components/ui/icons";
 
 type MenuId = "destinations" | "experiences" | "about";
 
@@ -193,9 +193,9 @@ export function Header() {
         </div>
         <div className="shrink-0 space-y-3 border-t border-white/10 p-5">
           <button type="button" onClick={() => { setDrawer(false); openPlanner(); }} className="btn btn-primary w-full">Start planning</button>
-          <a href={whatsappHref()} target="_blank" rel="noopener noreferrer" className="btn btn-ghost-light w-full">
-            <WhatsAppIcon /> Chat on WhatsApp
-          </a>
+          <Link href="/contact" onClick={() => setDrawer(false)} className="btn btn-ghost-light w-full">
+            Contact us
+          </Link>
           <p className="text-center text-xs text-white/60">{site.replyTime}</p>
         </div>
       </div>

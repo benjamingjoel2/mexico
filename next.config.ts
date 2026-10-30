@@ -9,6 +9,12 @@ const nextConfig: NextConfig = {
     // Keep optimised images cached for a month instead of re-optimising them from Unsplash.
     minimumCacheTTL: 2678400,
   },
+  // Retired page (owner's fix list, October 2026): no testimonials.
+  ...(!preview && {
+    async redirects() {
+      return [{ source: "/testimonials", destination: "/about", permanent: true }];
+    },
+  }),
   // Static, relative-path build used only for hosted previews (see scripts/build-preview.mjs).
   ...(preview && {
     output: "export",

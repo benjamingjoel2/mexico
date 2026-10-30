@@ -1,5 +1,5 @@
 import { pageMetadata } from "@/lib/seo";
-import { site, whatsappHref } from "@/config/site";
+import { site } from "@/config/site";
 import { PlannerForm } from "@/components/planner/PlannerForm";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Img } from "@/components/ui/Img";
@@ -24,7 +24,7 @@ export default function PlanYourTripPage() {
             <li><span className="font-display text-xl italic text-terra-300">2.</span> Your specialist replies — usually within hours.</li>
             <li><span className="font-display text-xl italic text-terra-300">3.</span> We refine it together until it&rsquo;s exactly right.</li>
           </ol>
-          <p className="mt-8 text-sm text-white/70">Prefer to talk? <a className="underline" href={whatsappHref()} target="_blank" rel="noopener noreferrer">WhatsApp us</a> or email {site.contact.email}.</p>
+          <p className="mt-8 text-sm text-white/70">Prefer to write? Email <a className="underline" href={`mailto:${site.contact.email}`}>{site.contact.email}</a>.</p>
         </div>
       </aside>
       <div className="px-5 py-12 sm:px-10 lg:col-span-8 lg:px-16 lg:py-16">

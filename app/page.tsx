@@ -3,7 +3,7 @@ import Image from "next/image";
 import { site } from "@/config/site";
 import { pageMetadata } from "@/lib/seo";
 import { images } from "@/data/images";
-import { destinations, experiences, itineraries, stays, testimonials, partnerStayCounts, itinerariesFor } from "@/lib/data";
+import { destinations, experiences, itineraries, stays, partnerStayCounts, itinerariesFor } from "@/lib/data";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { DestinationCard } from "@/components/cards/DestinationCard";
 import { ExperienceTile } from "@/components/cards/ExperienceTile";
@@ -38,19 +38,19 @@ const manifesto = [
 ];
 
 const steps = [
-  { t: "Tell us the shape of it", d: "Five minutes in our planner, a WhatsApp message or a call. Half-formed ideas are welcome." },
+  { t: "Tell us the shape of it", d: "Five minutes in our planner or a quick email. Half-formed ideas are welcome." },
   { t: "Meet your specialist", d: "One person who knows Mexico first-hand replies within hours, not days." },
   { t: "Shape the route together", d: "A day-by-day draft with hotels, guides and honest timing notes. Revise it as often as you like." },
   { t: "Book with one deposit", d: "We reserve every room, guide, flight and transfer, then send a clear travel guide before you go." },
-  { t: "Travel, quietly supported", d: "A local host meets you on arrival and your specialist is on WhatsApp until you're home." },
+  { t: "Travel, quietly supported", d: "A local host meets you on arrival and your specialist stays in touch until you're home." },
 ];
 
 const valueProps = [
-  { k: "One specialist", v: "The same person plans your trip, answers your questions and is on WhatsApp while you travel." },
+  { k: "One specialist", v: "The same person plans your trip, answers your questions and stays in touch while you travel." },
   { k: `${years} years`, v: `Planning Mexico since ${site.foundedYear}. We've slept in, eaten at and tested what we recommend.` },
   { k: `${site.stats.partnerStays}+ partner stays`, v: "Haciendas, boutique hotels and lodges we know by name — and who know our guests." },
   { k: "Fair pricing", v: "You pay what you'd pay booking direct, often less, with our planning included." },
-  { k: "24/7 WhatsApp", v: "A real person on the ground in Mexico, any hour, from arrival to departure." },
+  { k: "24/7 support", v: "A real person on the ground in Mexico, any hour, from arrival to departure." },
   { k: `${site.stats.regions} regions`, v: "From the cenotes of the Yucatán to the canyons of Chihuahua and the Baja coast." },
 ];
 
@@ -59,7 +59,6 @@ export default function HomePage() {
   const featuredExp = pick(experiences, ["cenotes-and-caves", "mayan-ruins", "food-and-mezcal", "day-of-the-dead", "whale-sharks-and-whales", "luxury-haciendas"]);
   const featuredTrips = pick(itineraries, ["yucatan-below-the-surface", "mexico-city-and-oaxaca", "colonial-heartland", "baja-whales-and-cabos"]);
   const featuredStays = pick(stays, ["hacienda-sac-be", "casa-de-luz-oaxaca", "mar-de-cortes-cabos", "selva-azul-tulum"]);
-  const featuredReview = testimonials.find((t) => t.featured) ?? testimonials[0];
 
   return (
     <>
@@ -87,7 +86,7 @@ export default function HomePage() {
           <div className="mt-14 grid gap-4 border-t border-white/20 pt-5 text-sm text-white/80 md:grid-cols-[1fr_auto] md:items-center">
             <p className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-4">
               <span className="inline-flex items-center gap-2 font-semibold text-white"><ShieldIcon width={18} height={18} className="text-cenote-300" /> Included on every trip</span>
-              <span>Private airport transfers, a local host on arrival and 24/7 WhatsApp support. <Link href="/faq" className="underline underline-offset-4 hover:text-white">See what&rsquo;s included</Link></span>
+              <span>Private airport transfers, a local host on arrival and 24/7 support while you travel. <Link href="/faq" className="underline underline-offset-4 hover:text-white">See what&rsquo;s included</Link></span>
             </p>
             <a href="#manifesto" className="hidden items-center gap-3 text-xs uppercase tracking-[0.2em] text-white/70 hover:text-white md:inline-flex">
               Scroll <span aria-hidden className="scroll-cue inline-block">↓</span>
@@ -190,7 +189,7 @@ export default function HomePage() {
               [`${years}`, "years planning Mexico"],
               [`${site.stats.partnerStays}+`, "partner stays, all visited"],
               [`${site.stats.regions}`, "regions, coast to canyon"],
-              ["15 min", "typical WhatsApp reply"],
+              ["24/7", "support while you travel"],
             ].map(([n, l]) => (
               <div key={l} className="reveal border-t border-white/20 pt-4">
                 <dt className="sr-only">{l}</dt>
@@ -202,20 +201,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Pull-quote */}
-      {featuredReview && (
-        <section aria-label="Guest review" className="bg-sand-100 py-20 md:py-28">
-          <figure className="container-x reveal max-w-5xl text-center">
-            <blockquote className="font-display text-[1.75rem] italic leading-snug text-cenote-900 sm:text-4xl lg:text-[2.6rem]">
-              &ldquo;{featuredReview.quote}&rdquo;
-            </blockquote>
-            <figcaption className="mt-8 text-sm text-ink-soft">
-              <span className="font-semibold text-ink">{featuredReview.name}</span> · {featuredReview.location} · {featuredReview.trip}
-              <a href={featuredReview.sourceUrl} className="ml-2 text-cenote-700 underline underline-offset-4">{featuredReview.sourceLabel}</a>
-            </figcaption>
-          </figure>
-        </section>
-      )}
 
       {/* How it works */}
       <section aria-labelledby="how-it-works" className="py-20 md:py-28">

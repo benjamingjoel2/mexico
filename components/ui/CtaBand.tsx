@@ -1,9 +1,7 @@
 import Link from "next/link";
-import { whatsappHref } from "@/config/site";
 import { emphasis } from "@/lib/emphasis";
 import { PlannerButton } from "./PlannerButton";
 import { TileDivider } from "./TileDivider";
-import { WhatsAppIcon } from "./icons";
 
 export function CtaBand({
   title = "Plan a trip, the *unhurried* way.",
@@ -17,9 +15,7 @@ export function CtaBand({
         <p className="mx-auto mt-6 max-w-xl text-lg text-ink-soft">{text}</p>
         <div className="mt-10 flex flex-wrap justify-center gap-3">
           <PlannerButton>Plan your trip <span aria-hidden>→</span></PlannerButton>
-          <a href={whatsappHref()} target="_blank" rel="noopener noreferrer" className="btn btn-dark">
-            <WhatsAppIcon width={18} height={18} /> Chat on WhatsApp
-          </a>
+          <Link href="/contact" className="btn btn-dark">Contact us</Link>
         </div>
         <p className="mt-8 text-sm text-ink-soft">
           Travelling with a larger group, or need complete privacy?{" "}

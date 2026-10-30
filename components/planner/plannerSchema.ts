@@ -55,7 +55,7 @@ export const addonOptions = [
   { id: "private-drivers", label: "Private drivers", detail: "Door-to-door transfers with bilingual drivers." },
 ];
 
-export const contactOptions = ["Email", "WhatsApp", "Telephone"];
+export const contactOptions = ["Email", "Telephone"];
 
 export const countryCodes = [
   { code: "+1", label: "US/CA +1" }, { code: "+44", label: "UK +44" }, { code: "+52", label: "MX +52" },
@@ -88,8 +88,8 @@ export function validateStep(step: number, d: PlannerData): Errors {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email)) e.email = "Please enter a valid email address.";
     if (d.phone && !/^[\d\s()-]{6,}$/.test(d.phone)) e.phone = "Please enter a valid phone number.";
     if (d.contactMethods.length === 0) e.contactMethods = "Choose at least one way to reach you.";
-    if ((d.contactMethods.includes("WhatsApp") || d.contactMethods.includes("Telephone")) && !d.phone)
-      e.phone = "Add a phone number so we can reach you on WhatsApp or by phone.";
+    if (d.contactMethods.includes("Telephone") && !d.phone)
+      e.phone = "Add a phone number so we can reach you by phone.";
   }
   return e;
 }

@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { images } from "@/data/images";
-import { whatsappHref } from "@/config/site";
 import { Price } from "@/components/ui/Price";
 import { postJSON } from "@/lib/api";
 import { CheckIcon } from "@/components/ui/icons";
@@ -96,7 +95,6 @@ export function PlannerForm({ onDone, compact = false }: { onDone?: () => void; 
           Your specialist will be in touch {data.contactMethods.length ? `by ${data.contactMethods.join(" or ").toLowerCase()}` : "shortly"} — usually within a few hours, and always within one working day — with first ideas for your trip.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <a href={whatsappHref(`Hola! I just sent a trip request as ${data.name}.`)} target="_blank" rel="noopener noreferrer" className="btn btn-dark">Say hello on WhatsApp</a>
           {onDone && <button type="button" onClick={onDone} className="btn btn-outline text-cenote-800">Keep exploring</button>}
         </div>
       </div>
@@ -252,7 +250,7 @@ export function PlannerForm({ onDone, compact = false }: { onDone?: () => void; 
             <Field label="Email" error={errors.email} htmlFor="email">
               <input id="email" type="email" className="field" autoComplete="email" value={data.email} onChange={(e) => set("email", e.target.value)} aria-invalid={!!errors.email} />
             </Field>
-            <Field label="Phone (optional unless you choose WhatsApp or telephone)" error={errors.phone} htmlFor="phone">
+            <Field label="Phone (optional unless you choose telephone)" error={errors.phone} htmlFor="phone">
               <div className="flex gap-2">
                 <label htmlFor="countryCode" className="sr-only">Country code</label>
                 <select id="countryCode" className="field !w-32" value={data.countryCode} onChange={(e) => set("countryCode", e.target.value)}>
@@ -281,7 +279,7 @@ export function PlannerForm({ onDone, compact = false }: { onDone?: () => void; 
               <textarea id="notes" rows={4} className="field" value={data.notes} onChange={(e) => set("notes", e.target.value)}
                 placeholder="Celebrations, dietary needs, mobility, the pace you like…" />
             </Field>
-            {status === "error" && <p className="rounded-lg bg-terra-100 p-3 text-sm text-terra-700" role="alert">Something went wrong sending your request. Please try again, or message us on WhatsApp.</p>}
+            {status === "error" && <p className="rounded-lg bg-terra-100 p-3 text-sm text-terra-700" role="alert">Something went wrong sending your request. Please try again, or email us.</p>}
           </Step>
         )}
 

@@ -2,12 +2,10 @@ import { destinations, partnerStayCounts } from "@/data/destinations";
 import { experiences } from "@/data/experiences";
 import { itineraries } from "@/data/itineraries";
 import { stays } from "@/data/stays";
-import { testimonials } from "@/data/testimonials";
 import { faqs } from "@/data/faqs";
-import { team } from "@/data/team";
 import type { BudgetTier, RegionId } from "@/data/types";
 
-export { destinations, experiences, itineraries, stays, testimonials, faqs, team, partnerStayCounts };
+export { destinations, experiences, itineraries, stays, faqs, partnerStayCounts };
 
 export const getDestination = (slug: string) => destinations.find((d) => d.slug === slug);
 export const getExperience = (slug: string) => experiences.find((e) => e.slug === slug);

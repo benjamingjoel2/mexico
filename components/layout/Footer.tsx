@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { footerNav, legalLinks, site, whatsappHref } from "@/config/site";
+import { footerNav, legalLinks, site } from "@/config/site";
 import { Logo } from "@/components/ui/Logo";
 import { StitchBand } from "@/components/ui/TileDivider";
-import { MailIcon, PhoneIcon, StarIcon, WhatsAppIcon } from "@/components/ui/icons";
+import { MailIcon } from "@/components/ui/icons";
 
 export function Footer() {
   return (
@@ -16,13 +16,12 @@ export function Footer() {
             past the resort strip to the cenotes, kitchens, markets and haciendas most visitors never find.
           </p>
           <ul className="mt-7 space-y-3 text-sm">
-            <li><a href={site.contact.phoneHref} className="inline-flex items-center gap-3 hover:text-white"><PhoneIcon width={18} height={18} /> {site.contact.phone}</a></li>
-            <li><a href={whatsappHref()} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 hover:text-white"><WhatsAppIcon width={18} height={18} /> WhatsApp {site.contact.whatsappNumber}</a></li>
             <li><a href={`mailto:${site.contact.email}`} className="inline-flex items-center gap-3 hover:text-white"><MailIcon width={18} height={18} /> {site.contact.email}</a></li>
+            <li className="max-w-xs leading-relaxed text-cenote-100/75">{site.contact.address}</li>
           </ul>
         </div>
 
-        <div className="grid grid-cols-2 gap-10 sm:grid-cols-3 lg:col-span-8 lg:grid-cols-5">
+        <div className="grid grid-cols-2 gap-10 sm:grid-cols-4 lg:col-span-8">
           {footerNav.map((col) => (
             <div key={col.heading}>
               <h2 className="eyebrow mb-4 font-sans !font-semibold !tracking-[0.18em] text-cenote-300">{col.heading}</h2>
@@ -33,30 +32,6 @@ export function Footer() {
               </ul>
             </div>
           ))}
-          <div>
-            <h2 className="eyebrow mb-4 font-sans !font-semibold !tracking-[0.18em] text-cenote-300">Connect</h2>
-            <ul className="space-y-2.5 text-sm">
-              {site.social.map((s) => (
-                <li key={s.label}><a href={s.href} target="_blank" rel="noopener noreferrer" className="text-cenote-100/80 hover:text-white">{s.label}</a></li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div className="border-t border-white/10">
-        <div className="container-x flex flex-col gap-6 py-8 md:flex-row md:items-center md:justify-between">
-          <div className="flex items-center gap-3">
-            <div className="flex text-terra-300" aria-hidden>
-              {Array.from({ length: 5 }).map((_, i) => <StarIcon key={i} width={16} height={16} />)}
-            </div>
-            <p className="text-sm"><span className="font-semibold text-white">{site.review.score}/5</span> · {site.review.count} on {site.review.platform}</p>
-          </div>
-          <ul className="flex flex-wrap gap-3" aria-label="Memberships">
-            {site.memberships.map((m) => (
-              <li key={m} className="rounded-md border border-dashed border-white/25 px-3 py-2 text-[0.7rem] uppercase tracking-wider text-cenote-100/60">{m}</li>
-            ))}
-          </ul>
         </div>
       </div>
 

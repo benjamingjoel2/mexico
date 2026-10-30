@@ -22,6 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...stays.map((s) => entry(`/stays/${s.slug}`, 0.6)),
     entry("/blog", 0.7),
     ...getAllPosts().map((p) => entry(`/blog/${p.slug}`, 0.7, new Date(p.date))),
-    ...["/about", "/why-travel-with-us", "/testimonials", "/faq", "/contact"].map((p) => entry(p, 0.5)),
+    ...["/about", "/why-travel-with-us", "/faq", "/contact"].map((p) => entry(p, 0.5)),
+    ...["/legal/privacy", "/legal/terms", "/legal/cookies"].map((p) => entry(p, 0.3)),
   ];
 }

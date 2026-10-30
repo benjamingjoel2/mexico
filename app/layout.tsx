@@ -7,7 +7,6 @@ import { UIProvider } from "@/components/providers/UIProvider";
 import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 import { LazyOverlays } from "@/components/layout/LazyOverlays";
 
 // Display serif: weight axis only (the SOFT/WONK/opsz axes roughly tripled the file size).
@@ -48,6 +47,8 @@ const orgJsonLd = {
       logo: `${site.url}/icon.svg`,
       image: `${site.url}/icon.svg`,
       description: site.description,
+      email: site.contact.email,
+      address: { "@type": "PostalAddress", streetAddress: site.contact.street, postalCode: site.contact.postalCode, addressLocality: site.contact.locality, addressCountry: "MX" },
       areaServed: { "@type": "Country", name: "Mexico" },
       foundingDate: String(site.foundedYear),
     },
@@ -75,7 +76,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <Header />
             <main id="main">{children}</main>
             <Footer />
-            <WhatsAppButton />
             <LazyOverlays />
           </UIProvider>
         </CurrencyProvider>

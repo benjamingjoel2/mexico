@@ -1,31 +1,49 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
-import { site } from "@/config/site";
 import { PageHero } from "@/components/ui/PageHero";
+import { legal, legalUpdated, type LegalSet } from "@/data/legal";
+import { pageMetadata } from "@/lib/seo";
 
-const pages = {
-  terms: { title: "Terms & conditions", body: "Placeholder. Add your booking conditions: deposits, balance due dates, cancellation charges, amendments, insurance requirements, liability and governing law." },
-  privacy: { title: "Privacy policy", body: "Placeholder. Explain what personal data you collect through the trip planner, brochure and contact forms, how it is stored, who it is shared with (suppliers, CRM, email providers) and how visitors can access or delete it." },
-  cookies: { title: "Cookie policy", body: "Placeholder. This site stores your currency preference and planner progress in your browser's local storage. Describe any analytics or marketing cookies you add." },
-} as const;
+const slugs = ["privacy", "terms", "cookies"] as const;
+type Slug = (typeof slugs)[number];
+const isSlug = (s: string): s is Slug => (slugs as readonly string[]).includes(s);
+
+/** Renders "[text](/path)" inside legal text as links. */
+function linkify(text: string) {
+  return text.split(/(\[[^\]]+\]\(\/[^)]*\))/g).map((part, i) => {
+    const m = part.match(/^\[([^\]]+)\]\((\/[^)]*)\)$/);
+    if (!m) return part;
+    const href = m[2] === "/cookies/" ? "/legal/cookies" : m[2].replace(/\/$/, "");
+    return <Link key={i} href={href} className="underline underline-offset-4">{m[1]}</Link>;
+  });
+}
 
 export function generateStaticParams() {
-  return Object.keys(pages).map((page) => ({ page }));
+  return slugs.map((page) => ({ page }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ page: string }> }) {
-  const p = pages[(await params).page as keyof typeof pages];
-  return p ? { title: p.title, robots: { index: false } } : {};
+  const page = (await params).page;
+  if (!isSlug(page)) return {};
+  const d = legal.en[page as keyof LegalSet];
+  return pageMetadata({ title: d.title, description: d.description, path: `/legal/${page}` });
 }
 
 export default async function LegalPage({ params }: { params: Promise<{ page: string }> }) {
-  const p = pages[(await params).page as keyof typeof pages];
-  if (!p) notFound();
+  const page = (await params).page;
+  if (!isSlug(page)) notFound();
+  const d = legal.en[page];
   return (
     <>
-      <PageHero crumbs={[{ label: p.title }]} title={p.title} />
+      <PageHero crumbs={[{ label: d.title }]} title={d.title} intro={d.description} />
       <section className="container-x prose-ch max-w-3xl py-16">
-        <p>{p.body}</p>
-        <p>Questions? Email {site.contact.email}.</p>
+        <p className="text-sm text-ink-soft">Last updated: {legalUpdated.en}</p>
+        {d.sections.map((s) => (
+          <div key={s.h}>
+            <h2>{s.h}</h2>
+            {s.p.map((p, i) => <p key={i}>{linkify(p)}</p>)}
+          </div>
+        ))}
       </section>
     </>
   );

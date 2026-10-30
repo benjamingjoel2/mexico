@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { team } from "@/lib/data";
 import { site } from "@/config/site";
 import { pageMetadata } from "@/lib/seo";
 import { PageHero } from "@/components/ui/PageHero";
@@ -16,7 +15,7 @@ export const metadata = pageMetadata({
 
 const principles = [
   { t: "Below the surface", d: "We'd rather show you one village market properly than ten sights through a coach window. Depth over distance, always." },
-  { t: "One person, start to finish", d: "Your specialist plans the trip, books it, briefs you, and is on WhatsApp while you travel. No handoffs, no call centre." },
+  { t: "One person, start to finish", d: "Your specialist plans the trip, books it, briefs you, and stays in touch while you travel. No handoffs, no call centre." },
   { t: "Known, not listed", d: "We only recommend places we've stayed in, guides we've walked with and kitchens we've eaten in — and we revisit them every year." },
   { t: "Honest advice", d: "If it's sargassum season, if a town is overrun, if a hotel has slipped, we'll say so. Even when it costs us a booking." },
 ];
@@ -59,26 +58,6 @@ export default function AboutPage() {
                 <h3 className="mt-2 text-2xl text-cenote-900">{p.t}</h3>
                 <p className="mt-2 leading-relaxed text-ink-soft">{p.d}</p>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="team" className="scroll-mt-24 py-16 md:py-24">
-        <div className="container-x">
-          <h2 className="text-4xl text-cenote-900 sm:text-5xl">Meet the <em>team</em></h2>
-          <p className="mt-4 max-w-2xl text-ink-soft">Placeholder profiles — swap in your real specialists, photos and bios.</p>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {team.map((m) => (
-              <article key={m.name} className="rounded-2xl border border-sand-200 bg-white p-7">
-                <div aria-hidden className="flex h-16 w-16 items-center justify-center rounded-full bg-cenote-100 font-display text-2xl text-cenote-800">
-                  {m.name.split(" ").map((x) => x[0]).slice(0, 2).join("")}
-                </div>
-                <h3 className="mt-5 text-2xl text-cenote-900">{m.name}</h3>
-                <p className="text-sm font-semibold text-terra-600">{m.role} · {m.basedIn}</p>
-                <p className="mt-3 text-[0.95rem] leading-relaxed text-ink-soft">{m.bio}</p>
-                <p className="mt-4 text-sm"><span className="font-semibold text-cenote-900">Favourite place: </span><span className="text-ink-soft">{m.favourite}</span></p>
-              </article>
             ))}
           </div>
         </div>

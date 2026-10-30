@@ -1,14 +1,14 @@
 import { Suspense } from "react";
-import { site, whatsappHref } from "@/config/site";
+import { site } from "@/config/site";
 import { pageMetadata } from "@/lib/seo";
 import { PageHero } from "@/components/ui/PageHero";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { PlannerButton } from "@/components/ui/PlannerButton";
-import { MailIcon, PhoneIcon, WhatsAppIcon } from "@/components/ui/icons";
+import { MailIcon } from "@/components/ui/icons";
 
 export const metadata = pageMetadata({
   title: "Contact a Mexico specialist",
-  description: "Talk to a Cenote House Mexico specialist by WhatsApp, phone or email. We reply in as little as 15 minutes.",
+  description: "Talk to a Cenote House Mexico specialist by email or through the trip planner. We reply within one working day.",
   path: "/contact",
 });
 
@@ -21,8 +21,6 @@ export default function ContactPage() {
         <div className="container-x grid gap-14 lg:grid-cols-12">
           <div className="space-y-6 lg:col-span-5">
             {[
-              { icon: <WhatsAppIcon />, label: "WhatsApp", value: site.contact.whatsappNumber, href: whatsappHref(), note: "Fastest — typically minutes" },
-              { icon: <PhoneIcon />, label: "Telephone", value: site.contact.phone, href: site.contact.phoneHref, note: site.contact.hours },
               { icon: <MailIcon />, label: "Email", value: site.contact.email, href: `mailto:${site.contact.email}`, note: "We reply within one working day" },
             ].map((c) => (
               <a key={c.label} href={c.href} className="flex gap-5 rounded-2xl border border-sand-200 bg-white p-6 hover:border-cenote-600">
