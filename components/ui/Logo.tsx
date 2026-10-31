@@ -1,11 +1,16 @@
-import Link from "next/link";
+"use client";
+
+import Link from "@/i18n/Link";
 import { site } from "@/config/site";
+import { useT } from "@/i18n/client";
 
 /** Text-based placeholder logo: a cenote mark (sinkhole opening + water) beside the wordmark. */
 export function Logo({ tone = "dark", className = "" }: { tone?: "dark" | "light"; className?: string }) {
+  const t = useT();
   const color = tone === "light" ? "text-white" : "text-cenote-900";
   return (
-    <Link href="/" aria-label={`${site.name} — home`} className={`group inline-flex items-center gap-2.5 ${color} ${className}`}>
+    <Link href="/" aria-label={`${site.name} — ${t("home")}`}
+ className={`group inline-flex items-center gap-2.5 ${color} ${className}`}>
       <svg aria-hidden viewBox="0 0 32 32" className="h-8 w-8 shrink-0">
         <circle cx="16" cy="16" r="15" fill="none" stroke="currentColor" strokeWidth="1.3" />
         <path d="M5 15.5c2.2-4.2 6.2-7 11-7s8.8 2.8 11 7" fill="none" stroke="currentColor" strokeWidth="1.3" />

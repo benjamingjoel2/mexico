@@ -1,7 +1,8 @@
-import Link from "next/link";
+import Link from "@/i18n/Link";
 import type { Destination } from "@/data/types";
 import { coordsFor } from "@/data/coordinates";
 import { Img } from "@/components/ui/Img";
+import { tf } from "@/i18n/server";
 
 export function DestinationCard({ d, stays, priority }: { d: Destination; stays?: number; priority?: boolean }) {
   const coords = coordsFor(d.slug);
@@ -22,7 +23,8 @@ export function DestinationCard({ d, stays, priority }: { d: Destination; stays?
       </Link>
       {stays !== undefined && (
         <Link href={`/destinations/${d.slug}#stays`} className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-cenote-800 hover:text-terra-600">
-          {stays} partner stays <span aria-hidden>→</span>
+          {tf("{n} partner stays", { n: stays })} <span
+ aria-hidden>→</span>
         </Link>
       )}
     </article>

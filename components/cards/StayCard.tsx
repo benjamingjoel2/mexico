@@ -1,7 +1,8 @@
-import Link from "next/link";
+import Link from "@/i18n/Link";
 import type { Stay } from "@/data/types";
 import { Img } from "@/components/ui/Img";
 import { Price } from "@/components/ui/Price";
+import { t } from "@/i18n/server";
 
 export function StayCard({ s }: { s: Stay }) {
   return (
@@ -14,7 +15,8 @@ export function StayCard({ s }: { s: Stay }) {
         <p className="eyebrow mt-4 text-terra-600">{s.locationLabel}</p>
         <h3 className="mt-1.5 text-2xl text-cenote-900 group-hover:text-terra-600">{s.name}</h3>
         <p className="mt-1.5 text-sm text-ink-soft">
-          From <span className="font-semibold text-ink"><Price usd={s.priceFromUSD} /></span> per person · night
+          {t("From")} <span className="font-semibold text-ink"><Price usd={s.priceFromUSD} /></span> {t("per person · night")}
+
         </p>
       </Link>
     </article>

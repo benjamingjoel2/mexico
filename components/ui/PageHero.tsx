@@ -1,13 +1,18 @@
 import type { ReactNode } from "react";
 import type { ImageKey } from "@/data/images";
 import { emphasis } from "@/lib/emphasis";
+import { t } from "@/i18n/server";
 import { Img } from "./Img";
 import { Breadcrumbs, type Crumb } from "./Breadcrumbs";
 
 export function PageHero({ title, eyebrow, intro, image, crumbs, children, size = "lg", coords }: {
   title: string; eyebrow?: string; intro?: string; image?: ImageKey; crumbs?: Crumb[]; children?: ReactNode; size?: "lg" | "md"; coords?: string | null;
 }) {
+  title = t(title);
+  eyebrow = eyebrow && t(eyebrow);
+  intro = intro && t(intro);
   if (!image) {
+
     return (
       <section className="border-b border-sand-200 bg-sand-100">
         <div className="container-x py-14 md:py-20">
