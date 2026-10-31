@@ -1,5 +1,6 @@
 import { destinations, experiences, itineraries, stays, destinationName } from "@/lib/data";
 import { getAllPosts } from "@/lib/blog";
+import { getLocale, tf } from "@/i18n/server";
 
 export interface SearchItem {
   type: "Destination" | "Experience" | "Trip" | "Stay" | "Journal";
@@ -21,14 +22,14 @@ export function buildSearchIndex(): SearchItem[] {
       href: `/experiences/${e.slug}`, keywords: e.summary,
     })),
     ...itineraries.map((i) => ({
-      type: "Trip" as const, title: i.title, subtitle: `${i.nights} nights · ${i.regionLabel}`, href: `/trips/${i.slug}`,
+      type: "Trip" as const, title: i.title, subtitle: `${tf("{n} nights", { n: i.nights })} · ${i.regionLabel}`, href: `/trips/${i.slug}`,
       keywords: [i.summary, i.highlights.join(" "), i.destinations.join(" ")].join(" "),
     })),
     ...stays.map((s) => ({
       type: "Stay" as const, title: s.name, subtitle: `${s.type} · ${s.locationLabel}`, href: `/stays/${s.slug}`,
       keywords: [s.summary, s.features.join(" ")].join(" "),
     })),
-    ...getAllPosts().map((p) => ({
+    ...getAllPosts(getLocale()).map((p) => ({
       type: "Journal" as const, title: p.title, subtitle: p.description, href: `/blog/${p.slug}`, keywords: p.tags.join(" "),
     })),
   ];

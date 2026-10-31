@@ -1,3 +1,5 @@
+import { msg } from "@/i18n/locales";
+
 /**
  * Single source of truth for brand, contact, currency and navigation.
  */
@@ -10,7 +12,7 @@ export const site = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://cenotehouse.tourground.com",
   locale: "en_US",
   foundedYear: 2014,
-  replyTime: "Replies within one working day",
+  replyTime: msg("Replies within one working day"),
   /** One address for the brand. No phone, WhatsApp, social links, review badges or licence/membership claims (owner's decision). */
   contact: {
     email: "cenotehouse@tourground.com",

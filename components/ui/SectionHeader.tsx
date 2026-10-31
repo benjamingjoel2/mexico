@@ -1,5 +1,6 @@
-import Link from "next/link";
+import Link from "@/i18n/Link";
 import { emphasis } from "@/lib/emphasis";
+import { t } from "@/i18n/server";
 
 interface Props {
   eyebrow?: string;
@@ -13,6 +14,11 @@ interface Props {
 
 export function SectionHeader({ eyebrow, title, intro, link, align = "left", tone = "dark", as: H = "h2" }: Props) {
   const centered = align === "center";
+  eyebrow = eyebrow && t(eyebrow);
+  title = t(title);
+  intro = intro && t(intro);
+  link = link && { ...link, label: t(link.label) };
+
   return (
     <div className={`mb-10 flex flex-col gap-6 md:mb-14 ${centered ? "items-center text-center" : "md:flex-row md:items-end md:justify-between"}`}>
       <div className={centered ? "max-w-2xl" : "max-w-2xl"}>

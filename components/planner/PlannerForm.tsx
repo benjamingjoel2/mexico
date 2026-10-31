@@ -6,6 +6,8 @@ import { images } from "@/data/images";
 import { Price } from "@/components/ui/Price";
 import { postJSON } from "@/lib/api";
 import { CheckIcon } from "@/components/ui/icons";
+import { useT, useTf } from "@/i18n/client";
+import { emphasis } from "@/lib/emphasis";
 import {
   addonOptions, budgetOptions, contactOptions, countryCodes, emptyPlanner, regionOptions, steps, validateStep,
   type Errors, type PlannerData,
@@ -14,6 +16,8 @@ import {
 const STORAGE_KEY = "ch.planner.v1";
 
 export function PlannerForm({ onDone, compact = false }: { onDone?: () => void; compact?: boolean }) {
+  const t = useT();
+  const tf = useTf();
   const [data, setData] = useState<PlannerData>(emptyPlanner);
   const [step, setStep] = useState(0);
   const [errors, setErrors] = useState<Errors>({});
@@ -90,12 +94,12 @@ export function PlannerForm({ onDone, compact = false }: { onDone?: () => void; 
     return (
       <div className="py-10 text-center">
         <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-cenote-100 text-cenote-700"><CheckIcon width={30} height={30} /></div>
-        <h2 className="mt-6 text-4xl text-cenote-900">Gracias, {data.name.split(" ")[0]}. We&rsquo;re <em>on it</em>.</h2>
+        <h2 className="mt-6 text-4xl text-cenote-900">{tf("Gracias, {name}.", { name: data.name.split(" ")[0] })} {emphasis(t("We’re *on it*."))}</h2>
         <p className="mx-auto mt-4 max-w-md text-ink-soft">
-          Your specialist will be in touch {data.contactMethods.length ? `by ${data.contactMethods.join(" or ").toLowerCase()}` : "shortly"} — usually within a few hours, and always within one working day — with first ideas for your trip.
+          {t("Your specialist will be in touch shortly — usually within a few hours, and always within one working day — with first ideas for your trip.")}
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
-          {onDone && <button type="button" onClick={onDone} className="btn btn-outline text-cenote-800">Keep exploring</button>}
+          {onDone && <button type="button" onClick={onDone} className="btn btn-outline text-cenote-800">{t("Keep exploring")}</button>}
         </div>
       </div>
     );
@@ -106,13 +110,13 @@ export function PlannerForm({ onDone, compact = false }: { onDone?: () => void; 
       {/* Progress */}
       <div className="mb-8">
         <div className="flex items-baseline justify-between">
-          <p className="eyebrow text-terra-600" aria-live="polite">Step {step + 1} of {steps.length}</p>
-          <p className="text-sm text-ink-soft">{steps[step]}</p>
+          <p className="eyebrow text-terra-600" aria-live="polite">{tf("Step {n} of {total}", { n: step + 1, total: steps.length })}</p>
+          <p className="text-sm text-ink-soft">{t(steps[step])}</p>
         </div>
-        <ol className="mt-3 grid grid-cols-5 gap-1.5" aria-label="Progress">
+        <ol className="mt-3 grid grid-cols-5 gap-1.5" aria-label={t("Progress")}>
           {steps.map((s, i) => (
             <li key={s} className={`h-1 rounded-full transition-colors ${i <= step ? "bg-cenote-600" : "bg-sand-200"}`}>
-              <span className="sr-only">{s}{i < step ? " (complete)" : i === step ? " (current)" : ""}</span>
+              <span className="sr-only">{t(s)}{i < step ? ` (${t("complete")})` : i === step ? ` (${t("current")})` : ""}</span>
             </li>
           ))}
         </ol>
@@ -120,31 +124,31 @@ export function PlannerForm({ onDone, compact = false }: { onDone?: () => void; 
 
       <form noValidate onSubmit={(e) => { e.preventDefault(); next(); }}>
         {step === 0 && (
-          <Step title="When are you *thinking*?" intro="Approximate is perfect — we'll work around the seasons for you.">
+          <Step title={t("When are you *thinking*?")} intro={t("Approximate is perfect — we'll work around the seasons for you.")}>
             <div className="grid gap-5 sm:grid-cols-2">
-              <Field label="Arrival date" error={errors.arrivalDate} htmlFor="arrivalDate">
+              <Field label={t("Arrival date")} error={errors.arrivalDate && t(errors.arrivalDate)} htmlFor="arrivalDate">
                 <input id="arrivalDate" type="date" className="field" value={data.arrivalDate} min={new Date().toISOString().slice(0, 10)}
                   onChange={(e) => set("arrivalDate", e.target.value)} aria-invalid={!!errors.arrivalDate} aria-describedby={errors.arrivalDate ? "arrivalDate-err" : undefined} />
               </Field>
-              <Field label="Length of stay" error={errors.nights} htmlFor="nights">
+              <Field label={t("Length of stay")} error={errors.nights && t(errors.nights)} htmlFor="nights">
                 <select id="nights" className="field" value={data.nights} onChange={(e) => set("nights", Number(e.target.value))} aria-invalid={!!errors.nights}>
-                  {Array.from({ length: 50 }, (_, i) => i + 1).map((n) => <option key={n} value={n}>{n} {n === 1 ? "night" : "nights"}</option>)}
+                  {Array.from({ length: 50 }, (_, i) => i + 1).map((n) => <option key={n} value={n}>{n} {n === 1 ? t("night") : t("nights")}</option>)}
                 </select>
               </Field>
             </div>
-            <Choice legend="Are your dates…" error={errors.dateFlex} name="dateFlex"
-              options={[{ id: "exact", label: "Exact" }, { id: "approximate", label: "Approximate" }]}
+            <Choice legend={t("Are your dates…")} error={errors.dateFlex && t(errors.dateFlex)} name="dateFlex"
+              options={[{ id: "exact", label: t("Exact") }, { id: "approximate", label: t("Approximate") }]}
               value={data.dateFlex} onChange={(v) => set("dateFlex", v as PlannerData["dateFlex"])} />
-            <Choice legend="Have you been to Mexico before?" error={errors.travellerType} name="travellerType"
-              options={[{ id: "first-timer", label: "First time in Mexico" }, { id: "experienced", label: "I've been before" }]}
+            <Choice legend={t("Have you been to Mexico before?")} error={errors.travellerType && t(errors.travellerType)} name="travellerType"
+              options={[{ id: "first-timer", label: t("First time in Mexico") }, { id: "experienced", label: t("I've been before") }]}
               value={data.travellerType} onChange={(v) => set("travellerType", v as PlannerData["travellerType"])} />
           </Step>
         )}
 
         {step === 1 && (
-          <Step title="Where would you like to *go*?" intro="Choose as many as you like. Most of our guests combine two regions.">
+          <Step title={t("Where would you like to *go*?")} intro={t("Choose as many as you like. Most of our guests combine two regions.")}>
             <fieldset>
-              <legend className="sr-only">Regions</legend>
+              <legend className="sr-only">{t("Regions")}</legend>
               <div className={`grid gap-3 ${compact ? "grid-cols-2" : "grid-cols-2 md:grid-cols-4"}`} data-error={errors.regions ? "" : undefined} tabIndex={errors.regions ? -1 : undefined}>
                 {regionOptions.map((r) => {
                   const on = data.regions.includes(r.id);
@@ -158,8 +162,8 @@ export function PlannerForm({ onDone, compact = false }: { onDone?: () => void; 
                           {on && <CheckIcon width={14} height={14} className="text-white" />}
                         </span>
                         <div className="absolute inset-x-0 bottom-0 p-3 text-white">
-                          <p className="font-display text-[1.05rem] leading-tight">{r.label}</p>
-                          <p className="mt-0.5 text-xs text-white/75">{r.detail}</p>
+                          <p className="font-display text-[1.05rem] leading-tight">{t(r.label)}</p>
+                          <p className="mt-0.5 text-xs text-white/75">{t(r.detail)}</p>
                         </div>
                       </div>
                       <span className="pointer-events-none absolute inset-0 rounded-xl peer-focus-visible:ring-4 peer-focus-visible:ring-terra-500" />
@@ -167,19 +171,19 @@ export function PlannerForm({ onDone, compact = false }: { onDone?: () => void; 
                   );
                 })}
               </div>
-              {errors.regions && <p className="mt-2 text-sm text-terra-700" role="alert">{errors.regions}</p>}
+              {errors.regions && <p className="mt-2 text-sm text-terra-700" role="alert">{t(errors.regions)}</p>}
             </fieldset>
-            <Field label="Any specific hotels, places or experiences in mind? (optional)" htmlFor="specifics">
+            <Field label={t("Any specific hotels, places or experiences in mind? (optional)")} htmlFor="specifics">
               <textarea id="specifics" rows={3} className="field" value={data.specifics} onChange={(e) => set("specifics", e.target.value)}
-                placeholder="e.g. a night in a hacienda, swimming with whale sharks, Día de Muertos in Oaxaca…" />
+                placeholder={t("e.g. a night in a hacienda, swimming with whale sharks, Día de Muertos in Oaxaca…")} />
             </Field>
           </Step>
         )}
 
         {step === 2 && (
-          <Step title="What budget feels *right*?" intro="Approximate, per person, per day, including accommodation, guiding and private transfers. International flights excluded.">
+          <Step title={t("What budget feels *right*?")} intro={t("Approximate, per person, per day, including accommodation, guiding and private transfers. International flights excluded.")}>
             <fieldset data-error={errors.budget ? "" : undefined} tabIndex={errors.budget ? -1 : undefined}>
-              <legend className="sr-only">Budget</legend>
+              <legend className="sr-only">{t("Budget")}</legend>
               <div className="grid gap-3 sm:grid-cols-2">
                 {budgetOptions.map((b) => {
                   const on = data.budget === b.id;
@@ -188,43 +192,43 @@ export function PlannerForm({ onDone, compact = false }: { onDone?: () => void; 
                       <input type="radio" name="budget" className="peer sr-only" checked={on} onChange={() => set("budget", b.id)} />
                       <span className="pointer-events-none absolute inset-0 rounded-xl peer-focus-visible:ring-4 peer-focus-visible:ring-terra-500" />
                       <span className="flex items-baseline justify-between gap-3">
-                        <span className="font-display text-xl text-cenote-900">{b.label}</span>
+                        <span className="font-display text-xl text-cenote-900">{t(b.label)}</span>
                         <span className="text-sm font-semibold text-terra-600">
                           {b.fromUSD ? (<><Price usd={b.fromUSD} />{b.toUSD ? <>–<Price usd={b.toUSD} /></> : "+"}</>) : "—"}
                         </span>
                       </span>
-                      <span className="mt-2 block text-sm text-ink-soft">{b.detail}</span>
+                      <span className="mt-2 block text-sm text-ink-soft">{t(b.detail)}</span>
                     </label>
                   );
                 })}
               </div>
-              {errors.budget && <p className="mt-2 text-sm text-terra-700" role="alert">{errors.budget}</p>}
+              {errors.budget && <p className="mt-2 text-sm text-terra-700" role="alert">{t(errors.budget)}</p>}
             </fieldset>
           </Step>
         )}
 
         {step === 3 && (
-          <Step title="Who's *coming*?" intro="Tell us who's travelling so we can match rooms, guides and pace.">
+          <Step title={t("Who's *coming*?")} intro={t("Tell us who's travelling so we can match rooms, guides and pace.")}>
             <div className="grid gap-5 sm:grid-cols-2">
-              <Stepper label="Adults" value={data.adults} min={1} max={12} onChange={(v) => set("adults", v)} error={errors.adults} />
-              <Stepper label="Children (under 18)" value={data.children} min={0} max={10}
+              <Stepper id="adults" label={t("Adults")} fewer={t("Fewer adults")} more={t("More adults")} value={data.adults} min={1} max={12} onChange={(v) => set("adults", v)} error={errors.adults && t(errors.adults)} />
+              <Stepper id="children" label={t("Children (under 18)")} fewer={t("Fewer children")} more={t("More children")} value={data.children} min={0} max={10}
                 onChange={(v) => setData((d) => ({ ...d, children: v, childAges: Array.from({ length: v }, (_, i) => d.childAges[i] ?? "") }))} />
             </div>
             {data.children > 0 && (
               <fieldset>
-                <legend className="mb-2 text-sm font-medium">Children&rsquo;s ages at time of travel</legend>
+                <legend className="mb-2 text-sm font-medium">{t("Children’s ages at time of travel")}</legend>
                 <div className="flex flex-wrap gap-3">
                   {Array.from({ length: data.children }).map((_, i) => {
                     const err = errors[`childAge${i}`];
                     return (
                       <label key={i} className="flex flex-col text-xs text-ink-soft">
-                        Child {i + 1}
+                        {tf("Child {n}", { n: i + 1 })}
                         <select className="field mt-1 !w-24" value={data.childAges[i] ?? ""} aria-invalid={!!err}
                           onChange={(e) => { const ages = [...data.childAges]; ages[i] = e.target.value; setData((d) => ({ ...d, childAges: ages })); setErrors((x) => ({ ...x, [`childAge${i}`]: undefined })); }}>
-                          <option value="">Age</option>
-                          {Array.from({ length: 18 }, (_, a) => <option key={a} value={a}>{a === 0 ? "Under 1" : a}</option>)}
+                          <option value="">{t("Age")}</option>
+                          {Array.from({ length: 18 }, (_, a) => <option key={a} value={a}>{a === 0 ? t("Under 1") : a}</option>)}
                         </select>
-                        {err && <span className="mt-1 text-terra-700">{err}</span>}
+                        {err && <span className="mt-1 text-terra-700">{t(err)}</span>}
                       </label>
                     );
                   })}
@@ -232,10 +236,10 @@ export function PlannerForm({ onDone, compact = false }: { onDone?: () => void; 
               </fieldset>
             )}
             <fieldset>
-              <legend className="mb-3 text-sm font-medium">Would you like help with any of these? (optional)</legend>
+              <legend className="mb-3 text-sm font-medium">{t("Would you like help with any of these? (optional)")}</legend>
               <div className="grid gap-3 sm:grid-cols-2">
                 {addonOptions.map((a) => (
-                  <CheckCard key={a.id} checked={data.addons.includes(a.id)} onChange={() => toggle("addons", a.id)} label={a.label} detail={a.detail} />
+                  <CheckCard key={a.id} checked={data.addons.includes(a.id)} onChange={() => toggle("addons", a.id)} label={t(a.label)} detail={t(a.detail)} />
                 ))}
               </div>
             </fieldset>
@@ -243,16 +247,16 @@ export function PlannerForm({ onDone, compact = false }: { onDone?: () => void; 
         )}
 
         {step === 4 && (
-          <Step title="How can we reach *you*?" intro="Your specialist will reply personally — no call centres, no automated sequences.">
-            <Field label="Full name" error={errors.name} htmlFor="name">
+          <Step title={t("How can we reach *you*?")} intro={t("Your specialist will reply personally — no call centres, no automated sequences.")}>
+            <Field label={t("Full name")} error={errors.name && t(errors.name)} htmlFor="name">
               <input id="name" className="field" autoComplete="name" value={data.name} onChange={(e) => set("name", e.target.value)} aria-invalid={!!errors.name} />
             </Field>
-            <Field label="Email" error={errors.email} htmlFor="email">
+            <Field label={t("Email")} error={errors.email && t(errors.email)} htmlFor="email">
               <input id="email" type="email" className="field" autoComplete="email" value={data.email} onChange={(e) => set("email", e.target.value)} aria-invalid={!!errors.email} />
             </Field>
-            <Field label="Phone (optional unless you choose telephone)" error={errors.phone} htmlFor="phone">
+            <Field label={t("Phone (optional unless you choose telephone)")} error={errors.phone && t(errors.phone)} htmlFor="phone">
               <div className="flex gap-2">
-                <label htmlFor="countryCode" className="sr-only">Country code</label>
+                <label htmlFor="countryCode" className="sr-only">{t("Country code")}</label>
                 <select id="countryCode" className="field !w-32" value={data.countryCode} onChange={(e) => set("countryCode", e.target.value)}>
                   {countryCodes.map((c) => <option key={c.code} value={c.code}>{c.label}</option>)}
                 </select>
@@ -260,7 +264,7 @@ export function PlannerForm({ onDone, compact = false }: { onDone?: () => void; 
               </div>
             </Field>
             <fieldset data-error={errors.contactMethods ? "" : undefined} tabIndex={errors.contactMethods ? -1 : undefined}>
-              <legend className="mb-3 text-sm font-medium">Preferred ways to contact you</legend>
+              <legend className="mb-3 text-sm font-medium">{t("Preferred ways to contact you")}</legend>
               <div className="flex flex-wrap gap-2">
                 {contactOptions.map((c) => {
                   const on = data.contactMethods.includes(c);
@@ -268,30 +272,30 @@ export function PlannerForm({ onDone, compact = false }: { onDone?: () => void; 
                     <label key={c} className={`relative cursor-pointer rounded-full border px-4 py-2 text-sm font-medium transition ${on ? "border-cenote-600 bg-cenote-600 text-white" : "border-sand-300 bg-white hover:border-sand-500"}`}>
                       <input type="checkbox" className="peer sr-only" checked={on} onChange={() => toggle("contactMethods", c)} />
                       <span className="pointer-events-none absolute inset-0 rounded-full peer-focus-visible:ring-4 peer-focus-visible:ring-terra-500" />
-                      {c}
+                      {t(c)}
                     </label>
                   );
                 })}
               </div>
-              {errors.contactMethods && <p className="mt-2 text-sm text-terra-700" role="alert">{errors.contactMethods}</p>}
+              {errors.contactMethods && <p className="mt-2 text-sm text-terra-700" role="alert">{t(errors.contactMethods)}</p>}
             </fieldset>
-            <Field label="Anything else we should know? (optional)" htmlFor="notes">
+            <Field label={t("Anything else we should know? (optional)")} htmlFor="notes">
               <textarea id="notes" rows={4} className="field" value={data.notes} onChange={(e) => set("notes", e.target.value)}
-                placeholder="Celebrations, dietary needs, mobility, the pace you like…" />
+                placeholder={t("Celebrations, dietary needs, mobility, the pace you like…")} />
             </Field>
-            {status === "error" && <p className="rounded-lg bg-terra-100 p-3 text-sm text-terra-700" role="alert">Something went wrong sending your request. Please try again, or email us.</p>}
+            {status === "error" && <p className="rounded-lg bg-terra-100 p-3 text-sm text-terra-700" role="alert">{t("Something went wrong sending your request. Please try again, or email us.")}</p>}
           </Step>
         )}
 
         <div className="mt-10 flex items-center justify-between gap-3 border-t border-sand-200 pt-6">
           {step > 0 ? (
-            <button type="button" onClick={back} className="btn btn-outline text-cenote-800">← Back</button>
+            <button type="button" onClick={back} className="btn btn-outline text-cenote-800">← {t("Back")}</button>
           ) : <span />}
           <button type="submit" disabled={status === "sending"} className="btn btn-primary disabled:opacity-60">
-            {step === steps.length - 1 ? (status === "sending" ? "Sending…" : "Send to a specialist") : "Next →"}
+            {step === steps.length - 1 ? (status === "sending" ? t("Sending…") : t("Send to a specialist")) : `${t("Next")} →`}
           </button>
         </div>
-        <p className="mt-4 text-center text-xs text-ink-soft">Your progress is saved on this device. No payment, no obligation.</p>
+        <p className="mt-4 text-center text-xs text-ink-soft">{t("Your progress is saved on this device. No payment, no obligation.")}</p>
       </form>
     </div>
   );
@@ -300,13 +304,10 @@ export function PlannerForm({ onDone, compact = false }: { onDone?: () => void; 
 /* ---------- small building blocks ---------- */
 
 function Step({ title, intro, children }: { title: string; intro?: string; children: ReactNode }) {
-  const parts = title.split(/(\*[^*]+\*)/g);
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-3xl text-cenote-900 sm:text-4xl">
-          {parts.map((p, i) => (p.startsWith("*") ? <em key={i}>{p.slice(1, -1)}</em> : p))}
-        </h2>
+        <h2 className="text-3xl text-cenote-900 sm:text-4xl">{emphasis(title)}</h2>
         {intro && <p className="mt-2 text-ink-soft">{intro}</p>}
       </div>
       {children}
@@ -347,15 +348,16 @@ function Choice({ legend, name, options, value, onChange, error }: {
   );
 }
 
-function Stepper({ label, value, min, max, onChange, error }: { label: string; value: number; min: number; max: number; onChange: (v: number) => void; error?: string }) {
+function Stepper({ id, label, fewer, more, value, min, max, onChange, error }: { id: string; label: string; fewer: string; more: string; value: number; min: number; max: number; onChange: (v: number) => void; error?: string }) {
   return (
     <div>
-      <p className="mb-1.5 text-sm font-medium" id={`lbl-${label}`}>{label}</p>
-      <div className="flex items-center gap-3" role="group" aria-labelledby={`lbl-${label}`}>
-        <button type="button" onClick={() => onChange(Math.max(min, value - 1))} disabled={value <= min} aria-label={`Fewer ${label.toLowerCase()}`}
+      <p className="mb-1.5 text-sm font-medium" id={`lbl-${id}`}>{label}</p>
+      <div className="flex items-center gap-3" role="group" aria-labelledby={`lbl-${id}`}>
+        <button type="button" onClick={() => onChange(Math.max(min, value - 1))} disabled={value <= min} aria-label={fewer}
           className="flex h-11 w-11 items-center justify-center rounded-full border border-sand-300 bg-white text-xl disabled:opacity-40">−</button>
         <output className="w-8 text-center font-display text-2xl" aria-live="polite">{value}</output>
-        <button type="button" onClick={() => onChange(Math.min(max, value + 1))} disabled={value >= max} aria-label={`More ${label.toLowerCase()}`}
+        <button type="button" onClick={() => onChange(Math.min(max, value + 1))} disabled={value >= max} aria-label={more}
+
           className="flex h-11 w-11 items-center justify-center rounded-full border border-sand-300 bg-white text-xl disabled:opacity-40">+</button>
       </div>
       {error && <p className="mt-1.5 text-sm text-terra-700" role="alert">{error}</p>}

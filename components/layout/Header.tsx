@@ -1,9 +1,13 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/i18n/Link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { nav, site, type NavColumn, type NavLink } from "@/config/site";
+import { site, type nav as Nav, type NavColumn, type NavLink } from "@/config/site";
+import { useT } from "@/i18n/client";
+import { stripLocale } from "@/i18n/locales";
+import { LanguageSelector } from "./LanguageSelector";
+import { emphasis } from "@/lib/emphasis";
 import { Logo } from "@/components/ui/Logo";
 import { CurrencySwitcher } from "@/components/ui/CurrencySwitcher";
 import { useUI } from "@/components/providers/UIProvider";
@@ -11,27 +15,30 @@ import { ChevronDown, CloseIcon, MenuIcon, SearchIcon } from "@/components/ui/ic
 
 type MenuId = "destinations" | "experiences" | "about";
 
-const menus: { id: MenuId; label: string; href: string; columns: NavColumn[]; footer: NavLink }[] = [
-  { id: "destinations", label: nav.destinations.label, href: nav.destinations.href, columns: nav.destinations.columns, footer: { label: "All destinations", href: "/destinations" } },
-  {
-    id: "experiences", label: nav.experiences.label, href: nav.experiences.href,
-    columns: [
-      { heading: "By the kind of trip", links: nav.experiences.links.slice(0, 6) },
-      { heading: " ", links: nav.experiences.links.slice(6) },
-    ],
-    footer: { label: "All experiences", href: "/experiences" },
-  },
-  {
-    id: "about", label: nav.about.label, href: nav.about.href,
-    columns: [
-      { heading: "The company", links: nav.about.links.slice(0, 4) },
-      { heading: "Practical", links: nav.about.links.slice(4) },
-    ],
-    footer: { label: "Our story", href: "/about" },
-  },
-];
+type Menu = { id: MenuId; label: string; href: string; columns: NavColumn[]; footer: NavLink };
 
-export function Header() {
+/** `nav` arrives already translated from the server layout. */
+export function Header({ nav }: { nav: typeof Nav }) {
+  const t = useT();
+  const menus: Menu[] = [
+    { id: "destinations", label: nav.destinations.label, href: nav.destinations.href, columns: nav.destinations.columns, footer: { label: t("All destinations"), href: "/destinations" } },
+    {
+      id: "experiences", label: nav.experiences.label, href: nav.experiences.href,
+      columns: [
+        { heading: t("By the kind of trip"), links: nav.experiences.links.slice(0, 6) },
+        { heading: "\u00a0", links: nav.experiences.links.slice(6) },
+      ],
+      footer: { label: t("All experiences"), href: "/experiences" },
+    },
+    {
+      id: "about", label: nav.about.label, href: nav.about.href,
+      columns: [
+        { heading: t("The company"), links: nav.about.links.slice(0, 4) },
+        { heading: t("Practical"), links: nav.about.links.slice(4) },
+      ],
+      footer: { label: t("Our story"), href: "/about" },
+    },
+  ];
   const [open, setOpen] = useState<MenuId | null>(null);
   const [drawer, setDrawer] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -45,7 +52,7 @@ export function Header() {
   }, [pathname]);
 
   // On the homepage the header floats transparently over the cinematic hero until you scroll.
-  const overlay = pathname === "/" && !scrolled && !open;
+  const overlay = stripLocale(pathname ?? "/") === "/" && !scrolled && !open;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -80,7 +87,7 @@ export function Header() {
       <div className="container-x flex h-[4.5rem] items-center gap-6">
         <Logo tone={overlay ? "light" : "dark"} />
 
-        <nav aria-label="Main" className="ml-6 hidden h-full lg:flex">
+        <nav aria-label={t("Main")} className="ml-6 hidden h-full lg:flex">
           <ul className="flex h-full items-center gap-1">
             {menus.map((m) => (
               <li key={m.id} className="h-full" onMouseEnter={() => enter(m.id)} onMouseLeave={leave}>
@@ -96,20 +103,21 @@ export function Header() {
                 </button>
               </li>
             ))}
-            <li><Link href="/trips" className={`flex h-full items-center px-3 text-[0.93rem] font-medium ${overlay ? "hover:text-sand-200" : "hover:text-terra-600"}`}>Trips</Link></li>
-            <li><Link href="/blog" className={`flex h-full items-center px-3 text-[0.93rem] font-medium ${overlay ? "hover:text-sand-200" : "hover:text-terra-600"}`}>Journal</Link></li>
+            <li><Link href="/trips" className={`flex h-full items-center px-3 text-[0.93rem] font-medium ${overlay ? "hover:text-sand-200" : "hover:text-terra-600"}`}>{nav.trips.label}</Link></li>
+            <li><Link href="/blog" className={`flex h-full items-center px-3 text-[0.93rem] font-medium ${overlay ? "hover:text-sand-200" : "hover:text-terra-600"}`}>{nav.blog.label}</Link></li>
           </ul>
         </nav>
 
         <div className="ml-auto flex items-center gap-2 sm:gap-3">
-          <button type="button" onClick={openSearch} className={`rounded-full p-2.5 ${overlay ? "hover:bg-white/10" : "hover:bg-sand-100"}`} aria-label="Search the site">
+          <LanguageSelector tone={overlay ? "light" : "dark"} className="hidden sm:block" />
+          <button type="button" onClick={openSearch} className={`rounded-full p-2.5 ${overlay ? "hover:bg-white/10" : "hover:bg-sand-100"}`} aria-label={t("Search the site")}>
             <SearchIcon />
           </button>
           <div className="hidden sm:block"><CurrencySwitcher tone={overlay ? "light" : "dark"} /></div>
           <button type="button" onClick={openPlanner} className="btn btn-primary hidden !py-3 md:inline-flex">
-            Start planning
+            {t("Start planning")}
           </button>
-          <button type="button" className={`rounded-full p-2.5 lg:hidden ${overlay ? "hover:bg-white/10" : "hover:bg-sand-100"}`} aria-label="Open menu" aria-expanded={drawer} onClick={() => setDrawer(true)}>
+          <button type="button" className={`rounded-full p-2.5 lg:hidden ${overlay ? "hover:bg-white/10" : "hover:bg-sand-100"}`} aria-label={t("Open menu")} aria-expanded={drawer} onClick={() => setDrawer(true)}>
             <MenuIcon width={24} height={24} />
           </button>
         </div>
@@ -144,12 +152,12 @@ export function Header() {
             </div>
             <div className="col-span-3 flex flex-col justify-between rounded-2xl bg-cenote-800 p-7 text-white">
               <div>
-                <p className="eyebrow text-cenote-300">One specialist, start to finish</p>
-                <p className="mt-3 font-display text-2xl leading-snug">Not sure where to <em>begin</em>?</p>
-                <p className="mt-2 text-sm text-white/75">Tell us how you like to travel. We&rsquo;ll sketch a route within a day.</p>
+                <p className="eyebrow text-cenote-300">{t("One specialist, start to finish")}</p>
+                <p className="mt-3 font-display text-2xl leading-snug">{emphasis(t("Not sure where to *begin*?"))}</p>
+                <p className="mt-2 text-sm text-white/75">{t("Tell us how you like to travel. We’ll sketch a route within a day.")}</p>
               </div>
               <div className="mt-6 flex flex-col gap-3">
-                <button type="button" onClick={() => { setOpen(null); openPlanner(); }} className="btn btn-primary">Start planning</button>
+                <button type="button" onClick={() => { setOpen(null); openPlanner(); }} className="btn btn-primary">{t("Start planning")}</button>
                 <Link href={m.footer.href} className="link-arrow text-sm text-cenote-100">{m.footer.label} <span aria-hidden>→</span></Link>
               </div>
             </div>
@@ -161,13 +169,13 @@ export function Header() {
       <div
         role="dialog"
         aria-modal="true"
-        aria-label="Menu"
+        aria-label={t("Menu")}
         inert={!drawer}
         className={`fixed inset-0 z-50 flex flex-col overflow-hidden bg-cenote-950 text-white transition-[opacity,transform] duration-500 ease-[cubic-bezier(.22,1,.36,1)] lg:hidden ${drawer ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-4 opacity-0"}`}
       >
         <div className="flex h-[4.5rem] shrink-0 items-center justify-between border-b border-white/10 px-5">
           <Logo tone="light" />
-          <button type="button" onClick={() => setDrawer(false)} className="rounded-full p-2 hover:bg-white/10" aria-label="Close menu">
+          <button type="button" onClick={() => setDrawer(false)} className="rounded-full p-2 hover:bg-white/10" aria-label={t("Close menu")}>
             <CloseIcon width={26} height={26} />
           </button>
         </div>
@@ -180,23 +188,27 @@ export function Header() {
               links={[...m.columns.flatMap((c) => c.links), m.footer].filter((l, i, a) => a.findIndex((x) => x.href === l.href) === i)}
             />
           ))}
-          {[{ label: "Trips", href: "/trips" }, { label: "Journal", href: "/blog" }].map((l, i) => (
+          {[nav.trips, nav.blog].map((l, i) => (
             <Link key={l.href} href={l.href} className="flex items-baseline gap-4 border-b border-white/10 py-5 font-display text-[2rem] leading-none">
               <span className="coords !text-[0.65rem] text-cenote-300 before:content-none after:content-none">{String(menus.length + i + 1).padStart(2, "0")}</span>
               {l.label}
             </Link>
           ))}
           <div className="mt-8 flex items-center justify-between">
-            <span className="eyebrow text-cenote-300">Currency</span>
+            <span className="eyebrow text-cenote-300">{t("Language")}</span>
+            <LanguageSelector tone="light" />
+          </div>
+          <div className="mt-6 flex items-center justify-between">
+            <span className="eyebrow text-cenote-300">{t("Currency")}</span>
             <CurrencySwitcher tone="light" />
           </div>
         </div>
         <div className="shrink-0 space-y-3 border-t border-white/10 p-5">
-          <button type="button" onClick={() => { setDrawer(false); openPlanner(); }} className="btn btn-primary w-full">Start planning</button>
+          <button type="button" onClick={() => { setDrawer(false); openPlanner(); }} className="btn btn-primary w-full">{t("Start planning")}</button>
           <Link href="/contact" onClick={() => setDrawer(false)} className="btn btn-ghost-light w-full">
-            Contact us
+            {t("Contact us")}
           </Link>
-          <p className="text-center text-xs text-white/60">{site.replyTime}</p>
+          <p className="text-center text-xs text-white/60">{t(site.replyTime)}</p>
         </div>
       </div>
     </header>
@@ -205,7 +217,8 @@ export function Header() {
 
 function MobileAccordion({ label, links, index }: { label: string; links: NavLink[]; index: number }) {
   const [expanded, setExpanded] = useState(false);
-  const id = `acc-${label.toLowerCase()}`;
+  const id = `acc-${index}`;
+
   return (
     <div className="border-b border-white/10">
       <button

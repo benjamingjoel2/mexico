@@ -1,10 +1,13 @@
-import Link from "next/link";
+import Link from "@/i18n/Link";
 import { footerNav, legalLinks, site } from "@/config/site";
 import { Logo } from "@/components/ui/Logo";
 import { StitchBand } from "@/components/ui/TileDivider";
 import { MailIcon } from "@/components/ui/icons";
+import { t, tr } from "@/i18n/server";
 
 export function Footer() {
+  const columns = tr(footerNav);
+  const legal = tr(legalLinks);
   return (
     <footer className="bg-cenote-950 text-cenote-100">
       <StitchBand className="!opacity-40" />
@@ -12,8 +15,7 @@ export function Footer() {
         <div className="lg:col-span-4">
           <Logo tone="light" />
           <p className="mt-5 max-w-sm leading-relaxed text-cenote-100/75">
-            Tailor-made journeys through Mexico, planned by one specialist who knows the country first-hand. We take you
-            past the resort strip to the cenotes, kitchens, markets and haciendas most visitors never find.
+            {t("Tailor-made journeys through Mexico, planned by one specialist who knows the country first-hand. We take you past the resort strip to the cenotes, kitchens, markets and haciendas most visitors never find.")}
           </p>
           <ul className="mt-7 space-y-3 text-sm">
             <li><a href={`mailto:${site.contact.email}`} className="inline-flex items-center gap-3 hover:text-white"><MailIcon width={18} height={18} /> {site.contact.email}</a></li>
@@ -22,7 +24,7 @@ export function Footer() {
         </div>
 
         <div className="grid grid-cols-2 gap-10 sm:grid-cols-4 lg:col-span-8">
-          {footerNav.map((col) => (
+          {columns.map((col) => (
             <div key={col.heading}>
               <h2 className="eyebrow mb-4 font-sans !font-semibold !tracking-[0.18em] text-cenote-300">{col.heading}</h2>
               <ul className="space-y-2.5 text-sm">
@@ -37,9 +39,10 @@ export function Footer() {
 
       <div className="border-t border-white/10">
         <div className="container-x flex flex-col gap-3 py-6 text-xs text-cenote-100/60 sm:flex-row sm:justify-between">
-          <p>© {new Date().getFullYear()} {site.name}. All rights reserved. Prices are indicative and per person unless stated.</p>
+          <p>© {new Date().getFullYear()} {site.name}. {t("All rights reserved. Prices are indicative and per person unless stated.")}</p>
           <ul className="flex gap-5">
-            {legalLinks.map((l) => <li key={l.href}><Link href={l.href} className="hover:text-white">{l.label}</Link></li>)}
+            {legal.map(
+(l) => <li key={l.href}><Link href={l.href} className="hover:text-white">{l.label}</Link></li>)}
           </ul>
         </div>
       </div>
