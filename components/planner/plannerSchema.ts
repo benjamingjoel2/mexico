@@ -1,3 +1,4 @@
+import { msg } from "@/i18n/locales";
 import type { ImageKey } from "@/data/images";
 
 export interface PlannerData {
@@ -28,34 +29,34 @@ export const emptyPlanner: PlannerData = {
   name: "", email: "", countryCode: "+1", phone: "", contactMethods: [], notes: "",
 };
 
-export const steps = ["When", "Where", "Budget", "Who", "Contact"] as const;
+export const steps = [msg("When"), msg("Where"), msg("Budget"), msg("Who"), msg("Contact")] as const;
 
 export const regionOptions: { id: string; label: string; detail: string; image: ImageKey }[] = [
-  { id: "cdmx-oaxaca", label: "Mexico City & Oaxaca", detail: "Museums, mezcal, markets", image: "oaxaca" },
-  { id: "yucatan-riviera", label: "Yucatán & Riviera Maya", detail: "Cenotes, ruins, haciendas", image: "merida" },
-  { id: "tulum-bacalar", label: "Tulum & Bacalar", detail: "Jungle, lagoon, Caribbean", image: "bacalar" },
-  { id: "colonial", label: "Colonial heartland", detail: "CDMX, San Miguel, Guanajuato", image: "guanajuato" },
-  { id: "baja", label: "Baja & Los Cabos", detail: "Desert, whales, Sea of Cortez", image: "los-cabos" },
-  { id: "chiapas-yucatan", label: "Chiapas & Yucatán", detail: "Highlands, Palenque, jungle", image: "chiapas" },
-  { id: "pacific", label: "Pacific coast", detail: "Surf towns, Vallarta, Oaxaca coast", image: "puerto-escondido" },
-  { id: "not-sure", label: "Not sure yet", detail: "Help us choose", image: "cenote-1" },
+  { id: "cdmx-oaxaca", label: msg("Mexico City & Oaxaca"), detail: msg("Museums, mezcal, markets"), image: "oaxaca" },
+  { id: "yucatan-riviera", label: msg("Yucatán & Riviera Maya"), detail: msg("Cenotes, ruins, haciendas"), image: "merida" },
+  { id: "tulum-bacalar", label: msg("Tulum & Bacalar"), detail: msg("Jungle, lagoon, Caribbean"), image: "bacalar" },
+  { id: "colonial", label: msg("Colonial heartland"), detail: msg("CDMX, San Miguel, Guanajuato"), image: "guanajuato" },
+  { id: "baja", label: msg("Baja & Los Cabos"), detail: msg("Desert, whales, Sea of Cortez"), image: "los-cabos" },
+  { id: "chiapas-yucatan", label: msg("Chiapas & Yucatán"), detail: msg("Highlands, Palenque, jungle"), image: "chiapas" },
+  { id: "pacific", label: msg("Pacific coast"), detail: msg("Surf towns, Vallarta, Oaxaca coast"), image: "puerto-escondido" },
+  { id: "not-sure", label: msg("Not sure yet"), detail: msg("Help us choose"), image: "cenote-1" },
 ];
 
 export const budgetOptions = [
-  { id: "value-luxury", label: "Value luxury", fromUSD: 350, toUSD: 600, detail: "Characterful boutique hotels, private guides where they matter most." },
-  { id: "premium", label: "Premium", fromUSD: 600, toUSD: 1100, detail: "Our favourite haciendas and design hotels, private drivers throughout." },
-  { id: "ultra-luxury", label: "Ultra luxury", fromUSD: 1100, toUSD: null, detail: "The finest suites, private villas, charter flights and exclusive access." },
-  { id: "not-sure", label: "Not sure yet", fromUSD: null, toUSD: null, detail: "We'll suggest options at a few price points." },
+  { id: "value-luxury", label: msg("Value luxury"), fromUSD: 350, toUSD: 600, detail: msg("Characterful boutique hotels, private guides where they matter most.") },
+  { id: "premium", label: msg("Premium"), fromUSD: 600, toUSD: 1100, detail: msg("Our favourite haciendas and design hotels, private drivers throughout.") },
+  { id: "ultra-luxury", label: msg("Ultra luxury"), fromUSD: 1100, toUSD: null, detail: msg("The finest suites, private villas, charter flights and exclusive access.") },
+  { id: "not-sure", label: msg("Not sure yet"), fromUSD: null, toUSD: null, detail: msg("We'll suggest options at a few price points.") },
 ] as const;
 
 export const addonOptions = [
-  { id: "insurance", label: "Travel insurance", detail: "We'll share information on suitable policies." },
-  { id: "international-flights", label: "International flights", detail: "Help finding flights to and from Mexico." },
-  { id: "domestic-flights", label: "Domestic flights", detail: "We book internal flights as part of your trip." },
-  { id: "private-drivers", label: "Private drivers", detail: "Door-to-door transfers with bilingual drivers." },
+  { id: "insurance", label: msg("Travel insurance"), detail: msg("We'll share information on suitable policies.") },
+  { id: "international-flights", label: msg("International flights"), detail: msg("Help finding flights to and from Mexico.") },
+  { id: "domestic-flights", label: msg("Domestic flights"), detail: msg("We book internal flights as part of your trip.") },
+  { id: "private-drivers", label: msg("Private drivers"), detail: msg("Door-to-door transfers with bilingual drivers.") },
 ];
 
-export const contactOptions = ["Email", "WhatsApp", "Telephone"];
+export const contactOptions = [msg("Email"), msg("Telephone")];
 
 export const countryCodes = [
   { code: "+1", label: "US/CA +1" }, { code: "+44", label: "UK +44" }, { code: "+52", label: "MX +52" },
@@ -69,27 +70,27 @@ export type Errors = Partial<Record<keyof PlannerData | `childAge${number}`, str
 export function validateStep(step: number, d: PlannerData): Errors {
   const e: Errors = {};
   if (step === 0) {
-    if (!d.arrivalDate) e.arrivalDate = "Choose an approximate arrival date.";
-    else if (new Date(d.arrivalDate) < new Date(new Date().toDateString())) e.arrivalDate = "Arrival date must be in the future.";
-    if (!(d.nights >= 1 && d.nights <= 50)) e.nights = "Length of stay must be between 1 and 50 nights.";
-    if (!d.dateFlex) e.dateFlex = "Let us know if your dates are fixed.";
-    if (!d.travellerType) e.travellerType = "Tell us if this is your first trip to Mexico.";
+    if (!d.arrivalDate) e.arrivalDate = msg("Choose an approximate arrival date.");
+    else if (new Date(d.arrivalDate) < new Date(new Date().toDateString())) e.arrivalDate = msg("Arrival date must be in the future.");
+    if (!(d.nights >= 1 && d.nights <= 50)) e.nights = msg("Length of stay must be between 1 and 50 nights.");
+    if (!d.dateFlex) e.dateFlex = msg("Let us know if your dates are fixed.");
+    if (!d.travellerType) e.travellerType = msg("Tell us if this is your first trip to Mexico.");
   }
-  if (step === 1 && d.regions.length === 0) e.regions = "Pick at least one region, or “Not sure yet”.";
-  if (step === 2 && !d.budget) e.budget = "Choose a budget, or “Not sure yet”.";
+  if (step === 1 && d.regions.length === 0) e.regions = msg("Pick at least one region, or “Not sure yet”.");
+  if (step === 2 && !d.budget) e.budget = msg("Choose a budget, or “Not sure yet”.");
   if (step === 3) {
-    if (d.adults < 1) e.adults = "At least one adult is required.";
+    if (d.adults < 1) e.adults = msg("At least one adult is required.");
     d.childAges.slice(0, d.children).forEach((age, i) => {
-      if (age === "") e[`childAge${i}`] = "Age required";
+      if (age === "") e[`childAge${i}`] = msg("Age required");
     });
   }
   if (step === 4) {
-    if (d.name.trim().length < 2) e.name = "Please enter your name.";
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email)) e.email = "Please enter a valid email address.";
-    if (d.phone && !/^[\d\s()-]{6,}$/.test(d.phone)) e.phone = "Please enter a valid phone number.";
-    if (d.contactMethods.length === 0) e.contactMethods = "Choose at least one way to reach you.";
-    if ((d.contactMethods.includes("WhatsApp") || d.contactMethods.includes("Telephone")) && !d.phone)
-      e.phone = "Add a phone number so we can reach you on WhatsApp or by phone.";
+    if (d.name.trim().length < 2) e.name = msg("Please enter your name.");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email)) e.email = msg("Please enter a valid email address.");
+    if (d.phone && !/^[\d\s()-]{6,}$/.test(d.phone)) e.phone = msg("Please enter a valid phone number.");
+    if (d.contactMethods.length === 0) e.contactMethods = msg("Choose at least one way to reach you.");
+    if (d.contactMethods.includes("Telephone") && !d.phone)
+      e.phone = msg("Add a phone number so we can reach you by phone.");
   }
   return e;
 }

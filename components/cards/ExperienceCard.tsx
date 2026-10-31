@@ -1,6 +1,7 @@
-import Link from "next/link";
+import Link from "@/i18n/Link";
 import type { Experience } from "@/data/types";
 import { destinationName } from "@/lib/data";
+import { t } from "@/i18n/server";
 
 export function ExperienceCard({ e, tripCount, index }: { e: Experience; tripCount: number; index?: number }) {
   return (
@@ -18,7 +19,8 @@ export function ExperienceCard({ e, tripCount, index }: { e: Experience; tripCou
         </p>
       </div>
       <p className="mt-8 flex items-center justify-between text-sm font-semibold text-cenote-800 transition-colors group-hover:text-white">
-        <span>{tripCount > 0 ? `${tripCount} ${tripCount === 1 ? "trip" : "trips"}` : "Tailor-made"}</span>
+        <span>{tripCount > 0 ? `${tripCount} ${tripCount === 1 ? t("trip") : t("trips")}` : t("Tailor-made")}</span>
+
         <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
       </p>
     </Link>

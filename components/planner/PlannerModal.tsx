@@ -4,9 +4,11 @@ import { useEffect, useRef } from "react";
 import { useUI } from "@/components/providers/UIProvider";
 import { CloseIcon } from "@/components/ui/icons";
 import { PlannerForm } from "./PlannerForm";
+import { useT } from "@/i18n/client";
 
 export function PlannerModal() {
   const { plannerOpen, closePlanner } = useUI();
+  const t = useT();
   const panel = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -39,12 +41,13 @@ export function PlannerModal() {
         ref={panel}
         role="dialog"
         aria-modal="true"
-        aria-label="Plan your trip"
+        aria-label={t("Plan your trip")}
         tabIndex={-1}
         onClick={(e) => e.stopPropagation()}
         className="relative max-h-[94vh] w-full max-w-3xl animate-fade-up overflow-y-auto rounded-t-3xl bg-paper px-5 pb-8 pt-14 shadow-2xl outline-none sm:rounded-3xl sm:px-10"
       >
-        <button type="button" onClick={closePlanner} className="absolute right-4 top-4 rounded-full p-2 hover:bg-sand-100" aria-label="Close planner">
+        <button type="button" onClick={closePlanner} className="absolute right-4 top-4 rounded-full p-2 hover:bg-sand-100" aria-label={t("Close planner")}>
+
           <CloseIcon width={22} height={22} />
         </button>
         <PlannerForm onDone={closePlanner} compact />

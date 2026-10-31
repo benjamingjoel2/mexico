@@ -1,7 +1,8 @@
-import Link from "next/link";
+import Link from "@/i18n/Link";
 import type { Experience } from "@/data/types";
 import { destinationName } from "@/lib/data";
 import { Img } from "@/components/ui/Img";
+import { t, tf } from "@/i18n/server";
 
 /** Indexed image tile: two-digit index, dashed rule, name and where it happens. */
 export function ExperienceTile({ e, index, tripCount }: { e: Experience; index: number; tripCount: number }) {
@@ -12,7 +13,8 @@ export function ExperienceTile({ e, index, tripCount }: { e: Experience; index: 
         <div className="absolute inset-0 bg-gradient-to-t from-cenote-950/75 via-transparent to-transparent" />
         <span className="absolute left-5 top-5 font-display text-5xl italic leading-none text-white/90 drop-shadow">{String(index).padStart(2, "0")}</span>
         <span className="absolute bottom-5 left-5 right-5 text-sm font-medium text-white/85">
-          {tripCount > 0 ? `${tripCount} sample ${tripCount === 1 ? "trip" : "trips"}` : "Tailor-made only"} <span aria-hidden className="inline-block transition-transform group-hover:translate-x-1">→</span>
+          {tripCount > 0 ? tf(tripCount === 1 ? "{n} sample trip" : "{n} sample trips", { n: tripCount }) : t("Tailor-made only")}
+ <span aria-hidden className="inline-block transition-transform group-hover:translate-x-1">→</span>
         </span>
       </div>
       <hr className="rule-dashed mt-5 text-cenote-900" />

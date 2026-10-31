@@ -1,6 +1,7 @@
+import { msg } from "@/i18n/locales";
+
 /**
  * Single source of truth for brand, contact, currency and navigation.
- * Replace the [BRACKETED] placeholders before launch.
  */
 
 export const site = {
@@ -8,34 +9,22 @@ export const site = {
   tagline: "Tailor-made Mexico, below the surface",
   description:
     "Tailor-made Mexico trips planned by one specialist who knows the country personally: cenotes, colonial cities, haciendas and the Mexico beyond the resorts.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.cenotehouse.example",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://cenotehouse.tourground.com",
   locale: "en_US",
   foundedYear: 2014,
-  credential: "[Award/credential placeholder]",
-  replyTime: "Replies in as little as 15 minutes",
+  replyTime: msg("Replies within one working day"),
+  /** One address for the brand. No phone, WhatsApp, social links, review badges or licence/membership claims (owner's decision). */
   contact: {
-    phone: "[PHONE]",
-    phoneHref: "tel:+520000000000",
-    whatsappNumber: "[NUMBER]",
-    /** digits only, international format, for wa.me links */
-    whatsappDigits: "520000000000",
-    email: "[EMAIL]",
-    address: "[Office address placeholder], Mérida, Yucatán, Mexico",
-    hours: "Specialists available 7 days · WhatsApp support 24/7 while you travel",
+    email: "cenotehouse@tourground.com",
+    /** Business address: IOS OFFICES Torre Reforma coworking, Mexico City (iosoffices.com). */
+    address: "Paseo de la Reforma 483, Piso 14, Col. Cuauhtémoc, 06500 Ciudad de México, Mexico",
+    street: "Paseo de la Reforma 483, Piso 14, Col. Cuauhtémoc",
+    postalCode: "06500",
+    locality: "Ciudad de México",
+    hours: "Specialists available 7 days a week",
   },
-  social: [
-    { label: "Instagram", href: "https://instagram.com/" },
-    { label: "Facebook", href: "https://facebook.com/" },
-    { label: "Pinterest", href: "https://pinterest.com/" },
-    { label: "YouTube", href: "https://youtube.com/" },
-  ],
-  review: { score: "4.9", count: "[N] reviews", platform: "[Review platform placeholder]" },
-  memberships: ["[Membership badge 1]", "[Membership badge 2]", "[Membership badge 3]"],
   stats: { partnerStays: 120, regions: 9 },
 } as const;
-
-export const whatsappHref = (text = "Hola! I'd like to plan a trip to Mexico.") =>
-  `https://wa.me/${site.contact.whatsappDigits}?text=${encodeURIComponent(text)}`;
 
 /* ---------------------------------------------------------------- Currency */
 
@@ -131,9 +120,7 @@ export const nav = {
     links: [
       { label: "Why travel with us", href: "/why-travel-with-us" },
       { label: "Our story", href: "/about" },
-      { label: "Meet the team", href: "/about#team" },
       { label: "Responsible travel", href: "/about#responsible-travel" },
-      { label: "Testimonials", href: "/testimonials" },
       { label: "FAQ", href: "/faq" },
       { label: "Contact", href: "/contact" },
       { label: "Blog", href: "/blog" },
@@ -167,9 +154,7 @@ export const footerNav: NavColumn[] = [
     links: [
       { label: "Our story", href: "/about" },
       { label: "Why travel with us", href: "/why-travel-with-us" },
-      { label: "Meet the team", href: "/about#team" },
       { label: "Responsible travel", href: "/about#responsible-travel" },
-      { label: "Testimonials", href: "/testimonials" },
     ],
   },
   {
@@ -185,7 +170,7 @@ export const footerNav: NavColumn[] = [
 ];
 
 export const legalLinks: NavLink[] = [
-  { label: "Terms", href: "/legal/terms" },
-  { label: "Privacy", href: "/legal/privacy" },
-  { label: "Cookies", href: "/legal/cookies" },
+  { label: "Privacy policy", href: "/legal/privacy" },
+  { label: "Booking terms", href: "/legal/terms" },
+  { label: "Cookie policy", href: "/legal/cookies" },
 ];

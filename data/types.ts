@@ -131,30 +131,6 @@ export interface Stay {
   seo: { title: string; description: string };
 }
 
-export interface Testimonial {
-  id: string;
-  /** PLACEHOLDER — replace with real, consented guest reviews */
-  placeholder: true;
-  name: string;
-  location: string;
-  trip: string;
-  date: string;
-  rating: 1 | 2 | 3 | 4 | 5;
-  quote: string;
-  sourceLabel: string;
-  sourceUrl: string;
-  featured?: boolean;
-}
-
-export interface TeamMember {
-  name: string;
-  role: string;
-  basedIn: string;
-  bio: string;
-  favourite: string;
-  placeholder: true;
-}
-
 export interface BlogPostMeta {
   slug: string;
   title: string;

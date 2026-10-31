@@ -2,12 +2,15 @@
 
 import { currencies, type CurrencyCode } from "@/config/site";
 import { useCurrency } from "@/components/providers/CurrencyProvider";
+import { useT } from "@/i18n/client";
 
 export function CurrencySwitcher({ className = "", tone = "dark" }: { className?: string; tone?: "dark" | "light" }) {
+  const t = useT();
   const { currency, setCurrency } = useCurrency();
   return (
     <label className={`relative inline-flex items-center ${className}`}>
-      <span className="sr-only">Display prices in</span>
+      <span className="sr-only">{t("Display prices in")}</span>
+
       <select
         value={currency}
         onChange={(e) => setCurrency(e.target.value as CurrencyCode)}
