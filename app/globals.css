@@ -278,3 +278,11 @@
     opacity: 0.35;
   }
 }
+
+/* Legal pages (privacy, terms, cookies): HTML sections inside .prose-ch */
+.legal section > * + * { margin-top: 1.15em; }
+.legal section:first-child h2 { margin-top: 1.2em; }
+.legal-table { overflow-x: auto; }
+.legal table { width: 100%; border-collapse: collapse; font-size: 0.95rem; line-height: 1.5; }
+.legal th, .legal td { text-align: left; vertical-align: top; padding: 0.6em 0.8em 0.6em 0; border-bottom: 1px solid color-mix(in srgb, var(--color-ink) 15%, transparent); }
+.legal code { font-size: 0.875em; word-break: break-all; }

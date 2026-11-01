@@ -1,799 +1,90 @@
 /**
- * Privacy policy, booking terms and cookie policy, per locale. Plain text; [text](/path)
- * becomes a link. A lawyer should review these before launch.
+ * Privacy policy, booking terms and cookie policy, written in full per locale (EN, FR, DE, ES).
+ * Each document is HTML (sections with h2, paragraphs, lists and the cookie table) with
+ * locale-prefixed links already in place. Last updated 1 November 2026.
  */
-export type LegalDoc = { title: string; description: string; sections: { h: string; p: string[] }[] };
+export type LegalDoc = { title: string; description: string; updated: string; html: string };
 export type LegalSet = { privacy: LegalDoc; terms: LegalDoc; cookies: LegalDoc };
-
-export const legalUpdated: Record<string, string> = {"en": "30 October 2026", "fr": "30 octobre 2026", "de": "30. Oktober 2026", "es": "30 de octubre de 2026"};
 
 export const legal: Record<string, LegalSet> = {
   "en": {
     "privacy": {
-      "title": "Privacy policy",
+      "title": "Privacy Policy",
       "description": "How Cenote House collects, uses and protects the personal details you send us.",
-      "sections": [
-        {
-          "h": "Who we are",
-          "p": [
-            "This website is run by Cenote House, Paseo de la Reforma 483, Piso 14, Col. Cuauhtémoc, 06500 Ciudad de México, Mexico. In this policy \"we\", \"us\" and \"our\" mean Cenote House.",
-            "For anything about your personal data, email cenotehouse@tourground.com."
-          ]
-        },
-        {
-          "h": "What we collect",
-          "p": [
-            "Only what you choose to send us: through the enquiry form, through the trip planner, your name, email address, phone number if you give one, how you prefer to be contacted, travel dates, the size of your party, your interests, budget and notes; through the contact form, your name, email address and message; through the guide download, your email address and whether you want our newsletter. If you write to us by email, we keep that correspondence.",
-            "If you book, we also collect what is needed to arrange the trip, such as the names of everyone travelling, dates of birth and passport details where suppliers require them, dietary and access needs, and emergency contacts.",
-            "Please do not send payment card details or detailed health information by email or through the form."
-          ]
-        },
-        {
-          "h": "Why we use it",
-          "p": [
-            "To answer your enquiry, plan a trip with you and, if you go ahead, book and run it. The legal basis is the steps you ask us to take before entering into a contract, the performance of that contract, your consent where we ask for it, and our legitimate interest in replying to people who contact us.",
-            "We do not sell your details, and we only send you news or offers if you ask us to."
-          ]
-        },
-        {
-          "h": "Who we share it with",
-          "p": [
-            "Your enquiry reaches us through our website's own server (hosted by Vercel Inc., United States).",
-            "If you book, we share only what is needed with the hotels, lodges, transport companies, guides and local partners in Mexico who deliver your trip, and with your travel insurer if you ask us to. Some of them are outside your own country; where that is the case, we share the minimum needed to deliver the service you have asked for.",
-            "We may also disclose information where the law requires it."
-          ]
-        },
-        {
-          "h": "Cookies and local storage",
-          "p": [
-            "We do not use analytics or advertising cookies on this website. See the [cookie policy](/cookies/) for what the site stores in your browser."
-          ]
-        },
-        {
-          "h": "How long we keep it",
-          "p": [
-            "We keep enquiries that do not become a booking for 24 months from our last contact, then delete them. Booking records are kept for as long as accounting and consumer law require, usually six years after the trip."
-          ]
-        },
-        {
-          "h": "How we protect it",
-          "p": [
-            "Your details are kept in password-protected email and file storage that only the people planning your trip can reach. The website is served over an encrypted connection (HTTPS)."
-          ]
-        },
-        {
-          "h": "Your rights",
-          "p": [
-            "You can ask to see the personal data we hold about you, to correct or delete it, to restrict or object to how we use it, to receive a copy in a portable format, or to withdraw your consent at any time. Email cenotehouse@tourground.com and we will reply within one month.",
-            "If you are unhappy with how we handle your data, please tell us first so that we can put it right. You also have the right to complain to the data-protection authority in the country where you live."
-          ]
-        },
-        {
-          "h": "Changes to this policy",
-          "p": [
-            "We will update this page if the way we use personal data changes. Last updated 30 October 2026."
-          ]
-        }
-      ]
+      "updated": "Last updated: 1 November 2026",
+      "html": "<section><h2>Who we are</h2>\n<p>Cenote House (“we”, “us”) runs cenotehouse.tourground.com and plans private journeys. We are the controller of the personal data described in this policy.</p>\n<p>Business address: Paseo de la Reforma 483, Piso 14, Col. Cuauhtémoc, 06500 Ciudad de México, Mexico.<br>Email: <a href=\"mailto:cenotehouse@tourground.com\">cenotehouse@tourground.com</a></p>\n</section>\n<section><h2>What we collect</h2>\n<ul><li><strong>Enquiry and booking forms</strong>: through the trip planner, your name, email address, phone number if you give one, how you prefer to be contacted, travel dates, party size, interests, budget and notes; through the contact form, your name, email address and message; through the guide download, your email address, and anything else you choose to write in your message.</li><li><strong>Booking details</strong>, once you go ahead: the names of everyone travelling, the passport details and dates of birth our suppliers need, arrival and departure information, and any dietary, medical or accessibility needs you tell us about (we use health details only with your explicit consent and only to arrange your trip safely).</li><li><strong>Emails</strong> you send us and our replies.</li><li><strong>Technical data</strong>: when you visit, our hosting provider records your IP address, browser type, the pages requested and the time, to keep the site secure and working.</li><li><strong>Preferences stored in your browser</strong>, such as your language. See our <a href=\"/legal/cookies\">Cookie Policy</a>.</li></ul>\n<p>We do not use advertising trackers, we do not build profiles of you and we never sell your data.</p>\n</section>\n<section><h2>Why we use it and our legal bases</h2>\n<ul><li><strong>To answer your enquiry and prepare a proposal</strong>: steps taken at your request before a contract (GDPR Art. 6(1)(b)).</li><li><strong>To book and run your trip</strong>, including passing details to the suppliers who provide it: performance of our contract with you (Art. 6(1)(b)); for health information, your explicit consent (Art. 9(2)(a)).</li><li><strong>To keep accounting and tax records</strong>: legal obligation (Art. 6(1)(c)).</li><li><strong>To keep the website secure, prevent abuse and handle complaints or legal claims</strong>: our legitimate interests (Art. 6(1)(f)).</li><li><strong>Optional preferences stored on your device</strong>: your consent where it is required (Art. 6(1)(a)). You can withdraw consent at any time without affecting what happened before.</li></ul>\n</section>\n<section><h2>Who we share it with</h2>\n<p>We share only what each party needs:</p>\n<ul><li><strong>Vercel Inc.</strong> (United States) hosts this website and runs the server code that receives our forms. It processes the technical data in your requests (such as your IP address) and short-lived server logs.</li><li>Our <strong>email provider</strong> stores the messages you send to us and our replies.</li><li><strong>Travel suppliers</strong> (hotels, lodges, transport, activity operators and local hosts) receive the details needed to provide your booked services.</li><li>Professional advisers, insurers and public authorities, where the law requires it or to establish or defend legal claims.</li></ul>\n<p>Our service providers act on our instructions under data processing agreements.</p>\n</section>\n<section><h2>International transfers</h2>\n<p>Some providers, including Vercel, are based in the United States, and your trip suppliers are located in the country you travel to. Where data leaves the UK or the European Economic Area, we rely on adequacy decisions (including the EU–US Data Privacy Framework where the provider is certified) or the European Commission’s Standard Contractual Clauses. Transfers to suppliers delivering your trip are necessary to perform our contract with you (GDPR Art. 49(1)(b)).</p>\n</section>\n<section><h2>How long we keep it</h2>\n<ul><li>Enquiries that do not lead to a booking: 24 months after our last contact.</li><li>Booking and payment records: 7 years after your trip, for accounting and tax purposes.</li><li>Health and dietary details: deleted within 3 months after your return.</li><li>Server logs: a few days to 30 days, depending on our hosting provider.</li><li>Preferences in your browser: until you clear them.</li></ul>\n</section>\n<section><h2>Your rights</h2>\n<p>Under the GDPR and similar laws you can ask us to:</p>\n<ul><li>access the personal data we hold about you;</li><li>correct inaccurate data;</li><li>erase your data;</li><li>restrict how we use it;</li><li>give you your data in a portable format;</li><li>stop using it where we rely on legitimate interests (objection);</li><li>withdraw consent at any time.</li></ul>\n<p>Email <a href=\"mailto:cenotehouse@tourground.com\">cenotehouse@tourground.com</a>; we reply within one month. You can also complain to a data protection supervisory authority, in particular where you live or work, or where you think the problem occurred.</p>\n</section>\n<section><h2>Cookies</h2>\n<p>This site uses only what it needs to work and to remember your choices. Details are in our <a href=\"/legal/cookies\">Cookie Policy</a>.</p>\n</section>\n<section><h2>Children</h2>\n<p>Our website is not aimed at children under 16 and we do not knowingly collect their data online. Details of children travelling on a booking are given to us by a parent or guardian and used only to arrange the trip.</p>\n</section>\n<section><h2>Security</h2>\n<p>We use encrypted connections (HTTPS), limit access to the people who need it, and choose providers with strong security practices.</p>\n</section>\n<section><h2>Changes to this policy</h2>\n<p>We may update this policy. The date below shows the latest version; significant changes will be highlighted on this page.</p>\n</section>\n<section><h2>Contact</h2>\n<p>Cenote House, Paseo de la Reforma 483, Piso 14, Col. Cuauhtémoc, 06500 Ciudad de México, Mexico. Email: <a href=\"mailto:cenotehouse@tourground.com\">cenotehouse@tourground.com</a></p>\n</section>"
     },
     "terms": {
-      "title": "Booking terms",
+      "title": "Booking Terms",
       "description": "The terms that apply when you enquire about, and book, a tailor-made trip with Cenote House.",
-      "sections": [
-        {
-          "h": "About these terms",
-          "p": [
-            "These terms apply to every trip planned by Cenote House, Paseo de la Reforma 483, Piso 14, Col. Cuauhtémoc, 06500 Ciudad de México, Mexico. Please read them before you book. Your written quote and booking confirmation form part of the contract, together with these terms.",
-            "Everything on this website, including itineraries, timings, seasons and experiences, describes the kind of trip we plan. It is not an offer you can accept."
-          ]
-        },
-        {
-          "h": "Enquiries and quotes",
-          "p": [
-            "Sending an enquiry is free and creates no obligation for you or for us.",
-            "We reply with ideas and questions, then shape the trip with you. When it is right, we send a written quote. A quote is valid for the period stated on it. Prices for flights, accommodation and services can change until the trip is confirmed, and we will tell you before you commit if they do."
-          ]
-        },
-        {
-          "h": "Booking and payment",
-          "p": [
-            "Your booking is confirmed when you accept the quote in writing, pay the deposit stated on it, and we send you a written confirmation. The person who makes the booking accepts these terms for everyone travelling and must be 18 or over.",
-            "The balance is due by the date shown on your quote and confirmation. If it is not paid on time, we may treat the booking as cancelled by you, and the cancellation charges below apply."
-          ]
-        },
-        {
-          "h": "Changes by you",
-          "p": [
-            "If you want to change your trip after it is confirmed, tell us in writing. We will do our best to help. Changes are not always possible, and any extra costs charged by suppliers, plus a reasonable fee for our time, will be passed on to you."
-          ]
-        },
-        {
-          "h": "Cancellation by you",
-          "p": [
-            "You can cancel at any time by telling us in writing. The deposit is non-refundable. The closer to departure you cancel, the higher the charge, up to the full cost of the trip, because accommodation, transport and other services are reserved and paid for on your behalf. The charges that apply to your trip are set out on your quote and confirmation.",
-            "Travel insurance may cover cancellation charges in some circumstances."
-          ]
-        },
-        {
-          "h": "Changes and cancellation by us",
-          "p": [
-            "We plan carefully, but sometimes we have to change part of a trip, for example because of weather, road or route closures, or a supplier that cannot honour a booking. We will tell you as soon as possible and offer a comparable alternative.",
-            "If we have to make a significant change or cancel your trip, you can accept the change, take a comparable alternative if one is available, or cancel and receive a full refund of the money you have paid us."
-          ]
-        },
-        {
-          "h": "Events beyond anyone's control",
-          "p": [
-            "We are not liable for changes, delays or cancellations caused by events beyond our reasonable control, such as war or threat of war, civil unrest, natural disaster, epidemics, government action, airport or border closures, or severe weather. Where such an event affects your trip, we will help you make other arrangements and pass on any refunds we receive from suppliers."
-          ]
-        },
-        {
-          "h": "Travel insurance",
-          "p": [
-            "Comprehensive travel insurance is a condition of booking. It must cover medical treatment, repatriation and cancellation, and any activities in your trip. Please send us your policy details before you travel."
-          ]
-        },
-        {
-          "h": "Passports, visas and health",
-          "p": [
-            "You are responsible for holding a valid passport, any visas or travel authorisations, and any vaccinations or health documents required for Mexico and for any country you pass through. Entry rules change, so check them with the relevant embassy and your government's travel advice before you book and again before you travel.",
-            "Please tell us before booking about any medical condition or mobility need that could affect your trip, so that we can plan around it."
-          ]
-        },
-        {
-          "h": "Your responsibilities",
-          "p": [
-            "Please follow local laws and customs, the instructions of guides, drivers, crews and other suppliers, and the safety advice we give you. We may end the trip of anyone whose behaviour puts others at risk or causes serious disruption, without refund."
-          ]
-        },
-        {
-          "h": "Our liability",
-          "p": [
-            "We take reasonable care in planning and arranging your trip. We are not liable for loss, injury or damage caused by you, by someone not connected with the trip, or by events beyond our reasonable control.",
-            "Where airlines, hotels and other transport companies are concerned, our liability is limited in the same way as theirs is under the international conventions that apply to them. Nothing in these terms limits our liability for death or personal injury caused by our negligence, or any liability that cannot be limited by law."
-          ]
-        },
-        {
-          "h": "Complaints",
-          "p": [
-            "If something is not right during your trip, tell us straight away so that we can try to fix it on the spot. If it cannot be resolved, please write to cenotehouse@tourground.com within 28 days of your return and we will reply promptly."
-          ]
-        },
-        {
-          "h": "Governing law",
-          "p": [
-            "These terms are governed by the law that applies to the contract you make with us, as set out in your booking confirmation. You may also have the protection of the consumer law of the country where you live."
-          ]
-        }
-      ]
+      "updated": "Last updated: 1 November 2026",
+      "html": "<section><h2>Who we are</h2>\n<p>These terms apply to journeys booked with Cenote House, Paseo de la Reforma 483, Piso 14, Col. Cuauhtémoc, 06500 Ciudad de México, Mexico (email <a href=\"mailto:cenotehouse@tourground.com\">cenotehouse@tourground.com</a>). “You” means the lead traveller and everyone named on the booking. Please read them before you book.</p>\n</section>\n<section><h2>How a booking is made</h2>\n<p>You tell us what you would like through our enquiry form or by email. We send you a proposed itinerary and a written quote. When you accept the quote and pay the deposit, we confirm your booking in writing; the contract between us starts on the date of that written confirmation. The lead traveller confirms they are over 18 and accepts these terms on behalf of everyone on the booking.</p>\n</section>\n<section><h2>Prices</h2>\n<p>Prices on this website are shown “from” and are a per-person guide, usually based on two people sharing. Your price depends on dates, group size, accommodation and availability, and is set in your written quote. Once your booking is confirmed we will not increase the price, except for changes in government taxes, park or entry fees and fuel surcharges that are outside our control; we will tell you as soon as we know, and if the increase is more than 8% of your trip price you may cancel with a full refund.</p>\n</section>\n<section><h2>Deposit and balance</h2>\n<p>A deposit, shown on your quote (usually 30% of the trip price), is due to confirm your booking. The balance is due 60 days before departure. If you book within 60 days of departure, the full price is due at booking. If the balance is not paid on time, we may treat the booking as cancelled by you and apply the cancellation charges below. Payment methods are set out in your quote.</p>\n</section>\n<section><h2>What is included</h2>\n<p>Your quote lists exactly what is included, typically accommodation, the transport, activities and entrance fees described in your itinerary, and support from our team before and during your trip. Unless your quote says otherwise, it does not include international flights, visas, travel insurance, vaccinations and medical costs, tips, drinks, meals not listed, or personal expenses.</p>\n</section>\n<section><h2>Changes by you</h2>\n<p>If you want to change your booking after confirmation, email us. We will try to help, but it depends on availability. You pay any extra cost charged by our suppliers. A change of travel dates or a large change to the itinerary may be treated as a cancellation and a new booking. You may transfer your place to another person who meets the trip’s conditions if you tell us at least 14 days before departure and pay any supplier charges for the change.</p>\n</section>\n<section><h2>Cancellation by you</h2>\n<p>You may cancel at any time by email; cancellation takes effect on the day we receive it. Because we commit money to suppliers on your behalf, these charges apply, as a percentage of the total trip price:</p>\n<ul><li>60 days or more before departure: the deposit;</li><li>59 to 30 days: 50%;</li><li>29 to 15 days: 75%;</li><li>14 days or less, or if you do not travel: 100%.</li></ul>\n<p>Supplier costs that your quote marks as non-refundable (for example internal flights, permits or certain lodges) are charged in full whenever you cancel. Your travel insurance may cover these charges.</p>\n</section>\n<section><h2>Changes or cancellation by us</h2>\n<p>Trips sometimes need small changes, such as a different vehicle or a similar room; we will tell you as soon as possible. If we must make a significant change before departure, you may accept it, take a comparable alternative, or cancel and receive a full refund of what you have paid. If we cancel your trip, we refund everything you have paid us. We will not cancel after the balance is paid except for reasons beyond our control (see “Events beyond our control”) or the safety of travellers.</p>\n</section>\n<section><h2>Travel insurance</h2>\n<p>Comprehensive travel insurance is a condition of booking. It must cover cancellation and curtailment, medical treatment, emergency evacuation and repatriation, and the activities on your itinerary. Please send us the policy details before you travel.</p>\n</section>\n<section><h2>Passports, visas and health</h2>\n<p>You are responsible for having a valid passport (normally valid for at least six months after your return, with blank pages), any visas and permits, and the vaccinations and health precautions required for your trip. Our <a href=\"/faq\">FAQ</a> page gives general guidance, but rules change, so please check official government sources and a travel health professional before you go. We cannot be held responsible if you are refused travel or entry because of missing documents.</p>\n</section>\n<section><h2>Our responsibility</h2>\n<p>We take reasonable care in planning your journey and choosing our suppliers, and we are responsible for providing the services we have confirmed in writing. We are not responsible for problems caused by you or someone on your booking, by a third party not connected with your trip that we could not have foreseen or avoided, or by events beyond our control. Except for death or personal injury caused by our negligence, or where the law does not allow it, our liability is limited to the price of your trip. Nothing in these terms affects your statutory rights.</p>\n</section>\n<section><h2>Behaviour</h2>\n<p>Please respect local laws, customs, communities and wildlife, and follow the instructions of drivers, rangers and hosts on safety. If someone’s behaviour puts others at risk or seriously disrupts the trip, we may end their arrangements without a refund.</p>\n</section>\n<section><h2>Complaints</h2>\n<p>If something is wrong during your trip, tell our team straight away so we can put it right. If it cannot be resolved on the spot, write to us at <a href=\"mailto:cenotehouse@tourground.com\">cenotehouse@tourground.com</a> within 28 days of your return and we will reply within 28 days.</p>\n</section>\n<section><h2>Events beyond our control</h2>\n<p>We are not liable for failure or delay caused by events we could not foresee or avoid, such as war, civil unrest, terrorism, natural disasters, epidemics, severe weather, fire, government action, airport or port closures, or industrial action. If such an event stops your trip from going ahead, we will offer you an alternative or refund the money you have paid us, less any supplier costs we cannot recover, as the law allows.</p>\n</section>\n<section><h2>Data protection</h2>\n<p>We use your personal data to arrange and run your trip as described in our <a href=\"/legal/privacy\">Privacy Policy</a>.</p>\n</section>\n<section><h2>Governing law</h2>\n<p>These terms and any contract between us are governed by the laws of the United Mexican States, and the courts of Mexico City have jurisdiction. If you live in the UK or the EU, you also keep the protection of the mandatory consumer laws of your home country and may bring proceedings there.</p>\n</section>\n<section><h2>Contact</h2>\n<p>Cenote House, Paseo de la Reforma 483, Piso 14, Col. Cuauhtémoc, 06500 Ciudad de México, Mexico. Email: <a href=\"mailto:cenotehouse@tourground.com\">cenotehouse@tourground.com</a></p>\n</section>"
     },
     "cookies": {
-      "title": "Cookie policy",
+      "title": "Cookie Policy",
       "description": "Which cookies and similar storage the Cenote House website uses, and how to control them.",
-      "sections": [
-        {
-          "h": "Short version",
-          "p": [
-            "We do not use analytics or advertising cookies on this website. This website sets no cookies of its own."
-          ]
-        },
-        {
-          "h": "What the site stores in your browser",
-          "p": [
-            "If you change the display currency, your choice is saved in your browser's local storage under ch.currency. If you use the [trip planner](/plan-your-trip), your answers are saved in local storage under ch.planner.v1 so you can pick up where you left off. They stay on your device until you send the planner, and are cleared when you do.",
-            "Fonts and photos are served from this website, so no third party is contacted when pages load."
-          ]
-        },
-        {
-          "h": "Consent",
-          "p": [
-            "Anything listed above is strictly necessary for a feature you choose to use, so it does not need your consent. We will not add analytics or advertising cookies without asking you first."
-          ]
-        },
-        {
-          "h": "How to remove it or change your mind",
-          "p": [
-            "You can clear this site's stored data at any time in your browser's settings (usually under Privacy, then Cookies and site data)."
-          ]
-        },
-        {
-          "h": "Contact",
-          "p": [
-            "Questions about this policy: email cenotehouse@tourground.com."
-          ]
-        }
-      ]
+      "updated": "Last updated: 1 November 2026",
+      "html": "<section><h2>What cookies are</h2>\n<p>Cookies are small text files a website stores in your browser. Websites can also keep information in your browser’s local storage or session storage, which works in a similar way. In this policy, “cookies” covers all of these.</p>\n</section>\n<section><h2>What this site uses</h2>\n<p>Cenote House sets no cookies. We use only the items below, which are needed for the site to work or to remember choices you make. None of them is used for advertising or to track you across other websites.</p>\n<div class=\"legal-table\"><table><thead><tr><th scope=\"col\">Name</th><th scope=\"col\">Purpose</th><th scope=\"col\">Duration</th><th scope=\"col\">Type</th></tr></thead><tbody><tr><td><code>ch.currency</code></td><td>Remembers the currency you chose for displaying prices.</td><td>Until you clear it</td><td>Local storage, preference</td></tr><tr><td><code>ch.planner.v1</code></td><td>Keeps your trip-planner answers on your device so you can pick up where you left off; cleared when you send the planner.</td><td>Until you clear it</td><td>Local storage, essential</td></tr></tbody></table></div>\n<p>We do not use analytics or advertising cookies.</p>\n<p>Because these items are strictly necessary or only store choices you make yourself, they do not need consent under the ePrivacy rules; we do not set any other cookies.</p>\n</section>\n<section><h2>Third-party content</h2>\n<ul><li><strong>Fonts</strong> are served from our own website, so no font provider receives your data.</li><li><strong>Photographs and video</strong> are served from our own website.</li></ul>\n<p>Our hosting provider, Vercel, records technical data such as your IP address in server logs to deliver the site securely; it sets no cookies on this site.</p>\n</section>\n<section><h2>How to manage cookies</h2>\n<p>You can block or delete cookies and site data in your browser settings (usually under Privacy or Site data). Clearing this site’s data removes the items listed above; the site will still work, but it will forget your choices. Your browser’s help pages explain how: look for “clear cookies and site data” in Chrome, Safari, Firefox or Edge.</p>\n</section>\n<section><h2>Changes</h2>\n<p>If we start using new cookies, we will update this page and, where the law requires it, ask for your consent first.</p>\n</section>\n<section><h2>Contact</h2>\n<p>Questions about cookies or your data: <a href=\"mailto:cenotehouse@tourground.com\">cenotehouse@tourground.com</a>. See also our <a href=\"/legal/privacy\">Privacy Policy</a>.</p>\n</section>"
     }
   },
   "fr": {
     "privacy": {
       "title": "Politique de confidentialité",
       "description": "Comment Cenote House collecte, utilise et protège les informations personnelles que vous nous transmettez.",
-      "sections": [
-        {
-          "h": "Qui sommes-nous",
-          "p": [
-            "Ce site est édité par Cenote House, Paseo de la Reforma 483, Piso 14, Col. Cuauhtémoc, 06500 Mexico, Mexique. Dans la présente politique, « nous » et « notre » désignent Cenote House.",
-            "Pour toute question relative à vos données personnelles, écrivez à cenotehouse@tourground.com."
-          ]
-        },
-        {
-          "h": "Ce que nous collectons",
-          "p": [
-            "Uniquement ce que vous choisissez de nous transmettre : via le planificateur de voyage, votre nom, votre adresse e-mail, votre numéro de téléphone si vous le donnez, votre moyen de contact préféré, vos dates de voyage, le nombre de voyageurs, vos centres d’intérêt, votre budget et vos remarques ; via le formulaire de contact, votre nom, votre adresse e-mail et votre message ; via le téléchargement du guide, votre adresse e-mail et votre souhait de recevoir ou non notre lettre d’information. Si vous nous écrivez par e-mail, nous conservons cette correspondance.",
-            "Si vous réservez, nous recueillons aussi ce qui est nécessaire à l’organisation du voyage : le nom de chaque voyageur, les dates de naissance et les informations de passeport lorsque nos prestataires les exigent, les besoins alimentaires ou d’accessibilité et les contacts d’urgence.",
-            "Merci de ne jamais envoyer de numéro de carte bancaire ni d’informations de santé détaillées par e-mail ou via le formulaire."
-          ]
-        },
-        {
-          "h": "Pourquoi nous les utilisons",
-          "p": [
-            "Pour répondre à votre demande, concevoir votre voyage avec vous et, si vous donnez suite, le réserver et l’organiser. Nous nous fondons sur les mesures précontractuelles que vous nous demandez, sur l’exécution du contrat, sur votre consentement lorsque nous le sollicitons et sur notre intérêt légitime à répondre aux personnes qui nous contactent.",
-            "Nous ne vendons jamais vos données et ne vous envoyons d’actualités ou d’offres que si vous l’avez demandé."
-          ]
-        },
-        {
-          "h": "Avec qui nous les partageons",
-          "p": [
-            "Votre demande nous parvient via le serveur de notre site (hébergé par Vercel Inc., États-Unis).",
-            "Si vous réservez, nous ne transmettons que le strict nécessaire aux hôtels, lodges, transporteurs, guides et partenaires locaux qui réalisent votre voyage au Mexique, ainsi qu’à votre assureur voyage si vous nous le demandez. Certains sont établis hors de votre pays ; dans ce cas, nous ne partageons que le minimum requis pour fournir le service demandé.",
-            "Nous pouvons également communiquer des informations lorsque la loi l’exige."
-          ]
-        },
-        {
-          "h": "Cookies et stockage local",
-          "p": [
-            "Nous n’utilisons aucun cookie de mesure d’audience ni de publicité sur ce site. Consultez la [politique relative aux cookies](/cookies/) pour savoir ce que le site enregistre dans votre navigateur."
-          ]
-        },
-        {
-          "h": "Durée de conservation",
-          "p": [
-            "Les demandes qui n’aboutissent pas à une réservation sont conservées 24 mois après notre dernier échange, puis supprimées. Les dossiers de réservation sont conservés aussi longtemps que l’exigent le droit comptable et le droit de la consommation, en général six ans après le voyage."
-          ]
-        },
-        {
-          "h": "Comment nous les protégeons",
-          "p": [
-            "Vos informations sont conservées dans une messagerie et un espace de stockage protégés par mot de passe, accessibles aux seules personnes qui préparent votre voyage. Le site est servi via une connexion chiffrée (HTTPS)."
-          ]
-        },
-        {
-          "h": "Vos droits",
-          "p": [
-            "Vous pouvez demander à consulter les données personnelles que nous détenons sur vous, à les rectifier ou à les effacer, à en limiter l’utilisation ou à vous y opposer, à en recevoir une copie dans un format portable, ou retirer votre consentement à tout moment. Écrivez à cenotehouse@tourground.com : nous répondons sous un mois.",
-            "Si vous n’êtes pas satisfait de la manière dont nous traitons vos données, dites-le-nous d’abord afin que nous puissions corriger la situation. Vous pouvez aussi introduire une réclamation auprès de l’autorité de protection des données de votre pays de résidence."
-          ]
-        },
-        {
-          "h": "Modifications de cette politique",
-          "p": [
-            "Nous mettrons cette page à jour si notre utilisation des données personnelles évolue. Dernière mise à jour : 30 octobre 2026."
-          ]
-        }
-      ]
+      "updated": "Dernière mise à jour: 1er novembre 2026",
+      "html": "<section><h2>Qui sommes-nous</h2>\n<p>Cenote House (« nous ») exploite cenotehouse.tourground.com et organise des voyages privés. Nous sommes responsables du traitement des données personnelles décrites dans cette politique.</p>\n<p>Adresse professionnelle : Paseo de la Reforma 483, Piso 14, Col. Cuauhtémoc, 06500 Ciudad de México, Mexique.<br>E-mail : <a href=\"mailto:cenotehouse@tourground.com\">cenotehouse@tourground.com</a></p>\n</section>\n<section><h2>Les données que nous collectons</h2>\n<ul><li><strong>Formulaires de demande et de réservation</strong> : via le planificateur de voyage, votre nom, votre adresse e-mail, votre téléphone si vous le donnez, votre mode de contact préféré, vos dates, la taille du groupe, vos centres d’intérêt, votre budget et vos remarques ; via le formulaire de contact, votre nom, votre adresse e-mail et votre message ; via le téléchargement du guide, votre adresse e-mail, ainsi que tout ce que vous choisissez d’écrire dans votre message.</li><li><strong>Données de réservation</strong>, si vous confirmez : le nom de chaque voyageur, les informations de passeport et dates de naissance demandées par nos prestataires, vos horaires d’arrivée et de départ, et les besoins alimentaires, médicaux ou d’accessibilité que vous nous indiquez (nous n’utilisons les données de santé qu’avec votre consentement explicite et uniquement pour organiser votre voyage en sécurité).</li><li><strong>Les e-mails</strong> que vous nous envoyez et nos réponses.</li><li><strong>Données techniques</strong> : lors de votre visite, notre hébergeur enregistre votre adresse IP, le type de navigateur, les pages demandées et l’heure, pour assurer la sécurité et le bon fonctionnement du site.</li><li><strong>Préférences enregistrées dans votre navigateur</strong>, comme votre langue. Voir notre <a href=\"/fr/legal/cookies\">Politique relative aux cookies</a>.</li></ul>\n<p>Nous n’utilisons aucun traceur publicitaire, ne faisons aucun profilage et ne vendons jamais vos données.</p>\n</section>\n<section><h2>Pourquoi nous les utilisons et sur quelles bases légales</h2>\n<ul><li><strong>Répondre à votre demande et préparer une proposition</strong> : mesures précontractuelles prises à votre demande (RGPD, art. 6(1)(b)).</li><li><strong>Réserver et assurer votre voyage</strong>, y compris transmettre les informations aux prestataires concernés : exécution de notre contrat (art. 6(1)(b)) ; pour les données de santé, votre consentement explicite (art. 9(2)(a)).</li><li><strong>Tenir notre comptabilité et nos registres fiscaux</strong> : obligation légale (art. 6(1)(c)).</li><li><strong>Sécuriser le site, prévenir les abus et traiter les réclamations ou litiges</strong> : nos intérêts légitimes (art. 6(1)(f)).</li><li><strong>Préférences facultatives enregistrées sur votre appareil</strong> : votre consentement lorsqu’il est requis (art. 6(1)(a)). Vous pouvez le retirer à tout moment, sans effet sur ce qui précède.</li></ul>\n</section>\n<section><h2>Avec qui nous les partageons</h2>\n<p>Nous ne partageons que ce dont chacun a besoin :</p>\n<ul><li><strong>Vercel Inc.</strong> (États-Unis) héberge ce site et exécute le code serveur qui reçoit nos formulaires. Vercel traite les données techniques de vos requêtes (comme votre adresse IP) et des journaux serveur de courte durée.</li><li>Notre <strong>fournisseur de messagerie</strong> conserve les messages que vous nous envoyez et nos réponses.</li><li><strong>Les prestataires de voyage</strong> (hôtels, lodges, transports, activités et hôtes locaux) reçoivent les informations nécessaires pour fournir les services réservés.</li><li>Conseillers professionnels, assureurs et autorités publiques, lorsque la loi l’exige ou pour constater, exercer ou défendre des droits en justice.</li></ul>\n<p>Nos sous-traitants agissent sur nos instructions dans le cadre d’accords de traitement des données.</p>\n</section>\n<section><h2>Transferts internationaux</h2>\n<p>Certains prestataires, dont Vercel, sont établis aux États-Unis, et les prestataires de votre voyage se trouvent dans le pays visité. Lorsque des données quittent le Royaume-Uni ou l’Espace économique européen, nous nous appuyons sur des décisions d’adéquation (y compris le Data Privacy Framework UE–États-Unis lorsque le prestataire est certifié) ou sur les clauses contractuelles types de la Commission européenne. Les transferts vers les prestataires de votre voyage sont nécessaires à l’exécution de notre contrat (RGPD, art. 49(1)(b)).</p>\n</section>\n<section><h2>Durée de conservation</h2>\n<ul><li>Demandes sans réservation : 24 mois après notre dernier échange.</li><li>Dossiers de réservation et de paiement : 7 ans après le voyage, pour des raisons comptables et fiscales.</li><li>Informations de santé et alimentaires : supprimées dans les 3 mois suivant votre retour.</li><li>Journaux serveur : de quelques jours à 30 jours selon notre hébergeur.</li><li>Préférences dans votre navigateur : jusqu’à ce que vous les effaciez.</li></ul>\n</section>\n<section><h2>Vos droits</h2>\n<p>En vertu du RGPD et de lois similaires, vous pouvez nous demander :</p>\n<ul><li>d’accéder aux données personnelles que nous détenons sur vous ;</li><li>de rectifier des données inexactes ;</li><li>d’effacer vos données ;</li><li>de limiter leur utilisation ;</li><li>de recevoir vos données dans un format portable ;</li><li>de cesser de les utiliser lorsque nous nous fondons sur l’intérêt légitime (opposition) ;</li><li>de retirer votre consentement à tout moment.</li></ul>\n<p>Écrivez à <a href=\"mailto:cenotehouse@tourground.com\">cenotehouse@tourground.com</a> ; nous répondons sous un mois. Vous pouvez aussi introduire une réclamation auprès d’une autorité de contrôle de la protection des données (en France, la CNIL), notamment dans le pays où vous vivez ou travaillez, ou là où le problème s’est produit.</p>\n</section>\n<section><h2>Cookies</h2>\n<p>Ce site n’utilise que ce qui est nécessaire à son fonctionnement et à la mémorisation de vos choix. Détails dans notre <a href=\"/fr/legal/cookies\">Politique relative aux cookies</a>.</p>\n</section>\n<section><h2>Enfants</h2>\n<p>Notre site ne s’adresse pas aux enfants de moins de 16 ans et nous ne collectons pas sciemment leurs données en ligne. Les informations sur les enfants voyageant sont fournies par un parent ou tuteur et servent uniquement à organiser le voyage.</p>\n</section>\n<section><h2>Sécurité</h2>\n<p>Nous utilisons des connexions chiffrées (HTTPS), limitons l’accès aux personnes qui en ont besoin et choisissons des prestataires aux pratiques de sécurité solides.</p>\n</section>\n<section><h2>Modifications</h2>\n<p>Nous pouvons mettre à jour cette politique. La date ci-dessous indique la version en vigueur ; les changements importants seront signalés sur cette page.</p>\n</section>\n<section><h2>Contact</h2>\n<p>Cenote House, Paseo de la Reforma 483, Piso 14, Col. Cuauhtémoc, 06500 Ciudad de México, Mexique. E-mail : <a href=\"mailto:cenotehouse@tourground.com\">cenotehouse@tourground.com</a></p>\n</section>"
     },
     "terms": {
       "title": "Conditions de réservation",
       "description": "Les conditions qui s’appliquent lorsque vous demandez et réservez un voyage sur mesure avec Cenote House.",
-      "sections": [
-        {
-          "h": "À propos de ces conditions",
-          "p": [
-            "Ces conditions s’appliquent à tout voyage organisé par Cenote House, Paseo de la Reforma 483, Piso 14, Col. Cuauhtémoc, 06500 Mexico, Mexique. Merci de les lire avant de réserver. Votre devis écrit et votre confirmation de réservation font partie du contrat, avec les présentes conditions.",
-            "Tout ce qui figure sur ce site, y compris les itinéraires, durées, saisons et expériences, décrit le type de voyage que nous concevons. Il ne s’agit pas d’une offre que vous pouvez accepter."
-          ]
-        },
-        {
-          "h": "Demandes et devis",
-          "p": [
-            "Une demande est gratuite et n’engage ni vous ni nous.",
-            "Nous vous répondons avec des idées et des questions, puis nous affinons le voyage avec vous. Lorsqu’il vous convient, nous vous envoyons un devis écrit, valable pendant la durée qui y est indiquée. Les prix des vols, hébergements et prestations peuvent évoluer jusqu’à la confirmation ; si c’est le cas, nous vous prévenons avant tout engagement."
-          ]
-        },
-        {
-          "h": "Réservation et paiement",
-          "p": [
-            "Votre réservation est confirmée lorsque vous acceptez le devis par écrit, réglez l’acompte qui y figure et recevez notre confirmation écrite. La personne qui réserve accepte ces conditions au nom de tous les voyageurs et doit être âgée d’au moins 18 ans.",
-            "Le solde est dû à la date indiquée sur votre devis et votre confirmation. À défaut de paiement dans les délais, nous pouvons considérer la réservation comme annulée de votre fait, et les frais d’annulation ci-dessous s’appliquent."
-          ]
-        },
-        {
-          "h": "Modifications de votre part",
-          "p": [
-            "Si vous souhaitez modifier votre voyage après confirmation, prévenez-nous par écrit. Nous ferons de notre mieux, mais une modification n’est pas toujours possible ; les frais supplémentaires facturés par les prestataires, ainsi que des frais de dossier raisonnables, restent à votre charge."
-          ]
-        },
-        {
-          "h": "Annulation de votre part",
-          "p": [
-            "Vous pouvez annuler à tout moment en nous prévenant par écrit. L’acompte n’est pas remboursable. Plus l’annulation est proche du départ, plus les frais sont élevés, jusqu’à la totalité du prix du voyage, car les hébergements, transports et autres prestations sont réservés et payés pour votre compte. Les frais applicables à votre voyage figurent sur votre devis et votre confirmation.",
-            "Votre assurance voyage peut couvrir ces frais dans certains cas."
-          ]
-        },
-        {
-          "h": "Modifications et annulation de notre part",
-          "p": [
-            "Nous préparons chaque voyage avec soin, mais il arrive que nous devions en modifier une partie, par exemple en raison de la météo, de la fermeture d’une route ou d’un itinéraire, ou d’un prestataire qui ne peut honorer une réservation. Nous vous prévenons au plus vite et vous proposons une solution équivalente.",
-            "En cas de modification importante ou d’annulation de notre part, vous pouvez accepter la modification, choisir une solution équivalente si elle existe, ou annuler et être intégralement remboursé des sommes versées."
-          ]
-        },
-        {
-          "h": "Circonstances exceptionnelles",
-          "p": [
-            "Nous ne sommes pas responsables des modifications, retards ou annulations dus à des événements échappant à notre contrôle raisonnable : guerre ou menace de guerre, troubles civils, catastrophe naturelle, épidémie, décision des autorités, fermeture d’aéroports ou de frontières, conditions météorologiques extrêmes. Le cas échéant, nous vous aidons à trouver d’autres solutions et vous reversons tout remboursement obtenu auprès des prestataires."
-          ]
-        },
-        {
-          "h": "Assurance voyage",
-          "p": [
-            "Une assurance voyage complète est une condition de réservation. Elle doit couvrir les frais médicaux, le rapatriement, l’annulation et les activités prévues. Merci de nous transmettre les références de votre contrat avant le départ."
-          ]
-        },
-        {
-          "h": "Passeports, visas et santé",
-          "p": [
-            "Il vous appartient de disposer d’un passeport valide, des visas ou autorisations de voyage nécessaires et des vaccinations ou documents sanitaires exigés pour le Mexique et pour tout pays de transit. Les règles d’entrée évoluent : vérifiez-les auprès de l’ambassade concernée et des conseils aux voyageurs de votre gouvernement au moment de réserver, puis avant le départ.",
-            "Signalez-nous avant la réservation tout problème de santé ou besoin d’accessibilité susceptible d’influer sur le voyage, afin que nous puissions en tenir compte."
-          ]
-        },
-        {
-          "h": "Vos responsabilités",
-          "p": [
-            "Merci de respecter les lois et coutumes locales, les consignes des guides, chauffeurs, équipages et autres prestataires, ainsi que les conseils de sécurité que nous vous donnons. Nous pouvons mettre fin, sans remboursement, au voyage de toute personne dont le comportement met autrui en danger ou perturbe gravement le séjour."
-          ]
-        },
-        {
-          "h": "Notre responsabilité",
-          "p": [
-            "Nous apportons un soin raisonnable à la préparation et à l’organisation de votre voyage. Nous ne sommes pas responsables des pertes, blessures ou dommages causés par vous-même, par un tiers étranger au voyage ou par des événements échappant à notre contrôle raisonnable.",
-            "S’agissant des compagnies aériennes, hôtels et autres transporteurs, notre responsabilité est limitée de la même manière que la leur par les conventions internationales qui leur sont applicables. Rien dans ces conditions ne limite notre responsabilité en cas de décès ou de dommage corporel causé par notre négligence, ni toute responsabilité qui ne peut être limitée par la loi."
-          ]
-        },
-        {
-          "h": "Réclamations",
-          "p": [
-            "Si quelque chose ne va pas pendant votre voyage, prévenez-nous immédiatement pour que nous puissions tenter d’y remédier sur place. À défaut de solution, écrivez à cenotehouse@tourground.com dans les 28 jours suivant votre retour : nous vous répondrons rapidement."
-          ]
-        },
-        {
-          "h": "Droit applicable",
-          "p": [
-            "Ces conditions sont régies par le droit applicable au contrat conclu avec nous, tel qu’indiqué dans votre confirmation de réservation. Vous pouvez également bénéficier de la protection du droit de la consommation de votre pays de résidence."
-          ]
-        }
-      ]
+      "updated": "Dernière mise à jour: 1er novembre 2026",
+      "html": "<section><h2>Qui sommes-nous</h2>\n<p>Les présentes conditions s’appliquent aux voyages réservés auprès de Cenote House, Paseo de la Reforma 483, Piso 14, Col. Cuauhtémoc, 06500 Ciudad de México, Mexique (e-mail <a href=\"mailto:cenotehouse@tourground.com\">cenotehouse@tourground.com</a>). « Vous » désigne le voyageur principal et toutes les personnes inscrites sur la réservation. Merci de les lire avant de réserver.</p>\n</section>\n<section><h2>Comment réserver</h2>\n<p>Vous nous décrivez vos envies via notre formulaire ou par e-mail. Nous vous envoyons un itinéraire proposé et un devis écrit. Lorsque vous acceptez le devis et réglez l’acompte, nous confirmons votre réservation par écrit ; le contrat prend effet à la date de cette confirmation écrite. Le voyageur principal certifie avoir plus de 18 ans et accepte ces conditions au nom de tous les participants.</p>\n</section>\n<section><h2>Prix</h2>\n<p>Les prix affichés sur ce site sont des prix « à partir de », indicatifs et par personne, généralement sur la base de deux personnes partageant une chambre. Votre prix dépend des dates, de la taille du groupe, de l’hébergement et des disponibilités ; il est fixé dans votre devis écrit. Une fois la réservation confirmée, nous n’augmenterons pas le prix, sauf en cas de modification de taxes gouvernementales, de droits d’entrée ou de parc et de surcharges carburant indépendants de notre volonté ; nous vous en informerons dès que possible et, si la hausse dépasse 8 % du prix du voyage, vous pourrez annuler avec remboursement intégral.</p>\n</section>\n<section><h2>Acompte et solde</h2>\n<p>Un acompte, indiqué sur votre devis (généralement 30 % du prix du voyage), est dû pour confirmer la réservation. Le solde est dû 60 jours avant le départ. Si vous réservez moins de 60 jours avant le départ, la totalité du prix est due à la réservation. Si le solde n’est pas payé à temps, nous pouvons considérer la réservation comme annulée par vous et appliquer les frais d’annulation ci-dessous. Les moyens de paiement figurent dans votre devis.</p>\n</section>\n<section><h2>Ce qui est inclus</h2>\n<p>Votre devis précise exactement ce qui est inclus : en général l’hébergement, les transports, les activités et droits d’entrée décrits dans l’itinéraire, ainsi que l’assistance de notre équipe avant et pendant le voyage. Sauf mention contraire, ne sont pas inclus : les vols internationaux, les visas, l’assurance voyage, les vaccins et frais médicaux, les pourboires, les boissons, les repas non mentionnés et les dépenses personnelles.</p>\n</section>\n<section><h2>Modifications de votre part</h2>\n<p>Pour modifier votre réservation après confirmation, écrivez-nous. Nous ferons notre possible, selon les disponibilités. Les frais supplémentaires facturés par nos prestataires sont à votre charge. Un changement de dates ou une modification importante de l’itinéraire peut être traité comme une annulation suivie d’une nouvelle réservation. Vous pouvez céder votre place à une personne remplissant les conditions du voyage si vous nous prévenez au moins 14 jours avant le départ et réglez les frais éventuels des prestataires.</p>\n</section>\n<section><h2>Annulation de votre part</h2>\n<p>Vous pouvez annuler à tout moment par e-mail ; l’annulation prend effet le jour de sa réception. Comme nous engageons des sommes auprès des prestataires pour votre compte, les frais suivants s’appliquent, en pourcentage du prix total :</p>\n<ul><li>60 jours ou plus avant le départ : l’acompte ;</li><li>de 59 à 30 jours : 50 % ;</li><li>de 29 à 15 jours : 75 % ;</li><li>14 jours ou moins, ou en cas de non-présentation : 100 %.</li></ul>\n<p>Les coûts signalés comme non remboursables dans votre devis (par exemple vols intérieurs, permis ou certains lodges) sont dus en totalité quelle que soit la date d’annulation. Votre assurance voyage peut couvrir ces frais.</p>\n</section>\n<section><h2>Modifications ou annulation de notre part</h2>\n<p>Un voyage nécessite parfois de petits ajustements, comme un autre véhicule ou une chambre équivalente ; nous vous prévenons dès que possible. Si nous devons apporter une modification importante avant le départ, vous pouvez l’accepter, choisir une alternative comparable ou annuler et être intégralement remboursé. Si nous annulons votre voyage, nous vous remboursons toutes les sommes versées. Nous n’annulons pas après le paiement du solde, sauf pour des raisons indépendantes de notre volonté (voir « Événements indépendants de notre volonté ») ou pour la sécurité des voyageurs.</p>\n</section>\n<section><h2>Assurance voyage</h2>\n<p>Une assurance voyage complète est une condition de réservation. Elle doit couvrir l’annulation et l’interruption de voyage, les frais médicaux, l’évacuation d’urgence et le rapatriement, ainsi que les activités prévues. Merci de nous transmettre les références de votre contrat avant le départ.</p>\n</section>\n<section><h2>Passeports, visas et santé</h2>\n<p>Il vous appartient de disposer d’un passeport valide (en principe au moins six mois après votre retour, avec des pages vierges), des visas et autorisations nécessaires, ainsi que des vaccins et précautions sanitaires requis. Notre page <a href=\"/fr/faq\">FAQ</a> donne des repères généraux, mais les règles évoluent : vérifiez les sources gouvernementales officielles et consultez un professionnel de santé avant de partir. Nous ne pouvons être tenus responsables d’un refus d’embarquement ou d’entrée dû à des documents manquants.</p>\n</section>\n<section><h2>Notre responsabilité</h2>\n<p>Nous apportons un soin raisonnable à la préparation de votre voyage et au choix de nos prestataires, et nous sommes responsables de la fourniture des services confirmés par écrit. Nous ne sommes pas responsables des problèmes causés par vous ou une personne de votre réservation, par un tiers étranger au voyage de manière imprévisible ou inévitable, ou par des événements indépendants de notre volonté. Sauf en cas de décès ou de dommage corporel causé par notre négligence, ou lorsque la loi l’interdit, notre responsabilité est limitée au prix de votre voyage. Rien dans ces conditions ne porte atteinte à vos droits légaux.</p>\n</section>\n<section><h2>Comportement</h2>\n<p>Merci de respecter les lois, coutumes, communautés et la faune locales, et de suivre les consignes de sécurité des chauffeurs, rangers et hôtes. Si le comportement d’une personne met les autres en danger ou perturbe gravement le voyage, nous pouvons mettre fin à ses prestations sans remboursement.</p>\n</section>\n<section><h2>Réclamations</h2>\n<p>En cas de problème pendant le voyage, prévenez immédiatement notre équipe pour que nous puissions y remédier. Si la situation ne peut être réglée sur place, écrivez-nous à <a href=\"mailto:cenotehouse@tourground.com\">cenotehouse@tourground.com</a> dans les 28 jours suivant votre retour ; nous répondrons sous 28 jours.</p>\n</section>\n<section><h2>Événements indépendants de notre volonté</h2>\n<p>Nous ne sommes pas responsables d’une inexécution ou d’un retard causé par des événements imprévisibles et inévitables, tels que guerre, troubles civils, terrorisme, catastrophes naturelles, épidémies, conditions météorologiques extrêmes, incendie, décision des autorités, fermeture d’aéroports ou de ports, ou grèves. Si un tel événement empêche votre voyage, nous vous proposerons une alternative ou vous rembourserons les sommes versées, déduction faite des coûts non récupérables auprès des prestataires, dans la mesure permise par la loi.</p>\n</section>\n<section><h2>Protection des données</h2>\n<p>Nous utilisons vos données personnelles pour organiser et assurer votre voyage, comme décrit dans notre <a href=\"/fr/legal/privacy\">Politique de confidentialité</a>.</p>\n</section>\n<section><h2>Droit applicable</h2>\n<p>Les présentes conditions et tout contrat entre nous sont régis par le droit mexicain, et les tribunaux de Mexico sont compétents. Si vous résidez au Royaume-Uni ou dans l’UE, vous conservez la protection des dispositions impératives du droit de la consommation de votre pays et pouvez y engager une action.</p>\n</section>\n<section><h2>Contact</h2>\n<p>Cenote House, Paseo de la Reforma 483, Piso 14, Col. Cuauhtémoc, 06500 Ciudad de México, Mexique. E-mail : <a href=\"mailto:cenotehouse@tourground.com\">cenotehouse@tourground.com</a></p>\n</section>"
     },
     "cookies": {
       "title": "Politique relative aux cookies",
       "description": "Les cookies et autres stockages utilisés par le site Cenote House, et comment les gérer.",
-      "sections": [
-        {
-          "h": "En bref",
-          "p": [
-            "Nous n’utilisons aucun cookie de mesure d’audience ni de publicité sur ce site. Ce site ne dépose aucun cookie qui lui soit propre."
-          ]
-        },
-        {
-          "h": "Ce que le site enregistre dans votre navigateur",
-          "p": [
-            "Si vous changez la devise d’affichage, votre choix est enregistré dans le stockage local de votre navigateur sous ch.currency. Si vous utilisez le [planificateur de voyage](/plan-your-trip), vos réponses sont enregistrées dans le stockage local sous ch.planner.v1 pour que vous puissiez reprendre là où vous vous étiez arrêté. Elles restent sur votre appareil jusqu’à l’envoi du formulaire, puis sont effacées.",
-            "Les polices et les photos sont servies par ce site : aucun tiers n’est contacté lors du chargement des pages."
-          ]
-        },
-        {
-          "h": "Consentement",
-          "p": [
-            "Les éléments ci-dessus sont strictement nécessaires à une fonctionnalité que vous choisissez d’utiliser ; ils ne requièrent donc pas votre consentement. Nous n’ajouterons aucun cookie de mesure d’audience ou publicitaire sans vous le demander au préalable."
-          ]
-        },
-        {
-          "h": "Supprimer ces données ou changer d’avis",
-          "p": [
-            "Vous pouvez à tout moment effacer les données enregistrées par ce site dans les réglages de votre navigateur (en général sous Confidentialité, puis Cookies et données de site)."
-          ]
-        },
-        {
-          "h": "Contact",
-          "p": [
-            "Une question sur cette politique : écrivez à cenotehouse@tourground.com."
-          ]
-        }
-      ]
+      "updated": "Dernière mise à jour: 1er novembre 2026",
+      "html": "<section><h2>Qu’est-ce qu’un cookie ?</h2>\n<p>Un cookie est un petit fichier texte qu’un site enregistre dans votre navigateur. Un site peut aussi conserver des informations dans le stockage local ou le stockage de session du navigateur, qui fonctionnent de façon similaire. Dans cette politique, le terme « cookies » couvre l’ensemble de ces technologies.</p>\n</section>\n<section><h2>Ce que ce site utilise</h2>\n<p>Cenote House ne dépose aucun cookie. Nous utilisons uniquement les éléments ci-dessous, nécessaires au fonctionnement du site ou à la mémorisation de vos choix. Aucun ne sert à la publicité ni à vous suivre sur d’autres sites.</p>\n<div class=\"legal-table\"><table><thead><tr><th scope=\"col\">Nom</th><th scope=\"col\">Finalité</th><th scope=\"col\">Durée</th><th scope=\"col\">Type</th></tr></thead><tbody><tr><td><code>ch.currency</code></td><td>Mémorise la devise choisie pour l’affichage des prix.</td><td>Jusqu’à ce que vous l’effaciez</td><td>Stockage local, préférence</td></tr><tr><td><code>ch.planner.v1</code></td><td>Conserve sur votre appareil vos réponses au planificateur pour reprendre où vous en étiez ; effacé à l’envoi.</td><td>Jusqu’à ce que vous l’effaciez</td><td>Stockage local, essentiel</td></tr></tbody></table></div>\n<p>Nous n’utilisons aucun cookie de mesure d’audience ni de publicité.</p>\n<p>Ces éléments étant strictement nécessaires ou ne mémorisant que des choix que vous faites vous-même, ils ne requièrent pas de consentement au titre des règles ePrivacy ; nous ne déposons aucun autre cookie.</p>\n</section>\n<section><h2>Contenus tiers</h2>\n<ul><li>Les <strong>polices</strong> sont servies depuis notre propre site : aucun fournisseur de polices ne reçoit vos données.</li><li>Les <strong>photographies et vidéos</strong> sont servies depuis notre propre site.</li></ul>\n<p>Notre hébergeur, Vercel, enregistre des données techniques comme votre adresse IP dans ses journaux serveur afin de servir le site en toute sécurité ; il ne dépose aucun cookie sur ce site.</p>\n</section>\n<section><h2>Gérer les cookies</h2>\n<p>Vous pouvez bloquer ou supprimer les cookies et données de site dans les paramètres de votre navigateur (généralement rubrique Confidentialité ou Données de site). Effacer les données de ce site supprime les éléments listés ci-dessus ; le site continuera de fonctionner mais oubliera vos choix. L’aide de votre navigateur (Chrome, Safari, Firefox ou Edge) explique la marche à suivre : cherchez « effacer les cookies et données de site ».</p>\n</section>\n<section><h2>Modifications</h2>\n<p>Si nous utilisons de nouveaux cookies, nous mettrons cette page à jour et, lorsque la loi l’exige, demanderons d’abord votre consentement.</p>\n</section>\n<section><h2>Contact</h2>\n<p>Questions sur les cookies ou vos données : <a href=\"mailto:cenotehouse@tourground.com\">cenotehouse@tourground.com</a>. Voir aussi notre <a href=\"/fr/legal/privacy\">Politique de confidentialité</a>.</p>\n</section>"
     }
   },
   "de": {
     "privacy": {
       "title": "Datenschutzerklärung",
       "description": "Wie Cenote House die personenbezogenen Daten erhebt, nutzt und schützt, die Sie uns übermitteln.",
-      "sections": [
-        {
-          "h": "Wer wir sind",
-          "p": [
-            "Diese Website wird von Cenote House, Paseo de la Reforma 483, Piso 14, Col. Cuauhtémoc, 06500 Mexiko-Stadt, Mexiko, betrieben. „Wir“, „uns“ und „unser“ bezeichnen in dieser Erklärung Cenote House.",
-            "Bei Fragen zu Ihren personenbezogenen Daten schreiben Sie an cenotehouse@tourground.com."
-          ]
-        },
-        {
-          "h": "Welche Daten wir erheben",
-          "p": [
-            "Nur das, was Sie uns selbst mitteilen: über den Reiseplaner Ihren Namen, Ihre E-Mail-Adresse, Ihre Telefonnummer, falls Sie sie angeben, Ihren bevorzugten Kontaktweg, Reisedaten, die Zahl der Reisenden, Ihre Interessen, Ihr Budget und Anmerkungen; über das Kontaktformular Ihren Namen, Ihre E-Mail-Adresse und Ihre Nachricht; beim Herunterladen des Reiseführers Ihre E-Mail-Adresse und ob Sie unseren Newsletter wünschen. Wenn Sie uns per E-Mail schreiben, bewahren wir diese Korrespondenz auf.",
-            "Wenn Sie buchen, erheben wir zusätzlich, was für die Organisation der Reise nötig ist, etwa die Namen aller Reisenden, Geburtsdaten und Passangaben, sofern Leistungsträger sie verlangen, Ernährungs- und Barrierefreiheitsbedürfnisse sowie Notfallkontakte.",
-            "Bitte senden Sie uns keine Kreditkartendaten und keine ausführlichen Gesundheitsinformationen per E-Mail oder über das Formular."
-          ]
-        },
-        {
-          "h": "Wozu wir sie nutzen",
-          "p": [
-            "Um Ihre Anfrage zu beantworten, Ihre Reise mit Ihnen zu planen und sie, wenn Sie sich dafür entscheiden, zu buchen und durchzuführen. Rechtsgrundlage sind die von Ihnen gewünschten vorvertraglichen Maßnahmen, die Erfüllung des Vertrags, Ihre Einwilligung, wo wir sie einholen, und unser berechtigtes Interesse, Menschen zu antworten, die sich an uns wenden.",
-            "Wir verkaufen Ihre Daten nicht und senden Ihnen Neuigkeiten oder Angebote nur, wenn Sie das wünschen."
-          ]
-        },
-        {
-          "h": "An wen wir sie weitergeben",
-          "p": [
-            "Ihre Anfrage erreicht uns über den Server unserer Website (gehostet von Vercel Inc., USA).",
-            "Wenn Sie buchen, geben wir nur das Nötige an die Hotels, Lodges, Transportunternehmen, Guides und lokalen Partner in Mexiko weiter, die Ihre Reise durchführen, sowie auf Ihren Wunsch an Ihre Reiseversicherung. Manche von ihnen haben ihren Sitz außerhalb Ihres Landes; in diesem Fall geben wir nur das Minimum weiter, das für die gewünschte Leistung erforderlich ist.",
-            "Darüber hinaus geben wir Daten weiter, wenn das Gesetz es verlangt."
-          ]
-        },
-        {
-          "h": "Cookies und lokaler Speicher",
-          "p": [
-            "Wir verwenden auf dieser Website keine Analyse- oder Werbe-Cookies. Was die Website in Ihrem Browser speichert, lesen Sie in der [Cookie-Richtlinie](/cookies/)."
-          ]
-        },
-        {
-          "h": "Wie lange wir sie aufbewahren",
-          "p": [
-            "Anfragen, aus denen keine Buchung wird, bewahren wir 24 Monate nach unserem letzten Kontakt auf und löschen sie dann. Buchungsunterlagen bewahren wir so lange auf, wie Buchhaltungs- und Verbraucherrecht es verlangen, in der Regel sechs Jahre nach der Reise."
-          ]
-        },
-        {
-          "h": "Wie wir sie schützen",
-          "p": [
-            "Ihre Daten liegen in passwortgeschützten E-Mail- und Dateisystemen, auf die nur die Menschen zugreifen, die Ihre Reise planen. Die Website wird über eine verschlüsselte Verbindung (HTTPS) ausgeliefert."
-          ]
-        },
-        {
-          "h": "Ihre Rechte",
-          "p": [
-            "Sie können Auskunft über die personenbezogenen Daten verlangen, die wir über Sie speichern, sie berichtigen oder löschen lassen, ihre Verarbeitung einschränken oder ihr widersprechen, eine Kopie in einem übertragbaren Format erhalten oder Ihre Einwilligung jederzeit widerrufen. Schreiben Sie an cenotehouse@tourground.com; wir antworten innerhalb eines Monats.",
-            "Wenn Sie mit unserem Umgang mit Ihren Daten nicht zufrieden sind, sagen Sie es uns bitte zuerst, damit wir es in Ordnung bringen können. Sie haben außerdem das Recht, sich bei der Datenschutzbehörde Ihres Wohnsitzlandes zu beschweren."
-          ]
-        },
-        {
-          "h": "Änderungen dieser Erklärung",
-          "p": [
-            "Wir aktualisieren diese Seite, wenn sich unser Umgang mit personenbezogenen Daten ändert. Zuletzt aktualisiert: 30. Oktober 2026."
-          ]
-        }
-      ]
+      "updated": "Zuletzt aktualisiert: 1. November 2026",
+      "html": "<section><h2>Wer wir sind</h2>\n<p>Cenote House („wir“) betreibt cenotehouse.tourground.com und plant private Reisen. Wir sind Verantwortliche für die in dieser Erklärung beschriebenen personenbezogenen Daten.</p>\n<p>Geschäftsadresse: Paseo de la Reforma 483, Piso 14, Col. Cuauhtémoc, 06500 Ciudad de México, Mexiko.<br>E-Mail: <a href=\"mailto:cenotehouse@tourground.com\">cenotehouse@tourground.com</a></p>\n</section>\n<section><h2>Welche Daten wir erheben</h2>\n<ul><li><strong>Anfrage- und Buchungsformulare</strong>: über den Reiseplaner Ihr Name, Ihre E-Mail-Adresse, Ihre Telefonnummer (falls angegeben), Ihr bevorzugter Kontaktweg, Reisedaten, Gruppengröße, Interessen, Budget und Anmerkungen; über das Kontaktformular Ihr Name, Ihre E-Mail-Adresse und Ihre Nachricht; über den Guide-Download Ihre E-Mail-Adresse sowie alles, was Sie uns zusätzlich in Ihrer Nachricht schreiben.</li><li><strong>Buchungsdaten</strong>, wenn Sie buchen: die Namen aller Reisenden, die von unseren Leistungsträgern benötigten Pass- und Geburtsdaten, An- und Abreiseinformationen sowie Ernährungs-, Gesundheits- oder Barrierefreiheitsbedürfnisse, die Sie uns mitteilen (Gesundheitsdaten nutzen wir nur mit Ihrer ausdrücklichen Einwilligung und nur, um Ihre Reise sicher zu organisieren).</li><li><strong>E-Mails</strong>, die Sie uns senden, und unsere Antworten.</li><li><strong>Technische Daten</strong>: Bei Ihrem Besuch protokolliert unser Hosting-Anbieter Ihre IP-Adresse, den Browsertyp, die aufgerufenen Seiten und die Uhrzeit, um die Website sicher und funktionsfähig zu halten.</li><li><strong>In Ihrem Browser gespeicherte Einstellungen</strong>, etwa Ihre Sprache. Siehe unsere <a href=\"/de/legal/cookies\">Cookie-Richtlinie</a>.</li></ul>\n<p>Wir verwenden keine Werbe-Tracker, erstellen keine Profile und verkaufen Ihre Daten niemals.</p>\n</section>\n<section><h2>Zwecke und Rechtsgrundlagen</h2>\n<ul><li><strong>Beantwortung Ihrer Anfrage und Erstellung eines Angebots</strong>: vorvertragliche Maßnahmen auf Ihre Anfrage (Art. 6 Abs. 1 lit. b DSGVO).</li><li><strong>Buchung und Durchführung Ihrer Reise</strong>, einschließlich Weitergabe an die beteiligten Leistungsträger: Vertragserfüllung (Art. 6 Abs. 1 lit. b); für Gesundheitsdaten Ihre ausdrückliche Einwilligung (Art. 9 Abs. 2 lit. a).</li><li><strong>Buchhaltung und steuerliche Aufbewahrung</strong>: rechtliche Verpflichtung (Art. 6 Abs. 1 lit. c).</li><li><strong>Sicherheit der Website, Missbrauchsabwehr, Bearbeitung von Beschwerden und Rechtsansprüchen</strong>: unsere berechtigten Interessen (Art. 6 Abs. 1 lit. f).</li><li><strong>Optionale Einstellungen auf Ihrem Gerät</strong>: Ihre Einwilligung, soweit erforderlich (Art. 6 Abs. 1 lit. a). Sie können sie jederzeit mit Wirkung für die Zukunft widerrufen.</li></ul>\n</section>\n<section><h2>Empfänger</h2>\n<p>Wir geben nur weiter, was jeweils benötigt wird:</p>\n<ul><li><strong>Vercel Inc.</strong> (USA) hostet diese Website und betreibt den Servercode, der unsere Formulare entgegennimmt. Vercel verarbeitet die technischen Daten Ihrer Anfragen (etwa Ihre IP-Adresse) und kurzlebige Serverprotokolle.</li><li>Unser <strong>E-Mail-Anbieter</strong> speichert die Nachrichten, die Sie uns senden, und unsere Antworten.</li><li><strong>Reiseleistungsträger</strong> (Hotels, Lodges, Transport, Aktivitätsanbieter und Gastgeber vor Ort) erhalten die Angaben, die sie für Ihre gebuchten Leistungen brauchen.</li><li>Berater, Versicherer und Behörden, wenn das Gesetz es verlangt oder zur Geltendmachung oder Abwehr von Rechtsansprüchen.</li></ul>\n<p>Unsere Dienstleister handeln auf Grundlage von Auftragsverarbeitungsverträgen nach unseren Weisungen.</p>\n</section>\n<section><h2>Internationale Übermittlungen</h2>\n<p>Einige Anbieter, darunter Vercel, sitzen in den USA, und die Leistungsträger Ihrer Reise befinden sich im Reiseland. Verlassen Daten das Vereinigte Königreich oder den Europäischen Wirtschaftsraum, stützen wir uns auf Angemessenheitsbeschlüsse (einschließlich des EU-US Data Privacy Framework bei zertifizierten Anbietern) oder die Standardvertragsklauseln der Europäischen Kommission. Übermittlungen an die Leistungsträger Ihrer Reise sind zur Vertragserfüllung erforderlich (Art. 49 Abs. 1 lit. b DSGVO).</p>\n</section>\n<section><h2>Speicherdauer</h2>\n<ul><li>Anfragen ohne Buchung: 24 Monate nach unserem letzten Kontakt.</li><li>Buchungs- und Zahlungsunterlagen: 7 Jahre nach der Reise, aus buchhalterischen und steuerlichen Gründen.</li><li>Gesundheits- und Ernährungsangaben: Löschung innerhalb von 3 Monaten nach Ihrer Rückkehr.</li><li>Serverprotokolle: wenige Tage bis 30 Tage, je nach Hosting-Anbieter.</li><li>Einstellungen in Ihrem Browser: bis Sie sie löschen.</li></ul>\n</section>\n<section><h2>Ihre Rechte</h2>\n<p>Nach der DSGVO und vergleichbaren Gesetzen können Sie von uns verlangen:</p>\n<ul><li>Auskunft über die zu Ihnen gespeicherten Daten;</li><li>Berichtigung unrichtiger Daten;</li><li>Löschung Ihrer Daten;</li><li>Einschränkung der Verarbeitung;</li><li>Herausgabe Ihrer Daten in einem übertragbaren Format;</li><li>Widerspruch gegen die Verarbeitung auf Grundlage berechtigter Interessen;</li><li>Widerruf Ihrer Einwilligung jederzeit.</li></ul>\n<p>Schreiben Sie an <a href=\"mailto:cenotehouse@tourground.com\">cenotehouse@tourground.com</a>; wir antworten innerhalb eines Monats. Sie können sich außerdem bei einer Datenschutz-Aufsichtsbehörde beschweren, insbesondere an Ihrem Wohn- oder Arbeitsort oder am Ort des mutmaßlichen Verstoßes.</p>\n</section>\n<section><h2>Cookies</h2>\n<p>Diese Website nutzt nur, was für den Betrieb und das Speichern Ihrer Auswahl nötig ist. Einzelheiten in unserer <a href=\"/de/legal/cookies\">Cookie-Richtlinie</a>.</p>\n</section>\n<section><h2>Kinder</h2>\n<p>Unsere Website richtet sich nicht an Kinder unter 16 Jahren, und wir erheben online nicht wissentlich deren Daten. Angaben zu mitreisenden Kindern erhalten wir von Eltern oder Erziehungsberechtigten und nutzen sie nur zur Organisation der Reise.</p>\n</section>\n<section><h2>Sicherheit</h2>\n<p>Wir nutzen verschlüsselte Verbindungen (HTTPS), beschränken den Zugriff auf die Personen, die ihn benötigen, und wählen Anbieter mit soliden Sicherheitsstandards.</p>\n</section>\n<section><h2>Änderungen</h2>\n<p>Wir können diese Erklärung aktualisieren. Das Datum unten zeigt die aktuelle Fassung; wesentliche Änderungen kennzeichnen wir auf dieser Seite.</p>\n</section>\n<section><h2>Kontakt</h2>\n<p>Cenote House, Paseo de la Reforma 483, Piso 14, Col. Cuauhtémoc, 06500 Ciudad de México, Mexiko. E-Mail: <a href=\"mailto:cenotehouse@tourground.com\">cenotehouse@tourground.com</a></p>\n</section>"
     },
     "terms": {
-      "title": "Reisebedingungen",
+      "title": "Buchungsbedingungen",
       "description": "Die Bedingungen, die gelten, wenn Sie bei Cenote House eine maßgeschneiderte Reise anfragen und buchen.",
-      "sections": [
-        {
-          "h": "Über diese Bedingungen",
-          "p": [
-            "Diese Bedingungen gelten für jede von Cenote House, Paseo de la Reforma 483, Piso 14, Col. Cuauhtémoc, 06500 Mexiko-Stadt, Mexiko, geplante Reise. Bitte lesen Sie sie vor der Buchung. Ihr schriftliches Angebot und Ihre Buchungsbestätigung sind zusammen mit diesen Bedingungen Teil des Vertrags.",
-            "Alles auf dieser Website, auch Reiseverläufe, Zeiten, Jahreszeiten und Erlebnisse, beschreibt die Art von Reise, die wir planen. Es ist kein Angebot, das Sie annehmen können."
-          ]
-        },
-        {
-          "h": "Anfragen und Angebote",
-          "p": [
-            "Eine Anfrage ist kostenlos und verpflichtet weder Sie noch uns.",
-            "Wir antworten mit Ideen und Fragen und gestalten die Reise dann gemeinsam mit Ihnen. Wenn alles passt, schicken wir Ihnen ein schriftliches Angebot, das für den darin genannten Zeitraum gilt. Preise für Flüge, Unterkünfte und Leistungen können sich bis zur Bestätigung ändern; in diesem Fall sagen wir es Ihnen, bevor Sie sich festlegen."
-          ]
-        },
-        {
-          "h": "Buchung und Zahlung",
-          "p": [
-            "Ihre Buchung ist bestätigt, wenn Sie das Angebot schriftlich annehmen, die darin genannte Anzahlung leisten und wir Ihnen eine schriftliche Bestätigung schicken. Wer bucht, akzeptiert diese Bedingungen für alle Reisenden und muss mindestens 18 Jahre alt sein.",
-            "Der Restbetrag ist zu dem in Angebot und Bestätigung genannten Datum fällig. Geht er nicht rechtzeitig ein, können wir die Buchung als von Ihnen storniert behandeln; dann gelten die unten beschriebenen Stornokosten."
-          ]
-        },
-        {
-          "h": "Änderungen durch Sie",
-          "p": [
-            "Wenn Sie Ihre Reise nach der Bestätigung ändern möchten, teilen Sie es uns bitte schriftlich mit. Wir tun unser Bestes, doch Änderungen sind nicht immer möglich. Mehrkosten der Leistungsträger sowie eine angemessene Bearbeitungsgebühr gehen zu Ihren Lasten."
-          ]
-        },
-        {
-          "h": "Rücktritt durch Sie",
-          "p": [
-            "Sie können jederzeit schriftlich von der Reise zurücktreten. Die Anzahlung wird nicht erstattet. Je näher der Rücktritt am Abreisetag liegt, desto höher sind die Kosten, bis hin zum vollen Reisepreis, weil Unterkünfte, Transporte und andere Leistungen in Ihrem Namen reserviert und bezahlt werden. Die für Ihre Reise geltenden Stornokosten stehen in Angebot und Bestätigung.",
-            "Eine Reiseversicherung kann diese Kosten in bestimmten Fällen übernehmen."
-          ]
-        },
-        {
-          "h": "Änderungen und Absage durch uns",
-          "p": [
-            "Wir planen sorgfältig, müssen aber manchmal einen Teil der Reise ändern, etwa wegen des Wetters, gesperrter Straßen oder Strecken oder eines Leistungsträgers, der eine Buchung nicht einhalten kann. Wir informieren Sie so früh wie möglich und bieten Ihnen eine gleichwertige Alternative an.",
-            "Ändern wir die Reise erheblich oder sagen wir sie ab, können Sie die Änderung annehmen, eine gleichwertige Alternative wählen, sofern verfügbar, oder zurücktreten und erhalten alle an uns geleisteten Zahlungen vollständig zurück."
-          ]
-        },
-        {
-          "h": "Unvermeidbare, außergewöhnliche Umstände",
-          "p": [
-            "Wir haften nicht für Änderungen, Verspätungen oder Absagen infolge von Ereignissen, die außerhalb unserer zumutbaren Kontrolle liegen, etwa Krieg oder Kriegsgefahr, Unruhen, Naturkatastrophen, Epidemien, behördliche Maßnahmen, Schließungen von Flughäfen oder Grenzen oder extremes Wetter. In solchen Fällen helfen wir Ihnen bei anderen Lösungen und geben Erstattungen der Leistungsträger an Sie weiter."
-          ]
-        },
-        {
-          "h": "Reiseversicherung",
-          "p": [
-            "Eine umfassende Reiseversicherung ist Voraussetzung für die Buchung. Sie muss medizinische Behandlung, Rücktransport, Reiserücktritt und alle Aktivitäten Ihrer Reise abdecken. Bitte senden Sie uns die Policendaten vor der Abreise."
-          ]
-        },
-        {
-          "h": "Pass, Visum und Gesundheit",
-          "p": [
-            "Sie sind dafür verantwortlich, einen gültigen Reisepass, alle erforderlichen Visa oder Reisegenehmigungen sowie die für Mexiko und alle Transitländer vorgeschriebenen Impfungen oder Gesundheitsnachweise zu besitzen. Einreisebestimmungen ändern sich; prüfen Sie sie bei der zuständigen Botschaft und in den Reisehinweisen Ihrer Regierung bei der Buchung und erneut vor der Abreise.",
-            "Bitte informieren Sie uns vor der Buchung über gesundheitliche Einschränkungen oder Mobilitätsbedürfnisse, die Ihre Reise betreffen könnten, damit wir sie berücksichtigen können."
-          ]
-        },
-        {
-          "h": "Ihre Pflichten",
-          "p": [
-            "Bitte beachten Sie die Gesetze und Gepflogenheiten vor Ort, die Anweisungen von Guides, Fahrern, Crews und anderen Leistungsträgern sowie unsere Sicherheitshinweise. Wer andere gefährdet oder die Reise ernsthaft stört, kann ohne Erstattung von der weiteren Reise ausgeschlossen werden."
-          ]
-        },
-        {
-          "h": "Unsere Haftung",
-          "p": [
-            "Wir planen und organisieren Ihre Reise mit angemessener Sorgfalt. Wir haften nicht für Verluste, Verletzungen oder Schäden, die Sie selbst, unbeteiligte Dritte oder Ereignisse außerhalb unserer zumutbaren Kontrolle verursachen.",
-            "Bei Fluggesellschaften, Hotels und anderen Beförderungsunternehmen ist unsere Haftung im gleichen Umfang begrenzt wie deren Haftung nach den für sie geltenden internationalen Übereinkommen. Nichts in diesen Bedingungen beschränkt unsere Haftung für Tod oder Körperverletzung infolge unserer Fahrlässigkeit oder eine Haftung, die gesetzlich nicht beschränkt werden kann."
-          ]
-        },
-        {
-          "h": "Beschwerden",
-          "p": [
-            "Wenn während der Reise etwas nicht stimmt, sagen Sie es uns bitte sofort, damit wir es vor Ort beheben können. Lässt es sich nicht lösen, schreiben Sie bitte innerhalb von 28 Tagen nach Ihrer Rückkehr an cenotehouse@tourground.com; wir antworten zeitnah."
-          ]
-        },
-        {
-          "h": "Anwendbares Recht",
-          "p": [
-            "Für diese Bedingungen gilt das Recht, das auf den mit uns geschlossenen Vertrag anwendbar ist, wie in Ihrer Buchungsbestätigung angegeben. Zusätzlich können Sie sich auf das Verbraucherrecht Ihres Wohnsitzlandes berufen."
-          ]
-        }
-      ]
+      "updated": "Zuletzt aktualisiert: 1. November 2026",
+      "html": "<section><h2>Wer wir sind</h2>\n<p>Diese Bedingungen gelten für Reisen, die bei Cenote House, Paseo de la Reforma 483, Piso 14, Col. Cuauhtémoc, 06500 Ciudad de México, Mexiko (E-Mail <a href=\"mailto:cenotehouse@tourground.com\">cenotehouse@tourground.com</a>) gebucht werden. „Sie“ bezeichnet den Hauptreisenden und alle auf der Buchung genannten Personen. Bitte lesen Sie sie vor der Buchung.</p>\n</section>\n<section><h2>So kommt eine Buchung zustande</h2>\n<p>Sie teilen uns Ihre Wünsche über unser Anfrageformular oder per E-Mail mit. Wir senden Ihnen einen Reisevorschlag und ein schriftliches Angebot. Wenn Sie das Angebot annehmen und die Anzahlung leisten, bestätigen wir Ihre Buchung schriftlich; der Vertrag kommt mit dieser schriftlichen Bestätigung zustande. Der Hauptreisende bestätigt, dass er über 18 Jahre alt ist, und akzeptiert diese Bedingungen für alle Mitreisenden.</p>\n</section>\n<section><h2>Preise</h2>\n<p>Die Preise auf dieser Website sind „ab“-Preise und dienen als Richtwert pro Person, meist bei Unterbringung im Doppelzimmer. Ihr Preis hängt von Reisedaten, Gruppengröße, Unterkunft und Verfügbarkeit ab und wird in Ihrem schriftlichen Angebot festgelegt. Nach der Buchungsbestätigung erhöhen wir den Preis nicht, außer bei Änderungen staatlicher Steuern, Park- oder Eintrittsgebühren und Treibstoffzuschlägen, die außerhalb unserer Kontrolle liegen; wir informieren Sie umgehend, und übersteigt die Erhöhung 8 % des Reisepreises, können Sie kostenfrei zurücktreten.</p>\n</section>\n<section><h2>Anzahlung und Restzahlung</h2>\n<p>Zur Bestätigung der Buchung ist eine Anzahlung fällig, die in Ihrem Angebot steht (meist 30 % des Reisepreises). Der Restbetrag ist 60 Tage vor Abreise fällig. Bei Buchung innerhalb von 60 Tagen vor Abreise ist der volle Preis sofort fällig. Wird der Restbetrag nicht rechtzeitig gezahlt, können wir die Buchung als von Ihnen storniert behandeln und die unten genannten Stornogebühren berechnen. Die Zahlungsarten stehen in Ihrem Angebot.</p>\n</section>\n<section><h2>Leistungen</h2>\n<p>Ihr Angebot führt genau auf, was enthalten ist, in der Regel Unterkünfte, die im Reiseverlauf beschriebenen Transfers, Aktivitäten und Eintritte sowie die Betreuung durch unser Team vor und während der Reise. Sofern im Angebot nicht anders angegeben, nicht enthalten sind internationale Flüge, Visa, Reiseversicherung, Impfungen und medizinische Kosten, Trinkgelder, Getränke, nicht genannte Mahlzeiten und persönliche Ausgaben.</p>\n</section>\n<section><h2>Änderungen durch Sie</h2>\n<p>Möchten Sie Ihre Buchung nach der Bestätigung ändern, schreiben Sie uns. Wir helfen gern, sofern Verfügbarkeit besteht. Mehrkosten unserer Leistungsträger tragen Sie. Eine Änderung der Reisedaten oder eine große Änderung des Reiseverlaufs kann als Stornierung mit Neubuchung gelten. Sie können Ihren Platz auf eine andere Person übertragen, die die Reisebedingungen erfüllt, wenn Sie uns spätestens 14 Tage vor Abreise informieren und anfallende Kosten der Leistungsträger tragen.</p>\n</section>\n<section><h2>Rücktritt durch Sie</h2>\n<p>Sie können jederzeit per E-Mail zurücktreten; maßgeblich ist der Tag des Eingangs. Da wir für Sie Zahlungen an Leistungsträger leisten, fallen folgende Gebühren in Prozent des Gesamtreisepreises an:</p>\n<ul><li>60 Tage oder mehr vor Abreise: die Anzahlung;</li><li>59 bis 30 Tage: 50 %;</li><li>29 bis 15 Tage: 75 %;</li><li>14 Tage oder weniger oder Nichtantritt: 100 %.</li></ul>\n<p>Kosten, die Ihr Angebot als nicht erstattungsfähig ausweist (z. B. Inlandsflüge, Genehmigungen oder bestimmte Lodges), werden bei Rücktritt stets voll berechnet. Ihre Reiseversicherung kann diese Kosten abdecken.</p>\n</section>\n<section><h2>Änderungen oder Absage durch uns</h2>\n<p>Manchmal sind kleine Anpassungen nötig, etwa ein anderes Fahrzeug oder ein gleichwertiges Zimmer; wir informieren Sie so früh wie möglich. Müssen wir vor Abreise eine erhebliche Änderung vornehmen, können Sie sie annehmen, eine vergleichbare Alternative wählen oder zurücktreten und erhalten Ihre Zahlungen vollständig zurück. Sagen wir Ihre Reise ab, erstatten wir alle geleisteten Zahlungen. Nach Zahlung des Restbetrags sagen wir nur aus Gründen außerhalb unserer Kontrolle (siehe „Ereignisse außerhalb unserer Kontrolle“) oder aus Sicherheitsgründen ab.</p>\n</section>\n<section><h2>Reiseversicherung</h2>\n<p>Eine umfassende Reiseversicherung ist Buchungsvoraussetzung. Sie muss Reiserücktritt und -abbruch, medizinische Behandlung, Notfallevakuierung und Rücktransport sowie die Aktivitäten Ihres Reiseverlaufs abdecken. Bitte senden Sie uns die Policendaten vor Reiseantritt.</p>\n</section>\n<section><h2>Pässe, Visa und Gesundheit</h2>\n<p>Sie sind selbst verantwortlich für einen gültigen Reisepass (in der Regel noch mindestens sechs Monate nach Rückkehr gültig, mit freien Seiten), erforderliche Visa und Genehmigungen sowie die nötigen Impfungen und Gesundheitsvorkehrungen. Unsere Seite <a href=\"/de/faq\">FAQ</a> bietet allgemeine Hinweise, doch Vorschriften ändern sich; prüfen Sie bitte amtliche Quellen und lassen Sie sich reisemedizinisch beraten. Für eine verweigerte Beförderung oder Einreise wegen fehlender Dokumente können wir nicht haften.</p>\n</section>\n<section><h2>Unsere Haftung</h2>\n<p>Wir planen Ihre Reise und wählen unsere Leistungsträger mit angemessener Sorgfalt aus und sind für die schriftlich bestätigten Leistungen verantwortlich. Nicht verantwortlich sind wir für Probleme, die Sie oder Mitreisende verursachen, die ein unbeteiligter Dritter unvorhersehbar oder unvermeidbar verursacht, oder die auf Ereignisse außerhalb unserer Kontrolle zurückgehen. Außer bei Tod oder Körperverletzung durch unsere Fahrlässigkeit oder wo das Gesetz es nicht zulässt, ist unsere Haftung auf den Reisepreis begrenzt. Ihre gesetzlichen Rechte bleiben unberührt.</p>\n</section>\n<section><h2>Verhalten</h2>\n<p>Bitte respektieren Sie lokale Gesetze, Bräuche, Gemeinschaften und Tierwelt und befolgen Sie die Sicherheitsanweisungen von Fahrern, Rangern und Gastgebern. Gefährdet das Verhalten einer Person andere oder stört es die Reise erheblich, können wir ihre Reiseleistungen ohne Erstattung beenden.</p>\n</section>\n<section><h2>Beschwerden</h2>\n<p>Wenn während der Reise etwas nicht stimmt, sagen Sie unserem Team sofort Bescheid, damit wir es beheben können. Lässt es sich vor Ort nicht lösen, schreiben Sie uns innerhalb von 28 Tagen nach Ihrer Rückkehr an <a href=\"mailto:cenotehouse@tourground.com\">cenotehouse@tourground.com</a>; wir antworten innerhalb von 28 Tagen.</p>\n</section>\n<section><h2>Ereignisse außerhalb unserer Kontrolle</h2>\n<p>Wir haften nicht für Nichterfüllung oder Verzögerungen durch Ereignisse, die wir nicht vorhersehen oder vermeiden konnten, etwa Krieg, Unruhen, Terrorismus, Naturkatastrophen, Epidemien, Unwetter, Feuer, behördliche Maßnahmen, Schließung von Flug- oder Seehäfen oder Streiks. Verhindert ein solches Ereignis Ihre Reise, bieten wir Ihnen eine Alternative an oder erstatten Ihre Zahlungen abzüglich nicht erstattungsfähiger Kosten der Leistungsträger, soweit gesetzlich zulässig.</p>\n</section>\n<section><h2>Datenschutz</h2>\n<p>Wir nutzen Ihre personenbezogenen Daten zur Organisation und Durchführung Ihrer Reise, wie in unserer <a href=\"/de/legal/privacy\">Datenschutzerklärung</a> beschrieben.</p>\n</section>\n<section><h2>Anwendbares Recht</h2>\n<p>Für diese Bedingungen und jeden Vertrag zwischen uns gilt das Recht der Vereinigten Mexikanischen Staaten; zuständig sind die Gerichte in Mexiko-Stadt. Wohnen Sie im Vereinigten Königreich oder in der EU, behalten Sie den Schutz der zwingenden Verbraucherschutzvorschriften Ihres Wohnsitzlandes und können dort klagen.</p>\n</section>\n<section><h2>Kontakt</h2>\n<p>Cenote House, Paseo de la Reforma 483, Piso 14, Col. Cuauhtémoc, 06500 Ciudad de México, Mexiko. E-Mail: <a href=\"mailto:cenotehouse@tourground.com\">cenotehouse@tourground.com</a></p>\n</section>"
     },
     "cookies": {
       "title": "Cookie-Richtlinie",
       "description": "Welche Cookies und welchen Speicher die Website von Cenote House nutzt und wie Sie sie verwalten.",
-      "sections": [
-        {
-          "h": "Kurz gesagt",
-          "p": [
-            "Wir verwenden auf dieser Website keine Analyse- oder Werbe-Cookies. Diese Website setzt keine eigenen Cookies."
-          ]
-        },
-        {
-          "h": "Was die Website in Ihrem Browser speichert",
-          "p": [
-            "Wenn Sie die angezeigte Währung ändern, wird Ihre Wahl im lokalen Speicher Ihres Browsers unter ch.currency gespeichert. Wenn Sie den [Reiseplaner](/plan-your-trip) nutzen, werden Ihre Antworten im lokalen Speicher unter ch.planner.v1 gespeichert, damit Sie später weitermachen können. Sie bleiben auf Ihrem Gerät, bis Sie den Planer absenden, und werden dann gelöscht.",
-            "Schriften und Fotos werden von dieser Website ausgeliefert, sodass beim Laden der Seiten kein Drittanbieter kontaktiert wird."
-          ]
-        },
-        {
-          "h": "Einwilligung",
-          "p": [
-            "Die oben genannten Einträge sind für Funktionen, die Sie selbst nutzen, unbedingt erforderlich und brauchen daher keine Einwilligung. Analyse- oder Werbe-Cookies setzen wir nur ein, nachdem wir Sie gefragt haben."
-          ]
-        },
-        {
-          "h": "Löschen oder Meinung ändern",
-          "p": [
-            "Sie können die von dieser Website gespeicherten Daten jederzeit in den Einstellungen Ihres Browsers löschen (meist unter Datenschutz, dann Cookies und Websitedaten)."
-          ]
-        },
-        {
-          "h": "Kontakt",
-          "p": [
-            "Fragen zu dieser Richtlinie: schreiben Sie an cenotehouse@tourground.com."
-          ]
-        }
-      ]
+      "updated": "Zuletzt aktualisiert: 1. November 2026",
+      "html": "<section><h2>Was Cookies sind</h2>\n<p>Cookies sind kleine Textdateien, die eine Website in Ihrem Browser speichert. Websites können Informationen auch im lokalen Speicher oder Sitzungsspeicher des Browsers ablegen, was ähnlich funktioniert. In dieser Richtlinie umfasst „Cookies“ all diese Techniken.</p>\n</section>\n<section><h2>Was diese Website verwendet</h2>\n<p>Cenote House setzt keine Cookies. Wir verwenden nur die folgenden Einträge, die für den Betrieb der Website nötig sind oder Ihre eigenen Einstellungen speichern. Keiner dient der Werbung oder verfolgt Sie über andere Websites hinweg.</p>\n<div class=\"legal-table\"><table><thead><tr><th scope=\"col\">Name</th><th scope=\"col\">Zweck</th><th scope=\"col\">Dauer</th><th scope=\"col\">Art</th></tr></thead><tbody><tr><td><code>ch.currency</code></td><td>Speichert die Währung, die Sie für die Preisanzeige gewählt haben.</td><td>Bis Sie ihn löschen</td><td>Lokaler Speicher, Präferenz</td></tr><tr><td><code>ch.planner.v1</code></td><td>Bewahrt Ihre Antworten im Reiseplaner auf Ihrem Gerät auf, damit Sie später weitermachen können; wird beim Absenden gelöscht.</td><td>Bis Sie ihn löschen</td><td>Lokaler Speicher, notwendig</td></tr></tbody></table></div>\n<p>Wir verwenden keine Analyse- oder Werbe-Cookies.</p>\n<p>Da diese Einträge unbedingt erforderlich sind oder nur Ihre eigenen Einstellungen speichern, ist nach den ePrivacy-Regeln keine Einwilligung nötig; weitere Cookies setzen wir nicht.</p>\n</section>\n<section><h2>Inhalte Dritter</h2>\n<ul><li><strong>Schriften</strong> werden von unserer eigenen Website ausgeliefert; kein Schriftanbieter erhält Ihre Daten.</li><li><strong>Fotos und Videos</strong> werden von unserer eigenen Website ausgeliefert.</li></ul>\n<p>Unser Hosting-Anbieter Vercel speichert technische Daten wie Ihre IP-Adresse in Serverprotokollen, um die Website sicher auszuliefern; er setzt auf dieser Website keine Cookies.</p>\n</section>\n<section><h2>Cookies verwalten</h2>\n<p>Sie können Cookies und Websitedaten in den Einstellungen Ihres Browsers blockieren oder löschen (meist unter Datenschutz oder Websitedaten). Löschen Sie die Daten dieser Website, werden die oben genannten Einträge entfernt; die Website funktioniert weiter, vergisst aber Ihre Einstellungen. Die Hilfe Ihres Browsers (Chrome, Safari, Firefox oder Edge) erklärt das unter „Cookies und Websitedaten löschen“.</p>\n</section>\n<section><h2>Änderungen</h2>\n<p>Sollten wir neue Cookies einsetzen, aktualisieren wir diese Seite und holen, wo gesetzlich erforderlich, vorher Ihre Einwilligung ein.</p>\n</section>\n<section><h2>Kontakt</h2>\n<p>Fragen zu Cookies oder Ihren Daten: <a href=\"mailto:cenotehouse@tourground.com\">cenotehouse@tourground.com</a>. Siehe auch unsere <a href=\"/de/legal/privacy\">Datenschutzerklärung</a>.</p>\n</section>"
     }
   },
   "es": {
     "privacy": {
       "title": "Política de privacidad",
       "description": "Cómo Cenote House recoge, utiliza y protege los datos personales que nos envía.",
-      "sections": [
-        {
-          "h": "Quiénes somos",
-          "p": [
-            "Este sitio web lo gestiona Cenote House, Paseo de la Reforma 483, Piso 14, Col. Cuauhtémoc, 06500 Ciudad de México, México. En esta política, «nosotros» y «nuestro» se refieren a Cenote House.",
-            "Para cualquier cuestión sobre sus datos personales, escriba a cenotehouse@tourground.com."
-          ]
-        },
-        {
-          "h": "Qué datos recogemos",
-          "p": [
-            "Solo los que usted decide enviarnos: a través del planificador de viajes, su nombre, correo electrónico, teléfono si nos lo facilita, cómo prefiere que le contactemos, fechas de viaje, número de viajeros, intereses, presupuesto y comentarios; a través del formulario de contacto, su nombre, correo electrónico y mensaje; al descargar la guía, su correo electrónico y si desea recibir nuestro boletín. Si nos escribe por correo electrónico, conservamos esa correspondencia.",
-            "Si reserva, recogemos además lo necesario para organizar el viaje: el nombre de cada viajero, las fechas de nacimiento y los datos del pasaporte cuando los proveedores los exigen, las necesidades alimentarias o de accesibilidad y los contactos de emergencia.",
-            "Le rogamos que no envíe datos de tarjetas de pago ni información médica detallada por correo electrónico o a través del formulario."
-          ]
-        },
-        {
-          "h": "Para qué los utilizamos",
-          "p": [
-            "Para responder a su consulta, diseñar el viaje con usted y, si decide seguir adelante, reservarlo y gestionarlo. Nos basamos en las medidas precontractuales que nos solicita, en la ejecución del contrato, en su consentimiento cuando lo pedimos y en nuestro interés legítimo en responder a quienes se ponen en contacto con nosotros.",
-            "No vendemos sus datos y solo le enviamos novedades u ofertas si nos lo pide."
-          ]
-        },
-        {
-          "h": "Con quién los compartimos",
-          "p": [
-            "Su consulta nos llega a través de el servidor de nuestro sitio web (alojado por Vercel Inc., Estados Unidos).",
-            "Si reserva, solo compartimos lo imprescindible con los hoteles, lodges, empresas de transporte, guías y socios locales que hacen posible su viaje en México, y con su aseguradora de viaje si así nos lo pide. Algunos se encuentran fuera de su país; en ese caso, compartimos únicamente lo mínimo necesario para prestar el servicio solicitado.",
-            "También podemos comunicar información cuando la ley lo exija."
-          ]
-        },
-        {
-          "h": "Cookies y almacenamiento local",
-          "p": [
-            "No utilizamos cookies de analítica ni de publicidad en este sitio. Consulte la [política de cookies](/cookies/) para saber qué guarda el sitio en su navegador."
-          ]
-        },
-        {
-          "h": "Cuánto tiempo los conservamos",
-          "p": [
-            "Conservamos las consultas que no se convierten en reserva durante 24 meses desde nuestro último contacto y después las eliminamos. Los expedientes de reserva se conservan durante el tiempo que exijan la normativa contable y de consumo, normalmente seis años después del viaje."
-          ]
-        },
-        {
-          "h": "Cómo los protegemos",
-          "p": [
-            "Sus datos se guardan en un correo electrónico y un almacenamiento de archivos protegidos con contraseña, a los que solo acceden las personas que preparan su viaje. El sitio se sirve mediante una conexión cifrada (HTTPS)."
-          ]
-        },
-        {
-          "h": "Sus derechos",
-          "p": [
-            "Puede solicitar el acceso a los datos personales que tenemos sobre usted, su rectificación o supresión, limitar su uso u oponerse a él, recibir una copia en un formato portátil o retirar su consentimiento en cualquier momento. Escriba a cenotehouse@tourground.com y le responderemos en el plazo de un mes.",
-            "Si no está satisfecho con el tratamiento de sus datos, díganoslo primero para que podamos solucionarlo. También tiene derecho a presentar una reclamación ante la autoridad de protección de datos del país en el que reside."
-          ]
-        },
-        {
-          "h": "Cambios en esta política",
-          "p": [
-            "Actualizaremos esta página si cambia la forma en que utilizamos los datos personales. Última actualización: 30 de octubre de 2026."
-          ]
-        }
-      ]
+      "updated": "Última actualización: 1 de noviembre de 2026",
+      "html": "<section><h2>Quiénes somos</h2>\n<p>Cenote House («nosotros») gestiona cenotehouse.tourground.com y organiza viajes privados. Somos responsables del tratamiento de los datos personales descritos en esta política.</p>\n<p>Dirección comercial: Paseo de la Reforma 483, Piso 14, Col. Cuauhtémoc, 06500 Ciudad de México, México.<br>Correo electrónico: <a href=\"mailto:cenotehouse@tourground.com\">cenotehouse@tourground.com</a></p>\n</section>\n<section><h2>Qué datos recogemos</h2>\n<ul><li><strong>Formularios de solicitud y reserva</strong>: a través del planificador de viaje, su nombre, correo electrónico, teléfono si lo indica, cómo prefiere que le contactemos, fechas, tamaño del grupo, intereses, presupuesto y notas; a través del formulario de contacto, su nombre, correo y mensaje; a través de la descarga de la guía, su correo electrónico, y cualquier otra cosa que decida escribir en su mensaje.</li><li><strong>Datos de reserva</strong>, si decide reservar: los nombres de todos los viajeros, los datos de pasaporte y fechas de nacimiento que piden nuestros proveedores, la información de llegada y salida, y las necesidades alimentarias, médicas o de accesibilidad que nos comunique (usamos los datos de salud solo con su consentimiento explícito y únicamente para organizar su viaje con seguridad).</li><li><strong>Los correos</strong> que nos envía y nuestras respuestas.</li><li><strong>Datos técnicos</strong>: cuando nos visita, nuestro proveedor de alojamiento registra su dirección IP, el tipo de navegador, las páginas solicitadas y la hora, para mantener el sitio seguro y operativo.</li><li><strong>Preferencias guardadas en su navegador</strong>, como su idioma. Consulte nuestra <a href=\"/es/legal/cookies\">Política de cookies</a>.</li></ul>\n<p>No usamos rastreadores publicitarios, no elaboramos perfiles y nunca vendemos sus datos.</p>\n</section>\n<section><h2>Para qué los usamos y bases legales</h2>\n<ul><li><strong>Responder a su solicitud y preparar una propuesta</strong>: medidas precontractuales a petición suya (art. 6.1.b RGPD).</li><li><strong>Reservar y gestionar su viaje</strong>, incluida la comunicación de datos a los proveedores que lo prestan: ejecución del contrato (art. 6.1.b); para datos de salud, su consentimiento explícito (art. 9.2.a).</li><li><strong>Llevar la contabilidad y los registros fiscales</strong>: obligación legal (art. 6.1.c).</li><li><strong>Mantener el sitio seguro, prevenir abusos y atender reclamaciones o acciones legales</strong>: nuestros intereses legítimos (art. 6.1.f).</li><li><strong>Preferencias opcionales guardadas en su dispositivo</strong>: su consentimiento cuando sea necesario (art. 6.1.a). Puede retirarlo en cualquier momento sin que afecte a lo anterior.</li></ul>\n</section>\n<section><h2>Con quién los compartimos</h2>\n<p>Solo compartimos lo que cada uno necesita:</p>\n<ul><li><strong>Vercel Inc.</strong> (Estados Unidos) aloja este sitio web y ejecuta el código de servidor que recibe nuestros formularios. Trata los datos técnicos de sus solicitudes (como su dirección IP) y registros de servidor de corta duración.</li><li>Nuestro <strong>proveedor de correo electrónico</strong> almacena los mensajes que nos envía y nuestras respuestas.</li><li><strong>Proveedores de viaje</strong> (hoteles, lodges, transporte, actividades y anfitriones locales) reciben los datos necesarios para prestar los servicios reservados.</li><li>Asesores profesionales, aseguradoras y autoridades públicas, cuando la ley lo exija o para formular o defender reclamaciones.</li></ul>\n<p>Nuestros proveedores actúan siguiendo nuestras instrucciones mediante acuerdos de encargo del tratamiento.</p>\n</section>\n<section><h2>Transferencias internacionales</h2>\n<p>Algunos proveedores, como Vercel, están en Estados Unidos, y los proveedores de su viaje se encuentran en el país que visita. Cuando los datos salen del Reino Unido o del Espacio Económico Europeo, nos basamos en decisiones de adecuación (incluido el Marco de Privacidad de Datos UE-EE. UU. cuando el proveedor está certificado) o en las cláusulas contractuales tipo de la Comisión Europea. Las transferencias a los proveedores de su viaje son necesarias para ejecutar nuestro contrato (art. 49.1.b RGPD).</p>\n</section>\n<section><h2>Cuánto tiempo los conservamos</h2>\n<ul><li>Solicitudes que no terminan en reserva: 24 meses desde nuestro último contacto.</li><li>Registros de reservas y pagos: 7 años después del viaje, por motivos contables y fiscales.</li><li>Datos de salud y alimentación: se eliminan en los 3 meses siguientes a su regreso.</li><li>Registros del servidor: de unos días a 30 días, según nuestro proveedor de alojamiento.</li><li>Preferencias en su navegador: hasta que las borre.</li></ul>\n</section>\n<section><h2>Sus derechos</h2>\n<p>Según el RGPD y leyes similares puede pedirnos:</p>\n<ul><li>acceder a los datos personales que tenemos sobre usted;</li><li>rectificar datos inexactos;</li><li>suprimir sus datos;</li><li>limitar su uso;</li><li>recibir sus datos en un formato portable;</li><li>dejar de usarlos cuando nos basamos en el interés legítimo (oposición);</li><li>retirar su consentimiento en cualquier momento.</li></ul>\n<p>Escriba a <a href=\"mailto:cenotehouse@tourground.com\">cenotehouse@tourground.com</a>; respondemos en el plazo de un mes. También puede reclamar ante una autoridad de control de protección de datos (en España, la AEPD), en particular donde vive o trabaja, o donde cree que se produjo el problema.</p>\n</section>\n<section><h2>Cookies</h2>\n<p>Este sitio solo usa lo necesario para funcionar y recordar sus elecciones. Más detalles en nuestra <a href=\"/es/legal/cookies\">Política de cookies</a>.</p>\n</section>\n<section><h2>Menores</h2>\n<p>Nuestro sitio no está dirigido a menores de 16 años y no recogemos conscientemente sus datos en línea. Los datos de menores que viajan nos los facilita un progenitor o tutor y solo se usan para organizar el viaje.</p>\n</section>\n<section><h2>Seguridad</h2>\n<p>Usamos conexiones cifradas (HTTPS), limitamos el acceso a quien lo necesita y elegimos proveedores con buenas prácticas de seguridad.</p>\n</section>\n<section><h2>Cambios en esta política</h2>\n<p>Podemos actualizar esta política. La fecha de abajo indica la versión vigente; los cambios importantes se señalarán en esta página.</p>\n</section>\n<section><h2>Contacto</h2>\n<p>Cenote House, Paseo de la Reforma 483, Piso 14, Col. Cuauhtémoc, 06500 Ciudad de México, México. Correo electrónico: <a href=\"mailto:cenotehouse@tourground.com\">cenotehouse@tourground.com</a></p>\n</section>"
     },
     "terms": {
       "title": "Condiciones de reserva",
       "description": "Las condiciones que se aplican cuando consulta y reserva un viaje a medida con Cenote House.",
-      "sections": [
-        {
-          "h": "Sobre estas condiciones",
-          "p": [
-            "Estas condiciones se aplican a todos los viajes organizados por Cenote House, Paseo de la Reforma 483, Piso 14, Col. Cuauhtémoc, 06500 Ciudad de México, México. Léalas antes de reservar. Su presupuesto por escrito y su confirmación de reserva forman parte del contrato, junto con estas condiciones.",
-            "Todo lo que aparece en este sitio, incluidos itinerarios, duraciones, temporadas y experiencias, describe el tipo de viaje que diseñamos. No es una oferta que pueda aceptar."
-          ]
-        },
-        {
-          "h": "Consultas y presupuestos",
-          "p": [
-            "Enviar una consulta es gratuito y no le compromete a usted ni a nosotros.",
-            "Le respondemos con ideas y preguntas, y después damos forma al viaje con usted. Cuando todo encaja, le enviamos un presupuesto por escrito, válido durante el plazo que en él se indica. Los precios de vuelos, alojamientos y servicios pueden variar hasta la confirmación; si es así, se lo diremos antes de que se comprometa."
-          ]
-        },
-        {
-          "h": "Reserva y pago",
-          "p": [
-            "Su reserva queda confirmada cuando acepta el presupuesto por escrito, abona el depósito indicado en él y le enviamos la confirmación por escrito. La persona que reserva acepta estas condiciones en nombre de todos los viajeros y debe ser mayor de 18 años.",
-            "El saldo debe abonarse en la fecha que figura en su presupuesto y su confirmación. Si no se paga a tiempo, podremos considerar la reserva cancelada por usted y se aplicarán los gastos de cancelación que se indican a continuación."
-          ]
-        },
-        {
-          "h": "Cambios por su parte",
-          "p": [
-            "Si desea modificar el viaje una vez confirmado, comuníquenoslo por escrito. Haremos todo lo posible, aunque no siempre se pueden hacer cambios; los costes adicionales de los proveedores y unos gastos de gestión razonables correrán por su cuenta."
-          ]
-        },
-        {
-          "h": "Cancelación por su parte",
-          "p": [
-            "Puede cancelar en cualquier momento comunicándolo por escrito. El depósito no es reembolsable. Cuanto más cerca de la salida cancele, mayores serán los gastos, hasta el importe total del viaje, porque los alojamientos, transportes y demás servicios se reservan y pagan en su nombre. Los gastos aplicables a su viaje figuran en su presupuesto y su confirmación.",
-            "Su seguro de viaje puede cubrirlos en determinadas circunstancias."
-          ]
-        },
-        {
-          "h": "Cambios y cancelación por nuestra parte",
-          "p": [
-            "Planificamos con cuidado, pero a veces debemos cambiar parte de un viaje, por ejemplo por el tiempo, el cierre de una carretera o ruta, o un proveedor que no puede cumplir una reserva. Se lo comunicaremos lo antes posible y le ofreceremos una alternativa equivalente.",
-            "Si debemos introducir un cambio importante o cancelar el viaje, podrá aceptar el cambio, elegir una alternativa equivalente si la hay, o cancelar y recibir el reembolso íntegro de lo pagado."
-          ]
-        },
-        {
-          "h": "Circunstancias excepcionales",
-          "p": [
-            "No somos responsables de cambios, retrasos o cancelaciones causados por hechos fuera de nuestro control razonable, como guerra o amenaza de guerra, disturbios, catástrofes naturales, epidemias, decisiones de las autoridades, cierres de aeropuertos o fronteras, o condiciones meteorológicas extremas. Si ocurre, le ayudaremos a buscar alternativas y le trasladaremos los reembolsos que obtengamos de los proveedores."
-          ]
-        },
-        {
-          "h": "Seguro de viaje",
-          "p": [
-            "Contratar un seguro de viaje completo es condición para reservar. Debe cubrir la asistencia médica, la repatriación, la cancelación y todas las actividades del viaje. Envíenos los datos de su póliza antes de la salida."
-          ]
-        },
-        {
-          "h": "Pasaportes, visados y salud",
-          "p": [
-            "Es responsabilidad suya disponer de un pasaporte válido, de los visados o autorizaciones de viaje necesarios y de las vacunas o documentos sanitarios exigidos para México y para cualquier país de tránsito. Las normas de entrada cambian: compruébelas con la embajada correspondiente y en las recomendaciones de viaje de su gobierno al reservar y de nuevo antes de viajar.",
-            "Infórmenos antes de reservar de cualquier problema de salud o necesidad de movilidad que pueda afectar al viaje, para que podamos tenerlo en cuenta."
-          ]
-        },
-        {
-          "h": "Sus responsabilidades",
-          "p": [
-            "Respete las leyes y costumbres locales, las indicaciones de guías, conductores, tripulaciones y demás proveedores, y los consejos de seguridad que le demos. Podremos poner fin, sin reembolso, al viaje de quien ponga en peligro a otras personas o cause graves molestias."
-          ]
-        },
-        {
-          "h": "Nuestra responsabilidad",
-          "p": [
-            "Ponemos un cuidado razonable en la planificación y organización de su viaje. No respondemos de pérdidas, lesiones o daños causados por usted, por terceros ajenos al viaje o por hechos fuera de nuestro control razonable.",
-            "En el caso de aerolíneas, hoteles y otras empresas de transporte, nuestra responsabilidad está limitada del mismo modo que la suya conforme a los convenios internacionales que les son aplicables. Nada en estas condiciones limita nuestra responsabilidad por muerte o lesiones personales causadas por nuestra negligencia, ni ninguna responsabilidad que la ley no permita limitar."
-          ]
-        },
-        {
-          "h": "Reclamaciones",
-          "p": [
-            "Si algo no va bien durante el viaje, avísenos de inmediato para intentar resolverlo en el momento. Si no se soluciona, escriba a cenotehouse@tourground.com en los 28 días siguientes a su regreso y le responderemos con prontitud."
-          ]
-        },
-        {
-          "h": "Ley aplicable",
-          "p": [
-            "Estas condiciones se rigen por la ley aplicable al contrato que celebre con nosotros, según se indique en su confirmación de reserva. También puede ampararle la normativa de consumo de su país de residencia."
-          ]
-        }
-      ]
+      "updated": "Última actualización: 1 de noviembre de 2026",
+      "html": "<section><h2>Quiénes somos</h2>\n<p>Estas condiciones se aplican a los viajes reservados con Cenote House, Paseo de la Reforma 483, Piso 14, Col. Cuauhtémoc, 06500 Ciudad de México, México (correo <a href=\"mailto:cenotehouse@tourground.com\">cenotehouse@tourground.com</a>). «Usted» significa el viajero principal y todas las personas incluidas en la reserva. Léalas antes de reservar.</p>\n</section>\n<section><h2>Cómo se hace una reserva</h2>\n<p>Nos cuenta lo que desea mediante nuestro formulario o por correo. Le enviamos un itinerario propuesto y un presupuesto por escrito. Cuando acepta el presupuesto y paga el depósito, confirmamos su reserva por escrito; el contrato comienza en la fecha de esa confirmación escrita. El viajero principal confirma que es mayor de 18 años y acepta estas condiciones en nombre de todos los viajeros.</p>\n</section>\n<section><h2>Precios</h2>\n<p>Los precios de este sitio se muestran «desde» y son orientativos por persona, normalmente en habitación compartida por dos. Su precio depende de las fechas, el tamaño del grupo, el alojamiento y la disponibilidad, y se fija en su presupuesto escrito. Una vez confirmada la reserva no subiremos el precio, salvo por cambios en impuestos oficiales, tasas de parques o entradas y recargos de combustible ajenos a nosotros; se lo comunicaremos en cuanto lo sepamos y, si la subida supera el 8 % del precio del viaje, podrá cancelar con reembolso íntegro.</p>\n</section>\n<section><h2>Depósito y pago final</h2>\n<p>Para confirmar la reserva se paga un depósito, indicado en su presupuesto (normalmente el 30 % del precio del viaje). El resto se paga 60 días antes de la salida. Si reserva con menos de 60 días de antelación, se paga el precio completo al reservar. Si el pago final no llega a tiempo, podremos considerar la reserva cancelada por usted y aplicar los gastos de cancelación indicados abajo. Las formas de pago figuran en su presupuesto.</p>\n</section>\n<section><h2>Qué incluye</h2>\n<p>Su presupuesto detalla exactamente lo incluido, normalmente el alojamiento, el transporte, las actividades y entradas descritos en el itinerario, y la asistencia de nuestro equipo antes y durante el viaje. Salvo que se indique lo contrario, no incluye vuelos internacionales, visados, seguro de viaje, vacunas y gastos médicos, propinas, bebidas, comidas no indicadas ni gastos personales.</p>\n</section>\n<section><h2>Cambios por su parte</h2>\n<p>Si desea cambiar la reserva después de la confirmación, escríbanos. Haremos lo posible según la disponibilidad. Usted asume los costes adicionales que cobren nuestros proveedores. Un cambio de fechas o un cambio importante del itinerario puede tratarse como una cancelación y una nueva reserva. Puede ceder su plaza a otra persona que cumpla las condiciones del viaje si nos avisa al menos 14 días antes de la salida y paga los gastos de los proveedores.</p>\n</section>\n<section><h2>Cancelación por su parte</h2>\n<p>Puede cancelar en cualquier momento por correo; la cancelación es efectiva el día en que la recibimos. Como comprometemos dinero con los proveedores en su nombre, se aplican estos gastos, como porcentaje del precio total:</p>\n<ul><li>60 días o más antes de la salida: el depósito;</li><li>de 59 a 30 días: 50 %;</li><li>de 29 a 15 días: 75 %;</li><li>14 días o menos, o si no se presenta: 100 %.</li></ul>\n<p>Los costes que su presupuesto indique como no reembolsables (por ejemplo vuelos internos, permisos o ciertos lodges) se cobran íntegramente sea cual sea la fecha de cancelación. Su seguro de viaje puede cubrir estos gastos.</p>\n</section>\n<section><h2>Cambios o cancelación por nuestra parte</h2>\n<p>A veces hacen falta pequeños ajustes, como otro vehículo o una habitación similar; se lo diremos lo antes posible. Si debemos hacer un cambio importante antes de la salida, puede aceptarlo, elegir una alternativa comparable o cancelar con reembolso íntegro de lo pagado. Si cancelamos su viaje, le devolvemos todo lo que nos haya pagado. No cancelaremos después del pago final salvo por causas ajenas a nuestro control (véase «Circunstancias ajenas a nuestro control») o por la seguridad de los viajeros.</p>\n</section>\n<section><h2>Seguro de viaje</h2>\n<p>Es condición de la reserva contar con un seguro de viaje completo que cubra cancelación e interrupción, asistencia médica, evacuación de emergencia y repatriación, y las actividades del itinerario. Envíenos los datos de la póliza antes de viajar.</p>\n</section>\n<section><h2>Pasaportes, visados y salud</h2>\n<p>Usted es responsable de llevar un pasaporte válido (normalmente con al menos seis meses de validez tras su regreso y páginas en blanco), los visados y permisos necesarios, y las vacunas y precauciones sanitarias que exija el viaje. Nuestra página <a href=\"/es/faq\">Preguntas frecuentes</a> ofrece orientación general, pero las normas cambian: consulte las fuentes oficiales y a un profesional de salud del viajero antes de salir. No somos responsables si se le deniega el embarque o la entrada por falta de documentación.</p>\n</section>\n<section><h2>Nuestra responsabilidad</h2>\n<p>Ponemos un cuidado razonable al planificar su viaje y elegir a nuestros proveedores, y respondemos de los servicios confirmados por escrito. No respondemos de problemas causados por usted o alguien de su reserva, por un tercero ajeno al viaje de forma imprevisible o inevitable, o por circunstancias ajenas a nuestro control. Salvo en caso de muerte o lesiones causadas por nuestra negligencia, o cuando la ley no lo permita, nuestra responsabilidad se limita al precio de su viaje. Nada de lo dispuesto afecta a sus derechos legales.</p>\n</section>\n<section><h2>Comportamiento</h2>\n<p>Respete las leyes, costumbres, comunidades y fauna locales, y siga las indicaciones de seguridad de conductores, guardas y anfitriones. Si el comportamiento de alguien pone en riesgo a otros o altera gravemente el viaje, podremos dar por terminados sus servicios sin reembolso.</p>\n</section>\n<section><h2>Reclamaciones</h2>\n<p>Si algo va mal durante el viaje, avise a nuestro equipo de inmediato para que podamos solucionarlo. Si no se resuelve en el momento, escríbanos a <a href=\"mailto:cenotehouse@tourground.com\">cenotehouse@tourground.com</a> en los 28 días siguientes a su regreso y le responderemos en 28 días.</p>\n</section>\n<section><h2>Circunstancias ajenas a nuestro control</h2>\n<p>No respondemos de incumplimientos o retrasos causados por hechos que no pudimos prever ni evitar, como guerra, disturbios, terrorismo, desastres naturales, epidemias, meteorología extrema, incendios, decisiones de las autoridades, cierres de aeropuertos o puertos, o huelgas. Si un hecho así impide su viaje, le ofreceremos una alternativa o le reembolsaremos lo pagado, menos los costes de proveedores que no podamos recuperar, en la medida en que la ley lo permita.</p>\n</section>\n<section><h2>Protección de datos</h2>\n<p>Usamos sus datos personales para organizar y gestionar su viaje, como se describe en nuestra <a href=\"/es/legal/privacy\">Política de privacidad</a>.</p>\n</section>\n<section><h2>Ley aplicable</h2>\n<p>Estas condiciones y cualquier contrato entre nosotros se rigen por las leyes de los Estados Unidos Mexicanos, y son competentes los tribunales de la Ciudad de México. Si reside en el Reino Unido o en la UE, conserva la protección de las normas imperativas de consumo de su país y puede presentar una demanda allí.</p>\n</section>\n<section><h2>Contacto</h2>\n<p>Cenote House, Paseo de la Reforma 483, Piso 14, Col. Cuauhtémoc, 06500 Ciudad de México, México. Correo electrónico: <a href=\"mailto:cenotehouse@tourground.com\">cenotehouse@tourground.com</a></p>\n</section>"
     },
     "cookies": {
       "title": "Política de cookies",
       "description": "Qué cookies y qué almacenamiento utiliza el sitio de Cenote House y cómo gestionarlos.",
-      "sections": [
-        {
-          "h": "En resumen",
-          "p": [
-            "No utilizamos cookies de analítica ni de publicidad en este sitio. Este sitio no instala cookies propias."
-          ]
-        },
-        {
-          "h": "Qué guarda el sitio en su navegador",
-          "p": [
-            "Si cambia la moneda en que se muestran los precios, su elección se guarda en el almacenamiento local de su navegador como ch.currency. Si utiliza el [planificador de viajes](/plan-your-trip), sus respuestas se guardan en el almacenamiento local como ch.planner.v1 para que pueda continuar donde lo dejó. Permanecen en su dispositivo hasta que envía el planificador y entonces se borran.",
-            "Las fuentes y las fotos se sirven desde este sitio, por lo que no se contacta con terceros al cargar las páginas."
-          ]
-        },
-        {
-          "h": "Consentimiento",
-          "p": [
-            "Lo anterior es estrictamente necesario para funciones que usted decide utilizar, por lo que no requiere su consentimiento. No añadiremos cookies de analítica ni de publicidad sin preguntarle antes."
-          ]
-        },
-        {
-          "h": "Cómo eliminarlo o cambiar de opinión",
-          "p": [
-            "Puede borrar en cualquier momento los datos guardados por este sitio desde los ajustes de su navegador (normalmente en Privacidad, y luego Cookies y datos de sitios)."
-          ]
-        },
-        {
-          "h": "Contacto",
-          "p": [
-            "Preguntas sobre esta política: escriba a cenotehouse@tourground.com."
-          ]
-        }
-      ]
+      "updated": "Última actualización: 1 de noviembre de 2026",
+      "html": "<section><h2>Qué son las cookies</h2>\n<p>Las cookies son pequeños archivos de texto que un sitio web guarda en su navegador. Los sitios también pueden guardar información en el almacenamiento local o de sesión del navegador, que funciona de forma parecida. En esta política, «cookies» abarca todas estas tecnologías.</p>\n</section>\n<section><h2>Qué usa este sitio</h2>\n<p>Cenote House no instala cookies. Solo usamos los elementos siguientes, necesarios para que el sitio funcione o para recordar sus elecciones. Ninguno se usa para publicidad ni para seguirle por otros sitios.</p>\n<div class=\"legal-table\"><table><thead><tr><th scope=\"col\">Nombre</th><th scope=\"col\">Finalidad</th><th scope=\"col\">Duración</th><th scope=\"col\">Tipo</th></tr></thead><tbody><tr><td><code>ch.currency</code></td><td>Recuerda la moneda elegida para mostrar los precios.</td><td>Hasta que lo borre</td><td>Almacenamiento local, preferencia</td></tr><tr><td><code>ch.planner.v1</code></td><td>Guarda en su dispositivo sus respuestas del planificador para continuar donde lo dejó; se borra al enviarlo.</td><td>Hasta que lo borre</td><td>Almacenamiento local, esencial</td></tr></tbody></table></div>\n<p>No usamos cookies analíticas ni publicitarias.</p>\n<p>Como estos elementos son estrictamente necesarios o solo guardan elecciones que usted hace, no requieren consentimiento según las normas de ePrivacy; no instalamos ninguna otra cookie.</p>\n</section>\n<section><h2>Contenido de terceros</h2>\n<ul><li>Las <strong>tipografías</strong> se sirven desde nuestro propio sitio, así que ningún proveedor de fuentes recibe sus datos.</li><li>Las <strong>fotografías y vídeos</strong> se sirven desde nuestro propio sitio.</li></ul>\n<p>Nuestro proveedor de alojamiento, Vercel, registra datos técnicos como su dirección IP en los registros del servidor para servir el sitio de forma segura; no instala cookies en este sitio.</p>\n</section>\n<section><h2>Cómo gestionar las cookies</h2>\n<p>Puede bloquear o borrar las cookies y los datos de sitios en la configuración de su navegador (normalmente en Privacidad o Datos de sitios). Si borra los datos de este sitio, se eliminan los elementos indicados arriba; el sitio seguirá funcionando, pero olvidará sus elecciones. La ayuda de su navegador (Chrome, Safari, Firefox o Edge) lo explica en «borrar cookies y datos de sitios».</p>\n</section>\n<section><h2>Cambios</h2>\n<p>Si empezamos a usar cookies nuevas, actualizaremos esta página y, cuando la ley lo exija, le pediremos antes su consentimiento.</p>\n</section>\n<section><h2>Contacto</h2>\n<p>Preguntas sobre cookies o sus datos: <a href=\"mailto:cenotehouse@tourground.com\">cenotehouse@tourground.com</a>. Consulte también nuestra <a href=\"/es/legal/privacy\">Política de privacidad</a>.</p>\n</section>"
     }
   }
 };
