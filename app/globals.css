@@ -200,7 +200,7 @@
     font-style: italic;
     color: var(--color-cenote-900);
   }
-  .prose-ch hr { border: 0; height: 10px; margin: 3em 0; background: var(--tile-band); background-size: 20px 10px; opacity: 0.6; }
+  .prose-ch hr { border: 0; border-top: 1px solid var(--color-sand-300, #d9cdb8); margin: 3em 0; }
   .prose-ch table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
   .prose-ch th, .prose-ch td { text-align: left; padding: 0.6em 0.8em; border-bottom: 1px solid var(--color-sand-200); vertical-align: top; }
   .prose-ch th { font-weight: 600; background: var(--color-sand-100); }
@@ -209,7 +209,6 @@
 
 :root {
   /* tiny zig-zag band, used as a subtle textile-inspired divider */
-  --tile-band: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='10' viewBox='0 0 20 10'%3E%3Cpath d='M0 10 L10 0 L20 10' fill='none' stroke='%23ad5230' stroke-width='1.4'/%3E%3C/svg%3E");
 }
 
 @utility no-scrollbar {

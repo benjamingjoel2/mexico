@@ -5,7 +5,6 @@ import { site } from "@/config/site";
 import { pageMetadata } from "@/lib/seo";
 import { PageHero } from "@/components/ui/PageHero";
 import { Img } from "@/components/ui/Img";
-import { TileDivider } from "@/components/ui/TileDivider";
 import { CtaBand } from "@/components/ui/CtaBand";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -93,7 +92,6 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         </div>
       </section>
 
-      <div className="container-x py-12"><TileDivider /></div>
       <section className="pb-16 text-center">
         <Link href="/why-travel-with-us" className="link-arrow text-cenote-800">{t("Why travel with us")} <span aria-hidden>→</span></Link>
       </section>

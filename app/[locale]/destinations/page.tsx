@@ -8,7 +8,6 @@ import { PageHero } from "@/components/ui/PageHero";
 import { coordsFor } from "@/data/coordinates";
 import { Img } from "@/components/ui/Img";
 import { CtaBand } from "@/components/ui/CtaBand";
-import { TileDivider } from "@/components/ui/TileDivider";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   setLocale((await params).locale);
@@ -109,7 +108,6 @@ export default async function DestinationsPage({ params }: { params: Promise<{ l
         </section>
       ))}
 
-      <div className="container-x py-4"><TileDivider /></div>
       <CtaBand title="Can't *choose*? That's our job." text="Most of our guests combine two or three regions. Tell us what you love and we'll suggest the right mix for your dates." />
     </>
   );
