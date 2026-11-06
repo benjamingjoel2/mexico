@@ -99,19 +99,17 @@ export default async function TripPage({ params }: { params: Promise<{ slug: str
             </ol>
           </div>
 
-          {/* Map placeholder */}
+          {/* Route as a plain list of stops */}
           <div id="route" className="mt-16 scroll-mt-32">
             <h2 className="text-3xl text-cenote-900">{emphasis(t("The *route*"))}</h2>
-            <div className="relative mt-6 flex aspect-[16/9] items-center justify-center overflow-hidden rounded-2xl border border-dashed border-sand-300 bg-cenote-50">
-              <svg aria-hidden className="absolute inset-0 h-full w-full opacity-30" viewBox="0 0 400 225" preserveAspectRatio="none">
-                <path d="M20 180 C 90 120, 150 200, 220 120 S 340 60, 380 40" stroke="#ad5230" strokeWidth="2" strokeDasharray="6 6" fill="none" />
-              </svg>
-              <div className="relative text-center">
-                <p className="font-display text-2xl text-cenote-900">{t("Map coming soon")}</p>
-                <p className="mt-1 text-sm text-ink-soft">{it.destinations.map(destinationName).join(" → ")}</p>
-                {/* TODO: embed Mapbox/Google static map from route coordinates */}
-              </div>
-            </div>
+            <ol className="mt-6 flex flex-wrap gap-x-3 gap-y-2 text-lg text-cenote-900">
+              {it.destinations.map((slug, i) => (
+                <li key={slug} className="flex items-center gap-3">
+                  {i > 0 && <span aria-hidden className="text-terra-600">→</span>}
+                  <span>{destinationName(slug)}</span>
+                </li>
+              ))}
+            </ol>
           </div>
 
           {/* Inclusions */}

@@ -1,7 +1,6 @@
 import Link from "@/i18n/Link";
 import { emphasis } from "@/lib/emphasis";
 import { PlannerButton } from "./PlannerButton";
-import { TileDivider } from "./TileDivider";
 import { t } from "@/i18n/server";
 
 export function CtaBand({
@@ -13,7 +12,6 @@ export function CtaBand({
   return (
     <section className="relative overflow-hidden bg-sand-100 py-20 md:py-28">
       <div className="container-x relative text-center">
-        <TileDivider className="mx-auto mb-10 max-w-md" />
         <h2 className="mx-auto max-w-3xl text-4xl text-cenote-900 sm:text-6xl">{emphasis(title)}</h2>
         <p className="mx-auto mt-6 max-w-xl text-lg text-ink-soft">{text}</p>
         <div className="mt-10 flex flex-wrap justify-center gap-3">

@@ -1,7 +1,6 @@
 import Link from "@/i18n/Link";
 import { footerNav, legalLinks, site } from "@/config/site";
 import { Logo } from "@/components/ui/Logo";
-import { StitchBand } from "@/components/ui/TileDivider";
 import { MailIcon } from "@/components/ui/icons";
 import { t, tr } from "@/i18n/server";
 
@@ -10,7 +9,6 @@ export function Footer() {
   const legal = tr(legalLinks);
   return (
     <footer className="bg-cenote-950 text-cenote-100">
-      <StitchBand className="!opacity-40" />
       <div className="container-x grid gap-12 py-16 lg:grid-cols-12 lg:py-20">
         <div className="lg:col-span-4">
           <Logo tone="light" />
