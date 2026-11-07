@@ -11,6 +11,7 @@ import { DestinationCard } from "@/components/cards/DestinationCard";
 import { ExperienceTile } from "@/components/cards/ExperienceTile";
 import { ItineraryCard } from "@/components/cards/ItineraryCard";
 import { StayHoverList } from "@/components/home/StayHoverList";
+import { formatCoords, heroCoordinates } from "@/data/coordinates";
 import { PlannerButton } from "@/components/ui/PlannerButton";
 import { BrochureForm } from "@/components/home/BrochureForm";
 import { CtaBand } from "@/components/ui/CtaBand";
@@ -71,29 +72,35 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   return (
     <>
-      {/* 1 · Hero: split screen. Colour field with the headline on the left, tall photo on the right. */}
-      <section className="relative isolate -mt-[4.5rem] grid bg-cenote-950 text-white lg:min-h-[100svh] lg:grid-cols-2">
-        <div className="container-x order-2 flex flex-col justify-end pb-10 pt-12 lg:order-1 lg:pb-14 lg:pr-12 lg:pt-40">
-          <p className="eyebrow text-cenote-300">{t("Tailor-made journeys through Mexico")}</p>
-          <h1 className="mt-5 max-w-xl text-[2.6rem] leading-[1.02] sm:text-6xl lg:text-[4.4rem]">
-            {emphasis(t("The Mexico *beneath* the postcard."))}
-          </h1>
-          <p className="mt-6 max-w-lg text-lg leading-relaxed text-white/85">
-            {t("Private, tailor-made trips planned by one dedicated specialist who knows the country first-hand, from hidden cenotes and hacienda courtyards to the kitchens of Oaxaca. Beyond the resorts, at your pace.")}
-          </p>
-          <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-4">
-            <PlannerButton>{t("Start planning")} <span aria-hidden>→</span></PlannerButton>
-            <Link href="/why-travel-with-us" className="text-sm font-semibold underline underline-offset-4 hover:text-cenote-300">{t("How we work")}</Link>
+      {/* 1 · Hero: full-bleed, sits under the transparent header */}
+      <section className="relative isolate -mt-[4.5rem] flex min-h-[100svh] items-end overflow-hidden bg-cenote-950 text-white">
+        {/* Swap for a <video autoPlay muted loop playsInline poster=…> when you have cenote footage. */}
+        <Image src={images["hero-cenote"].src} alt={t(images["hero-cenote"].alt)} fill priority sizes="100vw" className="-z-20 animate-drift object-cover opacity-85" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-cenote-950 via-cenote-950/35 to-cenote-950/55" />
+        <p className="coords absolute right-5 top-28 hidden text-white/75 sm:block md:right-10">{formatCoords(heroCoordinates)}</p>
+        <div className="container-x pb-10 pt-40 md:pb-12">
+          <div className="max-w-4xl">
+            <p className="eyebrow text-cenote-300">{t("Tailor-made journeys through Mexico")}</p>
+            <h1 className="mt-5 text-[3.2rem] leading-[0.98] sm:text-7xl lg:text-[6.4rem]">
+              {emphasis(t("The Mexico *beneath* the postcard."))}
+            </h1>
+            <p className="mt-7 max-w-xl text-lg leading-relaxed text-white/85">
+              {t("Private, tailor-made trips planned by one dedicated specialist who knows the country first-hand, from hidden cenotes and hacienda courtyards to the kitchens of Oaxaca. Beyond the resorts, at your pace.")}
+            </p>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <PlannerButton>{t("Start planning")} <span aria-hidden>→</span></PlannerButton>
+              <Link href="/why-travel-with-us" className="btn btn-ghost-light">{t("How we work")} <span aria-hidden>→</span></Link>
+            </div>
           </div>
-          <p className="mt-12 flex max-w-lg flex-col gap-1 border-t border-white/20 pt-5 text-sm text-white/80">
-            <span className="inline-flex items-center gap-2 font-semibold text-white"><ShieldIcon width={18} height={18} className="text-cenote-300" /> {t("Included on every trip")}</span>
-            <span>{t("Private airport transfers, a local host on arrival and 24/7 support while you travel.")} <Link href="/faq" className="underline underline-offset-4 hover:text-white">{t("See what’s included")}</Link></span>
-          </p>
-        </div>
-        <div className="relative order-1 aspect-[4/5] max-h-[78svh] w-full overflow-hidden sm:aspect-[16/11] lg:order-2 lg:aspect-auto lg:max-h-none">
-          {/* Swap for a <video autoPlay muted loop playsInline poster=…> when you have cenote footage. */}
-          <Image src={images["hero-cenote"].src} alt={t(images["hero-cenote"].alt)} fill priority sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
-          <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-cenote-950/70 to-transparent" />
+          <div className="mt-14 grid gap-4 border-t border-white/20 pt-5 text-sm text-white/80 md:grid-cols-[1fr_auto] md:items-center">
+            <p className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-4">
+              <span className="inline-flex items-center gap-2 font-semibold text-white"><ShieldIcon width={18} height={18} className="text-cenote-300" /> {t("Included on every trip")}</span>
+              <span>{t("Private airport transfers, a local host on arrival and 24/7 support while you travel.")} <Link href="/faq" className="underline underline-offset-4 hover:text-white">{t("See what’s included")}</Link></span>
+            </p>
+            <a href="#manifesto" className="hidden items-center gap-3 text-xs uppercase tracking-[0.2em] text-white/70 hover:text-white md:inline-flex">
+              {t("Scroll")} <span aria-hidden className="scroll-cue inline-block">↓</span>
+            </a>
+          </div>
         </div>
       </section>
 
